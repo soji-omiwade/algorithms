@@ -1,0 +1,16 @@
+- Difficult problem & how did you solve it: speak to your PhD
+	. claim a conjecture holds and go about proving it
+		- this was for my doctoral thesis. 
+		- blank board. then step by step:
+			- chiefly divide and conquer. 
+			- debug the theory (unit-test)
+			- merge if possible the cases for a simple solution
+		- QA: hand it over to collaborators, who look at it and suggest edits (not necessarily bugs; but "performance improvements)
+		
+		
+
+Questions to be ready for: 
+---
+QA manager
+Software Engineer
+Software Development Engineer
