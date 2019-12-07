@@ -3,16 +3,22 @@ inspired by: https://stackoverflow.com/questions/39549971/bit-shifting-of-negati
 """
 def twos_comp(val: int, nbits: int):
     """compute the 2's complement of int value val"""
-    if val < 0: 
-        val += (1 << nbits)  #  0001 << 4 = 10000 = 16 = 2 ^ 4
-    elif (val & (1 <<(nbits-1))) != 0:
-        #if sign bit is set, then compute negative values
-        val -= (1 << nbits)
+
+    if val > (1 << (nbits-1)-1):
+        val = 0
     return val
     
-def foo(a,b):
+    if val < 0: 
+        print(f"{val} is less than 0; ",end="")
+        val += (1 << nbits)
+        print(f"it becomes {val}")
+
+        
+    return val
+    
+def foo(a,b,c=8):
     print(f"{a:b} >> {b:b} = {a>>b:b} <-->"\
-    +f" {twos_comp(a,8):b} >> {b:b} = {twos_comp(a>>b,8):b} ")
+    +f" {twos_comp(a,c):b} >> {b:b} = {twos_comp(a>>b,c):b} ")
             
         
 foo(-2,1)
