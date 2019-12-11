@@ -1,0 +1,18 @@
+- Given an array, return a linked list. 
+
+C
+MyList arr_to_list(int[] a);
+python: 
+def arr_to_list(a: list)->
+
+- subarray problem. 
+	- here's the question. 
+	- can it be done faster? 
+	- 
+- linked list problem.
+	- determine if it has a cycle
+	- ok implement. 
+	- can you do this without maintaining a visit structure. 
+for me. 
+	rr--use git to do old problems
+- 
