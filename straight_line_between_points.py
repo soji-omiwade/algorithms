@@ -1,7 +1,7 @@
 import sys
 m,n,a,b,c,d=int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5]), int(sys.argv[6])
-
 foo=[[0 for j in range(n)] for i in range(m)]
+
 
 def reset(foo):
     xstep=ystep=1
@@ -28,7 +28,6 @@ def reset(foo):
             yval=max(b+ystep,d)
             ystep-=1
         foo[xval][yval] = 1
-
 
 
 def show(foo):
