@@ -1,5 +1,7 @@
 trash/
 # Byte-compiled / optimized / DLL files
+*.in
+*.py~
 __pycache__/
 *.py[cod]
 *$py.class
