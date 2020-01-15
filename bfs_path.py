@@ -36,6 +36,7 @@ G = build_graph(edges)
 from collections import deque
 q = deque([G[src]])
 visited = {G[u]:False for u in G}
+visited[G[src]]=True
 pi={G[u]:None for u in G}
 cost=0
 while q:
@@ -43,11 +44,11 @@ while q:
     cost+=1
     if v.key == dst:
         break
-    visited[v] = True
     for u in v.nbs:
         if not visited[u]:
             pi[u]=v
             q.append(u)
+            visited[u] = True
 
 print(cost)
 for v in pi:
