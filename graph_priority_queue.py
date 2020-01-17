@@ -1,4 +1,4 @@
-import math
+from math import inf
 class GraphPriorityQueue:
     def __init__(self, n, src):
         self.heap = self.MinHeap(n, src)
@@ -7,9 +7,11 @@ class GraphPriorityQueue:
         return self.heap.size == 0
         
     def decrease_key(self, v_key, key):
-        i = self.heap.b[v_key]
+        for i,j in enumerate(self.heap.b):
+            if j == v_key:
+                break
         if key > self.heap.a[i]:
-            raise ValueError("new key is greater than current key")
+            raise ValueError(f"new key is greater than current key: node {v_key}: {key, self.heap.a[i]}")
         self.heap.a[i] = key
         self.heap.reverse_heapify(i)
         
@@ -25,15 +27,15 @@ class GraphPriorityQueue:
     
     class MinHeap:
         def __init__(self, n, src):
-            self.a = [math.inf for _ in range(n)]
+            self.a = [inf for _ in range(n)]
             self.a[src] = 0
             self.b = [i for i in range(n)]
             self.size = n
-            for i in range(math.floor(self.size/2)-1, -1, -1):
+            for i in range(self.size//2-1, -1, -1):
                 self.heapify(i)
                 
         def parent(self, i):
-            return math.floor((i-1)/2)
+            return (i-1)//2
             
         def left(self, i):
             return 2*i + 1
@@ -56,6 +58,6 @@ class GraphPriorityQueue:
             if r < self.size and self.a[r]< self.a[smallest]:
                 smallest = r
             if smallest != i:
-                self.a[i], self.a[smallest]= self.a[smallest], self.a[i]
+                self.a[i], self.a[smallest] = self.a[smallest], self.a[i]
                 self.b[i], self.b[smallest] = self.b[smallest], self.b[i]
                 self.heapify(smallest)
