@@ -7,9 +7,7 @@ class GraphPriorityQueue:
         return self.heap.size == 0
         
     def decrease_key(self, v_key, key):
-        for i,j in enumerate(self.heap.b):
-            if j == v_key:
-                break
+        i = self.heap.c[v_key]
         if key > self.heap.a[i]:
             raise ValueError(f"new key is greater than current key: node {v_key}: {key, self.heap.a[i]}")
         self.heap.a[i] = key
@@ -21,6 +19,7 @@ class GraphPriorityQueue:
         min_key = self.heap.b[0]
         self.heap.a[0] = self.heap.a[self.heap.size-1]
         self.heap.b[0] = self.heap.b[self.heap.size-1]
+        self.heap.c[self.heap.b[self.heap.size-1]] = 0
         self.heap.size -= 1
         self.heap.heapify(0)
         return min_key
@@ -30,6 +29,7 @@ class GraphPriorityQueue:
             self.a = [inf for _ in range(n)]
             self.a[src] = 0
             self.b = [i for i in range(n)]
+            self.c = [i for i in range(n)]
             self.size = n
             for i in range(self.size//2-1, -1, -1):
                 self.heapify(i)
@@ -46,7 +46,7 @@ class GraphPriorityQueue:
         def reverse_heapify(self, i):
             while i > 0 and self.a[self.parent(i)] > self.a[i]:
                 self.a[i], self.a[self.parent(i)] = self.a[self.parent(i)], self.a[i]
-                self.b[i], self.b[self.parent(i)] = self.b[self.parent(i)], self.b[i] 
+                self.c[self.b[self.parent(i)]], self.c[self.b[i]], self.b[i], self.b[self.parent(i)] = i, self.parent(i), self.b[self.parent(i)], self.b[i]
                 i = self.parent(i)
        
         def heapify(self, i): 
@@ -55,9 +55,9 @@ class GraphPriorityQueue:
             smallest = i
             if l < self.size and self.a[l] < self.a[i]:
                 smallest = l
-            if r < self.size and self.a[r]< self.a[smallest]:
+            if r < self.size and self.a[r] < self.a[smallest]:
                 smallest = r
             if smallest != i:
                 self.a[i], self.a[smallest] = self.a[smallest], self.a[i]
-                self.b[i], self.b[smallest] = self.b[smallest], self.b[i]
+                self.c[self.b[smallest]], self.c[self.b[i]], self.b[i], self.b[smallest] = i, smallest, self.b[smallest], self.b[i]
                 self.heapify(smallest)
