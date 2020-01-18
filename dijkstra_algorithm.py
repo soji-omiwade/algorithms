@@ -9,7 +9,21 @@ def build_graph(edges, *, directed = False):
         def __str__(self):
             return str(self.key)
     g,w={},{}
-    for iu,iv,c in edges:
+    #foo: given something in input set, return back the integral index
+    coo = []
+    foo = {} 
+    for iiu,iiv,c in edges:
+        try: 
+            iu = foo[iiu]
+        except: 
+            foo[iiu] = iu = len(foo)
+            coo.append(iiu)
+        try: 
+            iv = foo[iiv]
+        except:
+            foo[iiv] = iv = len(foo)
+            coo.append(iiv)
+            
         try:
             u = g[iu]
         except:
@@ -24,7 +38,7 @@ def build_graph(edges, *, directed = False):
         if not directed:
             v.nbs.add(u)        
             w[v,u] = c
-    return g,w
+    return g,w,coo,foo
 
 def initialize_single_source(g, s):
     d = {v:inf for v in g.values()}
@@ -57,13 +71,14 @@ def relax(u, v, w, d,pi,pq):
         pq.decrease_key(v.key, d[v])
 
 if __name__ == "__main__":
-    edges = [(0,1,1), (1,2,1), (2,0,10), (2,3,1)]
-    src = 3
-    # s,t,x,y,z = 4,3,1,0,2 #"stxyz"
-    # edges = [(s,t,10),(s,y,5), (t,x,1), (t,y,2), (y,t,3), (y,z,2), (y,x,9), (x,z,4), (z,s,7), (z,x,6)]
-    # src = s
-    g, w = build_graph(edges, directed = False)
-    path, d = single_source_shortest_path(g, w, src)
-    print(path)
+    edges = [("a","b",1), ("b","c",1), ("c","a",10), ("c","bb",1)]
+    src = "bb"
+    s,t,x,y,z = "stxyz"
+    edges = [(s,t,10),(s,y,5), (t,x,1), (t,y,2), (y,t,3), (y,z,2), (y,x,9), (x,z,4), (z,s,7), (z,x,6)]
+    src = s
+    g, w, coo, foo = build_graph(edges, directed = True)
+    path, d = single_source_shortest_path(g, w, foo[src])
+    for iv, vpath in path.items():
+        print(coo[iv], [coo[key] for key in vpath]) 
     for v,vdist in d.items():
-        print(v.key, vdist)
+        print(coo[v.key], vdist)
