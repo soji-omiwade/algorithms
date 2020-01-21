@@ -1,5 +1,7 @@
-"""
-find perm(n,k)
+"""find permutation(n,k)
+
+there are two methods: foo and coo. coo is generic: it computes perm(n,k)
+foo only finds perm(n,n)
 """
 import sys
 from math import factorial
