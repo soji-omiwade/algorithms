@@ -1,3 +1,6 @@
+"""
+find perm(n,k)
+"""
 import sys
 from math import factorial
 n,k = int(sys.argv[1]), int(sys.argv[2])
