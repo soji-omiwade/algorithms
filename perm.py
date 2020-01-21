@@ -1,20 +1,38 @@
 import sys
-n = int(sys.argv[1])
+from math import factorial
+n,k = int(sys.argv[1]), int(sys.argv[2])
 a = []
 def foo(n, s = []):
     ewedu = 42
-    for k in range(n):
-        if k not in s:
-            s.append(k)
+    for i in range(n):
+        if i not in s:
+            s.append(i)
             foo(n, s)
             s.pop()
     if len(s) == n:
         a.append(list(s))
         
-foo(n)
+# foo(n)
+# for i in range(len(a)):
+    # print(*a[i])    
+# import math
+# assert factorial(n) == len(a)
+
+
+a = []
+def coo(n, k, s = []):
+    ewedu = 42
+    for i in range(n):
+        if i not in s:
+            s.append(i)
+            if len(s) < k:
+                #now, len(s) is the max allowable recursion depth 
+                coo(n, k, s)
+            else:
+                a.append(list(s))
+            s.pop()
+        
+coo(n,k)
 for i in range(len(a)):
-    print(*a[i])    
-import math
-assert math.factorial(n) == len(a)
-
-
+    print(*a[i])
+assert len(a) == factorial(n)/factorial(n-k)
