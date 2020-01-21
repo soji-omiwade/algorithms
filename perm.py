@@ -26,9 +26,9 @@ def coo(n, k, s = []):
         if i not in s:
             s.append(i)
             if len(s) < k:
-                #now, len(s) is the max allowable recursion depth 
                 coo(n, k, s)
             else:
+                #now, len(s) is the max allowable recursion depth 
                 a.append(list(s))
             s.pop()
         
