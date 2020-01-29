@@ -10,18 +10,21 @@ if I find article for more details, i'll post it
 from math import inf
 def go(a, b):
     def find_median(a, p, r, b):
-        nonlocal m, n
         if p > r: 
-            raise NameError('something went wrong:', p, r)
+            raise Exception('something went wrong:', p, r)
         q = (p + r)//2
-        xL, xR = a[q-1] if q > 0 else -inf, a[q] if q < m else inf
+        al = a[q-1] if q > 0 else -inf
+        ar = a[q] if q < m else inf
+        
         j = (m+n)//2 - q
-        yL, yR = b[j-1] if j > 0 else -inf, b[j] if j < n else inf
-        if max(xL,yL) <= min(xR,yR):
+        bl = b[j-1] if j > 0 else -inf
+        br = b[j] if j < n else inf
+        
+        if max(al,bl) <= min(ar,br):
             if (m+n) % 2 == 0:
-                return (max(xL,yL)+min(xR, yR))/2
-            return min(xR, yR)
-        if xR < yL: #if so, then we should go right
+                return (max(al,bl)+min(ar, br))/2
+            return min(ar, br)
+        if ar < bl:
             return find_median(a, q+1, r, b)
         return find_median(a, p, q, b)
         
@@ -30,3 +33,7 @@ def go(a, b):
     m,n = len(a),len(b)
     return find_median(a, 0, len(a), b)
         
+if __name__ == "__main__":
+    foo=[1,2,3,20,25]
+    coo=[10,24,30,40,50]
+    print(go(foo,coo))
