@@ -1,4 +1,46 @@
-class ListPriorityQueue:
+class SinglyLinkedListPriorityQueue:
+    class Node:
+        def __init__(self, size):
+            self.size = size
+            self.next = None
+            
+    def __init__(self, a):
+        a.sort()
+        self.head = None
+        for i in range(len(a)-1,-1,-1):
+            v = SinglyLinkedListPriorityQueue.Node(a[i])
+            if not self.head:
+                self.head = v
+                continue
+            v.next, self.head = self.head, v
+        self.count = len(a)
+        
+    def __len__(self):
+        return self.count
+        
+    def extract_min(self):
+        if self.head is None:
+            raise Exception("empty queue")
+        val, self.head = self.head.size, self.head.next
+        self.count -= 1
+        return val
+        
+    def insert(self, size):
+        v = SinglyLinkedListPriorityQueue.Node(size)
+        if self.head is None:
+            self.head = v
+            return
+        w = self.head
+        u = None
+        while w is not None and w.size < size:
+            u,w = w,w.next
+        if u:
+            u.next, v.next = v, w
+        else:#we are getting a new heade
+            self.head, v.next = v, self.head
+        self.count += 1    
+        
+class DoublyLinkedListPriorityQueue:
     class Node:
         def __init__(self, size):
             self.size = size
@@ -12,7 +54,7 @@ class ListPriorityQueue:
         self.head = None
         self.count = len(a)
         for i in range(len(a)-1,-1,-1):
-            v = ListPriorityQueue.Node(a[i])
+            v = DoublyLinkedListPriorityQueue.Node(a[i])
             if self.head is None:
                 self.head = v
                 continue
@@ -22,10 +64,10 @@ class ListPriorityQueue:
             
     def insert(self, size):
         if self.head is None:
-            self.head = ListPriorityQueue.Node(size)
+            self.head = DoublyLinkedListPriorityQueue.Node(size)
             return
 
-        w = ListPriorityQueue.Node(size)
+        w = DoublyLinkedListPriorityQueue.Node(size)
         v = self.head
         while v:
             if size < v.size:
@@ -112,10 +154,9 @@ if __name__ == "__main__":
     arr = [1,1,1, 1,1,1, 1,1,1]
     from random import shuffle
     shuffle(arr)
-    if sys.argv[1] == "0":
-        pq = MinHeapPriorityQueue(arr) 
-    else: 
-        pq = ListPriorityQueue(arr)
+    if sys.argv[1] == "0": pq = MinHeapPriorityQueue(arr) 
+    elif sys.argv[1] == "1": pq = DoublyLinkedListPriorityQueue(arr)
+    else: pq = SinglyLinkedListPriorityQueue(arr)
     cost = 0
     while len(pq) > 1:
         a = pq.extract_min()
