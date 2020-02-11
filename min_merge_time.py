@@ -1,5 +1,35 @@
 class ListPriorityQueue:
-    pass
+    def __init__(self, a):
+        self.a = list(a)
+        self.extract_starts = False
+        
+    def extract_min(self):
+        def arr_to_list(a):
+            if a is None:
+                raise Exception ("Empty List")
+            
+        class Node:
+            def __init__(self, key, head):
+                self.key = key
+                self.next = head
+                
+            """list to array conversion"""
+            head = None
+            for i in range(len(a),-1,-1):
+                head = Node(a[i], head)
+
+
+            return head
+            
+        if not self.extract_starts:
+            self.extract_starts = True
+            self.h = arr_to_list()
+        
+        val = self.h
+        self.h = self.h.next
+        return val
+    def insert(self):
+        
 class MinHeapPriorityQueue:
     def __init__(self, a):
         self.a = list(a)
@@ -22,27 +52,33 @@ class MinHeapPriorityQueue:
             self.heapify(smallest)
         
     def build_min_heap(self, a):
-        for i in range(len(self.a)//2-1,-1,-1):
+        """O(n)?"""
+        for i in range(self.parent(len(self.a)-1),-1,-1):
             self.heapify(i)
     
     def extract_min(self):
+        """O(lg n)"""
         val = self.a[0]
         new_first = self.a.pop()
         if len(self.a) > 0:
             self.a[0] = new_first
             self.heapify(0)
         return val
+
+    @staticmethod
+    def parent(i):
+        return (i-1)//2
         
     def insert(self, val):
-        def parent(i):
-            return (i-1)//2
+        """O(lg n)"""
         def float_key(k):
             if k == 0:
                 return
                 
-            if self.a[k] < self.a[parent(k)]:
-                self.a[k], self.a[parent(k)] = self.a[parent(k)],self.a[k]
-                float_key(parent(k))            
+            if self.a[k] < self.a[self.parent(k)]:
+                self.a[k], self.a[self.parent(k)] = (
+                    self.a[self.parent(k)], self.a[k])
+                float_key(self.parent(k))            
         self.a.append(val)
         float_key(len(self.a)-1)
         
@@ -50,12 +86,13 @@ class MinHeapPriorityQueue:
         return len(self.a)
         
 if __name__ == "__main__":
-    arr = [1,1,1, 1,1,1, 1,1,1]
+    # [1,2,3,4,5,6]
+    arr = \
+    [1,1,1, 1,1,1, 1,1,1]
     from random import shuffle
     shuffle(arr)
-    pq = \
-    MinHeapPriorityQueue(arr)
-    # ListPriorityQueue(arr)
+    pq = MinHeapPriorityQueue(arr) 
+    # pq = ListPriorityQueue(arr)
     cost = 0
     while len(pq) > 1:
         a = pq.extract_min()
