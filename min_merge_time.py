@@ -1,34 +1,55 @@
 class ListPriorityQueue:
+    class Node:
+        def __init__(self, size):
+            self.size = size
+            self.next = self.prev = None
+
+    def __len__(self):
+        return self.count
+        
     def __init__(self, a):
-        self.a = list(a)
-        self.extract_starts = False
-        
+        a.sort()
+        self.head = None
+        self.count = len(a)
+        for i in range(len(a)-1,-1,-1):
+            v = ListPriorityQueue.Node(a[i])
+            if self.head is None:
+                self.head = v
+                continue
+            v.next, self.head.prev = self.head, v
+            self.head = v
+            
+            
+    def insert(self, size):
+        if self.head is None:
+            self.head = ListPriorityQueue.Node(size)
+            return
+
+        w = ListPriorityQueue.Node(size)
+        v = self.head
+        while v:
+            if size < v.size:
+                if v.prev is None: #i.e., v is the self.head
+                    self.head = w
+                else:
+                    u = v.prev
+                    u.next, w.prev = w, u
+                w.next, v.prev = v, w
+                break
+            if v and not v.next:
+                last = v
+            v=v.next
+        if w.next is None: #it hasn't been set bcos w.size > max-size
+            last.next, w.prev = w, last
+        self.count += 1    
+            
     def extract_min(self):
-        def arr_to_list(a):
-            if a is None:
-                raise Exception ("Empty List")
-            
-        class Node:
-            def __init__(self, key, head):
-                self.key = key
-                self.next = head
-                
-            """list to array conversion"""
-            head = None
-            for i in range(len(a),-1,-1):
-                head = Node(a[i], head)
-
-
-            return head
-            
-        if not self.extract_starts:
-            self.extract_starts = True
-            self.h = arr_to_list()
-        
-        val = self.h
-        self.h = self.h.next
+        if self.head is None:
+            raise Exception("priority queue is empty")
+        val = self.head.size
+        self.head = self.head.next
+        self.count -= 1
         return val
-    def insert(self):
         
 class MinHeapPriorityQueue:
     def __init__(self, a):
@@ -86,13 +107,15 @@ class MinHeapPriorityQueue:
         return len(self.a)
         
 if __name__ == "__main__":
-    # [1,2,3,4,5,6]
-    arr = \
-    [1,1,1, 1,1,1, 1,1,1]
+    import sys
+    # arr =  [1,2,3,4,5,6]
+    arr = [1,1,1, 1,1,1, 1,1,1]
     from random import shuffle
     shuffle(arr)
-    pq = MinHeapPriorityQueue(arr) 
-    # pq = ListPriorityQueue(arr)
+    if sys.argv[1] == "0":
+        pq = MinHeapPriorityQueue(arr) 
+    else: 
+        pq = ListPriorityQueue(arr)
     cost = 0
     while len(pq) > 1:
         a = pq.extract_min()
