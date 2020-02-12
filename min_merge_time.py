@@ -150,13 +150,15 @@ class MinHeapPriorityQueue:
         
 if __name__ == "__main__":
     import sys
-    # arr =  [1,2,3,4,5,6]
-    arr = [1,1,1, 1,1,1, 1,1,1]
+    arr =  [1,2,3,4,5,6]
+    # arr = [1,1,1, 1,1,1, 1,1,1]
     from random import shuffle
     shuffle(arr)
+    from min_heap_priority_queue import MinHeapPriorityQueue as MHPQ2
     if sys.argv[1] == "0": pq = MinHeapPriorityQueue(arr) 
     elif sys.argv[1] == "1": pq = DoublyLinkedListPriorityQueue(arr)
-    else: pq = SinglyLinkedListPriorityQueue(arr)
+    elif sys.argv[1] == "2": pq = SinglyLinkedListPriorityQueue(arr)
+    else: pq = MHPQ2(arr)
     cost = 0
     while len(pq) > 1:
         a = pq.extract_min()
