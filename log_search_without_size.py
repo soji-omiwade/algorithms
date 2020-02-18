@@ -16,12 +16,17 @@ def log_search_without_size(a,k,i=0):
     count_hopfind+=1
     print('hop i', i)
     if i<len(a):
-        if a[0]==k: return 0
-        if i==0: i+=1
-        if a[i]==k: return i
-        
-        if k>a[i]: return log_search_without_size(a,k,2*i)
-        if k<a[i]: return bfind(a,k,i//2+1, i-1)
+        if a[0]==k: 
+            return 0
+        if i==0: 
+            i+=1
+        if a[i]==k: 
+            return i
+        if k<a[i]: 
+            return bfind(a,k,i//2+1, i-1)
+            
+        if k>a[i]: 
+            return log_search_without_size(a,k,2*i)
     return bfind(a,k,i//2+1,len(a)-1)
     
 from random import shuffle
