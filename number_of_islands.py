@@ -1,16 +1,61 @@
 from typing import List
 class Solution:
+
+    class Node:
+        def __init__(self):
+            self.visited=False
+            self.nbs=set([])
+            
     def numIslands(self, grid: List[List[str]]) -> int:
-        count=0
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):                
-                left=grid[i][j-1] if j>0 else "0"
-                top=grid[i-1][j] if i>0 else "0"
-                jp1_does_not_fall_over = j!=len(grid[0])-1 
-                right=grid[i][j+1] if jp1_does_not_fall_over else "0"
-                top_right=grid[i-1][j+1] if (jp1_does_not_fall_over and i !=0) else "0"
-                if (grid[i][j]=="1" 
-                    and left=="0" and top=="0"
-                    and not (right=="1" and top_right=="1")):
-                    count+=1
-        return count
+        
+        def build_graph():
+            g = []
+            for i in range(m):
+                g.append([])
+                for j in range(n):
+                    v=Solution.Node()
+                    g[i].append(v)
+                    if i-1>=0 and grid[i-1][j]==grid[i][j]:
+                        g[i-1][j].nbs.add(v)
+                        v.nbs.add(g[i-1][j])
+                    if j-1>=0 and grid[i][j-1]==grid[i][j]:
+                        g[i][j-1].nbs.add(v)
+                        v.nbs.add(g[i][j-1])
+            return g
+            
+        def dfs(v):
+            if v.visited:
+                return
+            v.visited=True
+            for w in v.nbs:
+                dfs(w)
+                
+        m,n=len(grid),len(grid[0]) if len(grid)>0 else 0
+        g=build_graph()
+        island_count=0
+        for i in range(m):
+            for j in range(n):
+                if not g[i][j].visited:
+                    dfs(g[i][j])
+                    if grid[i][j]=="1":
+                        island_count+=1
+        return island_count
+
+grid=[
+["1","1","1","1","0"],
+["1","1","0","1","0"],
+["1","1","0","0","0"],
+["0","0","0","0","0"]]
+gridII=[
+["1","1","0","0","0"],
+["1","1","0","0","0"],
+["0","0","1","0","0"],
+["0","0","0","1","1"]]
+gridIII=[
+["1","1","1","1","1"],
+["0","0","1","0","0"],
+["1","1","1","1","1"]]
+
+print(Solution().numIslands(grid))
+print(Solution().numIslands(gridII))
+print(Solution().numIslands(gridIII))
