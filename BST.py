@@ -9,17 +9,18 @@ class BinarySearchTree:
     def insert(self, key):
         def rec_insert(key, v):
             if v.key == key:
-                return v
-            if key < v.key:
+                w=v
+            elif key < v.key:
                 if v.left is None:
-                    v.left = BinarySearchTree.Node(key)
-                    return v.left
-                return rec_insert(key,v.left)
-            if v.right is None:
-                v.right = BinarySearchTree.Node(key)
-                return v.right
-            return rec_insert(key,v.right)
-                
+                    w = v.left = BinarySearchTree.Node(key)
+                else:
+                    w = rec_insert(key,v.left)
+            else:
+                if v.right is None:
+                    w = v.right = BinarySearchTree.Node(key)
+                else:
+                    w = rec_insert(key,v.right)
+            return w
         if self.root is None:
             self.root=BinarySearchTree.Node(key)
             return self.root
