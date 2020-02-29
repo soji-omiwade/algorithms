@@ -8,6 +8,18 @@ def longest_charset_based(s):
             im,jm=i,j
     return im,jm,s[im:jm+1]
 
+def longest_default_dict_based(s):
+    im,jm=1,0
+    i=0
+    from collections import defaultdict
+    d=defaultdict(int)
+    for j in range(len(s)):
+        i=max(i,d[s[j]])
+        if j-i>jm-im:
+            im,jm=i,j
+        d[s[j]]=j+1
+    return im,jm,s[im:jm+1]
+
 
 def longest_dict_based(s):
     d={}
@@ -47,11 +59,15 @@ s="abcdabkkek"
 print(longest_substring_no_repeating_chars_set(s))
 assert  (longest_substring_no_repeating_chars_set(s) 
             == longest_dict_based(s)
-            == longest_charset_based(s))
+            == longest_charset_based(s)
+            == longest_default_dict_based(s)
+        )
 
 import sys
 s=sys.argv[1]
 print(longest_substring_no_repeating_chars_set(s))
 assert  (longest_substring_no_repeating_chars_set(s) 
             == longest_dict_based(s)
-            == longest_charset_based(s))
+            == longest_charset_based(s)
+            == longest_default_dict_based(s)
+        )
