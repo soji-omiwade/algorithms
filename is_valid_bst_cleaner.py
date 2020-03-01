@@ -7,25 +7,22 @@ class TreeNode:
 
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
-        def inorder(v)->(int,int,bool):
-            from math import inf
+        from math import inf
+        def inorder(v, lower=-inf, upper=inf)->bool:
             if v is None:
-                return inf,-inf,True
+                return True
+            
+            if not lower<v.val<upper:
+                return False
                 
-            mn=mx=v.val
-            mn,_,valid=inorder(v.left)
-            if not valid or v.val<=_:
-                return 0,0,False
+            if not inorder(v.left,lower,v.val):
+                return False
+            if not inorder(v.right,v.val,upper):
+                return False
                 
-            _,mx,valid=inorder(v.right)
-            if not valid or v.val>=_:
-                return 0,0,False
-                
-            if mn is inf:
-                mn = mx = v.val
-            return mn,mx,True
+            return True
         
-        return inorder(root)[2]
+        return inorder(root)
                
                
 assert Solution().isValidBST(None)
