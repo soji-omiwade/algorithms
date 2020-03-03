@@ -4,13 +4,12 @@ class Solution:
         symbols= "I IV V IX X XL L XC C CD D CM M".split(" ")
         res=0
         i=0
-        while i<len(s):
+        for i in range(len(s)):
             if s[i:i+2] in "IV IX XL XC CD CM".split(" "):
                 res+= values[s[i:i+2]]
                 i+=1
             else:
                 res+=values[s[i]]
-            i+=1
         return res
     
 assert Solution().romanToInt("XXX V".replace(" ", "")) == 35
