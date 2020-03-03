@@ -1,22 +1,17 @@
 from typing import List
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        def helper(n,res,m=0,a=None,ch=None)->None:
-            if a is None:
-                a=[]
-            
-            a.append(ch)    
+        def helper(n,res,m,a)->None:
             if n==0 and m==0:
-                res.append("".join(a[1:]))
+                res.append("".join(a))
             elif n>=0 and m>=0:    
-                helper(n-1,res,m+1,a,"(") 
-                helper(n  ,res,m-1,a,")")
-            a.pop()
-            
+                helper(n-1,res,m+1,a+["("]) 
+                helper(n  ,res,m-1,a+[")"])
+        #end func
         if n==0:
             return [""]
         res=[]
-        helper(n,res)
+        helper(n,res,0,[])
         return res
         
 assert Solution().generateParenthesis(1) == ["()"]

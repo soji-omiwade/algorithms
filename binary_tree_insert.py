@@ -2,17 +2,11 @@ class BinaryTree:
     class Node:
         def __init__(self,key):
             self.key=key
+            self.right=self.left=None
             
-    def __init__(self, a):
-    
-        def left(i):
-            return 2*i+1
-        def right(i):
-            return 2*i+2
+    def __init__(self, a):    
         def parent(i):
-            return (i-1)//2
-        
-        
+            return (i-1)//2        
         b=[None]*len(a)
         for i in range(len(a)):
             if b[i] is None:
@@ -27,8 +21,9 @@ class BinaryTree:
 
     
     
-b=BinaryTree([1,2,3])
+b=BinaryTree([1,2,3,42,85,420])
 assert b.root.key==1 
 assert b.root.right.key==3
-
-
+assert b.root.right.right is None
+assert b.root.right.left.key==420
+assert b.root.left.left.key==42

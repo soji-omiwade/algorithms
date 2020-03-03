@@ -8,21 +8,21 @@ class TreeNode:
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
         from math import inf
-        def inorder(v, lower=-inf, upper=inf)->bool:
+        def preorder(v, lower=-inf, upper=inf)->bool:
             if v is None:
                 return True
             
             if not lower<v.val<upper:
                 return False
                 
-            if not inorder(v.left,lower,v.val):
+            if not preorder(v.left,lower,v.val):
                 return False
-            if not inorder(v.right,v.val,upper):
+            if not preorder(v.right,v.val,upper):
                 return False
                 
             return True
         
-        return inorder(root)
+        return preorder(root)
                
                
 assert Solution().isValidBST(None)
