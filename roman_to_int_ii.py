@@ -6,34 +6,27 @@ class Solution:
         1764 - M D CC L X IV
         """
         res=0
-        vxseen=lcseen=dmseen=False
         for i in range(len(s)-1,-1,-1):
             if s[i]=="M":
                 res+=1000
-                dmseen=True
             elif s[i]=="D":
                 res+=500
-                dmseen=True
             elif s[i]=="C":
-                res+=100
-                if dmseen:
+                if res>=500:
                     res-=200
-                lcseen=True
+                res+=100
             elif s[i]=="L":
                 res+=50
-                lcseen=True
             elif s[i]=="X":
-                res+=10
-                if lcseen:
+                if res>=50:
                     res-=20
-                vxseen=True
+                res+=10
             elif s[i]=="V":
                 res+=5
-                vxseen=True
-            else:
-                res+=1
-                if vxseen:
+            elif s[i]=="I":
+                if res>=5: 
                     res-=2
+                res+=1
         return res        
 assert Solution().romanToInt("XXX V".replace(" ", "")) == 35
 assert Solution().romanToInt("XL II".replace(" ", "")) == 42
