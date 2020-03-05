@@ -18,10 +18,9 @@ class Solution:
             val = chr((k%10)+ord("0"))
             a.append(val)
             k=k//10
-        b=[is_neg]
-        while a:
-            b.append(a.pop())
-        return "".join(b)
+        for i in range(len(a)//2):
+            a[i],a[len(a)-(i+1)]=a[len(a)-(i+1)],a[i]
+        return is_neg+"".join(a)
             
 assert Solution().itoa(891234) == "891234"
 assert Solution().itoa(-42) == "-42"
