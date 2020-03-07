@@ -11,7 +11,8 @@ class Solution:
             while 0<=k<m and 0<=j+1<n:
                 if matrix[i+k][j+k] != matrix[i+1][j+1]:
                     return False
-                i+=1; j+=1
+                i+=1
+                j+=1
         return True
 
 assert Solution().isToeplitzMatrix([[1,2,3,4],[5,1,2,3],[9,5,1,2]])
