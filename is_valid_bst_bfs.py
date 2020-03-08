@@ -1,3 +1,4 @@
+from queue import deque
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):
@@ -5,24 +6,20 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
-        def helper(v,left,right):
-            if not v:
-                return True               
-            if (left < v.val < right and
-                helper(v.left,left,v.val) and helper(v.right,v.val,right)):
-                return True                
-            return False
+        q=deque()
+        q.append((root,float("-inf"),float("inf")))
+        while q:
+            v,left,right=q.popleft()
+            if v:
+                if not left<v.val<right:
+                    return False            
+                q.append((v.left,left,v.val))
+                q.append((v.right,v.val,right))
+        return True
 
-        if not root:
-            return True
-        if (helper(root.left,float("-inf"),root.val)
-            and helper(root.right,root.val,float("inf"))):
-            return True
-        return False
-        
-        
 assert Solution().isValidBST(None)
 
 t=TreeNode(2)
@@ -47,6 +44,3 @@ a=[10,5,15,None,None,6,20]
 r=TreeNode(a[0]); r.left,r.right=TreeNode(a[1]),TreeNode(a[2])
 r.right.left,r.right.right=TreeNode(a[5]),TreeNode(a[6])
 assert not Solution().isValidBST(r)
-
-
-        
