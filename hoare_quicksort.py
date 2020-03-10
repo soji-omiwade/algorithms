@@ -16,7 +16,7 @@ def quicksort(a,p,r,partition_type):
                 return j
     def simple_partition(a,p,r):
         x=a[r]
-        i=-1
+        i=p-1
         for j in range(p,r):
             if a[j]<=x:
                 a[i+1],a[j]=a[j],a[i+1]
@@ -40,7 +40,7 @@ def quicksort(a,p,r,partition_type):
     
     
 from random import shuffle
-count=3
+count=100
 a=[i for i in range(count)]
 shuffle(a)
 assert a != [i for i in range(count)]
