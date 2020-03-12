@@ -1,12 +1,19 @@
 class Solution:
     def compareVersion(self, version1: str, version2: str) -> int:
-        """
-        7.5.3
-        7.5.3.4
-        """
-        
-        a=version1.split(".")
-        b=version2.split(".")
+        def my_split(s,dot):
+            start=0
+            res=[]
+            done = False
+            while not done:
+                end=s.find(dot,start)
+                if end == -1:
+                    end = len(s)
+                    done = True
+                res.append(s[start:end])
+                start=end+1
+            return res
+        a=my_split(version1,".")
+        b=my_split(version2,".")
         for x,y in zip(a,b):
             x,y=int(x),int(y)
             if x>y:
@@ -30,6 +37,4 @@ assert Solution().compareVersion("7.5.2.4","7.5.3")==-1
 assert Solution().compareVersion("1.01","1.001")==0
 assert Solution().compareVersion("1.0","1.0.0")==0
 assert Solution().compareVersion("1.1","1.10")==-1
-assert Solution().compareVersion(
-"1.2",
-"1.10",)==-1
+assert Solution().compareVersion("1.2","1.10",)==-1
