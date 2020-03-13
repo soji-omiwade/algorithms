@@ -1,0 +1,19 @@
+from treenode import TreeNode
+def build_tree(tl):
+    if not tl:
+        return None
+    d={}
+    root=TreeNode(tl[0])
+    d[0]=root
+    for i in range(len(tl)):
+        if tl[i] and 2*i+1<len(tl):
+            v=d[i]
+            v.left=None
+            if tl[2*i+1] is not None:
+                v.left=TreeNode(tl[2*i+1])
+            v.right=None
+            if tl[2*i+2] is not None:
+                v.right=TreeNode(tl[2*i+2])
+            d[2*i+1]=v.left
+            d[2*i+2]=v.right
+    return root
