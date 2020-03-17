@@ -26,11 +26,11 @@ class Solution:
         return res.val
        
 tree = build_tree([3,5,1,6,2,0,8,None,None,7,4])
-p,q=5,1
-p=get_node(tree,p)
-q=get_node(tree,q)
-assert Solution().lowestCommonAncestor(tree,p,q) == 3
-p,q=5,4
-p=get_node(tree,p)
-q=get_node(tree,q)
-assert Solution().lowestCommonAncestor(tree,p,q) == 5
+pp,qq=5,1
+pp=get_node(tree,pp)
+qq=get_node(tree,qq)
+assert Solution().lowestCommonAncestor(tree,pp,qq) == 3
+# pp,qq=5,4
+# pp=get_node(tree,pp)
+# qq=get_node(tree,qq)
+# assert Solution().lowestCommonAncestor(tree,pp,qq) == 5
