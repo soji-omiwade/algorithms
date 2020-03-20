@@ -5,10 +5,10 @@ class Solution():
                 break
         else:
             return 0
-        is_neg=1
+        sign=1
         if s[i] in "+-":
             if s[i]=="-":
-                is_neg=-1
+                sign=-1
             i+=1
         #now i stands on a non-space non-neg (perhaps...)
         j=i
@@ -22,11 +22,14 @@ class Solution():
         for k in range(i,j):
             sk_int=ord(s[k])-ord("0")
             if (res > INT_MAX//10 or (res==INT_MAX//10 and 
-                                        ((is_neg==1 and sk_int > 7) or 
-                                        (is_neg==-1 and sk_int > 8)))):
-                return INT_MAX if is_neg == 1 else -INT_MAX-1
+                                        ((sign==1 and sk_int > (INT_MAX%10)) or 
+                                         (sign==-1 and sk_int > (INT_MAX%10)+1)
+                                        )                                         
+                                      )
+                ):
+                return INT_MAX if sign == 1 else -INT_MAX-1
             res=10*res+sk_int
-        return res*is_neg
+        return res*sign
 assert Solution().myAtoi("    ") == 0
 assert Solution().myAtoi("  words") == 0
 assert Solution().myAtoi("  4193 with words") == 4193
