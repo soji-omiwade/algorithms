@@ -11,7 +11,8 @@ class LRUCache:
         self.tail = LRUCache.ListNode(None, None)
         self.head.next, self.tail.prev = self.tail, self.head
         self.count = 2
-    
+        self.d = {}
+        
     def print_cache(self):
         v = self.head.next
         while v.key != None:
@@ -20,10 +21,10 @@ class LRUCache:
         print()
         
     def get(self, key: int) -> int:
-        v = self.head.next
-        while v.key is not None and v.key != key:
-            v = v.next
-        if v.key is not None: # move the element to the head
+        v = self.tail
+        if key in self.d:
+            v = self.d[key]
+        if v is not self.tail:
             v.prev.next = v.next
             v.next.prev = v.prev
             v.next = self.head.next
@@ -40,12 +41,14 @@ class LRUCache:
             self.head.next.value = value
         else:
             v = LRUCache.ListNode(key,value)
+            self.d[key] = v
             v.next = self.head.next
             self.head.next.prev = v
             self.head.next = v
             v.prev = self.head
             self.count += 1
             if self.count == self.capacity + 3:
+                del self.d[self.tail.prev.key]
                 self.tail.prev = self.tail.prev.prev
                 self.tail.prev.next = self.tail
                 self.count -= 1            
