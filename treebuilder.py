@@ -1,5 +1,6 @@
 from treenode import TreeNode
-def build_tree(tl):
+from typing import List
+def buildtree(tl: List[int]) -> TreeNode:
     if not tl:
         return None
     d={}

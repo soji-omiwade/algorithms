@@ -3,20 +3,19 @@ class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         if len(grid) == 0:
             return 0
-        m,n=len(grid),len(grid[0])
-        def dfs(i,j):
-            if (0<=i<m and 0<=j<n and grid[i][j] == "1"):
+        def remove_island(i,j):
+            if (0<=i<len(grid) and 0<=j<len(grid[0]) and grid[i][j] == "1"):
                 grid[i][j]="#"
-                dfs(i-1,j)
-                dfs(i+1,j)
-                dfs(i,j-1)
-                dfs(i,j+1)
+                remove_island(i-1,j)
+                remove_island(i+1,j)
+                remove_island(i,j-1)
+                remove_island(i,j+1)
         count=0
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == "1":
                     count+=1
-                dfs(i,j)
+                remove_island(i,j)
         return count
 
 
