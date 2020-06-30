@@ -1,0 +1,1 @@
+class Foo(list, dict): pass
