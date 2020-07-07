@@ -3,7 +3,7 @@ from tree_builder import build_tree, get_node
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         """via a helper that counts p/q and returns the result"""
-        def dfs_helper(v: TreeNode) -> TreeNode:
+        def dfs_helper(v: TreeNode) -> tuple:
             if not v:
                 return 0, None
             count, res = dfs_helper(v.left)
