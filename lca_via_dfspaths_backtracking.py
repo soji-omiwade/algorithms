@@ -8,27 +8,18 @@ class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         if not root:
             return None
-        def get_parents(root):
-            from collections import deque
-            nodes = deque()
-            nodes.append(root)
-            parents = {root:None}
-            while nodes:
-                v = nodes.popleft()
-                if v.left:
-                    parents[v.left] = v
-                    nodes.append(v.left)
-                if v.right:
-                    parents[v.right] = v
-                    nodes.append(v.right)
-            return parents
-        parents = get_parents(root)
-        def get_path(parents, v):
-            while v:
-                yield v
-                v = parents[v]
-        ppath = reversed(list(get_path(parents, p)))
-        qpath = reversed(list(get_path(parents, q)))
+        def dfs_path(v, key, path):
+            "usage: dfs_path(root, key_node)"
+            path += [v]
+            if v.left:
+                dfs_path(v.left, key, path)
+            if v.right:
+                dfs_path(v.right, key, path)
+            if path[-1] is not key:
+                path.pop()
+        ppath,qpath = [], []
+        dfs_path(root, p, ppath)
+        dfs_path(root, q, qpath)
         for v, w in zip(ppath, qpath):
             if v is w:
                 res = v
