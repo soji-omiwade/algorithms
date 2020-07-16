@@ -45,9 +45,10 @@ for i in range(1, len(nodes)):
     if not v.visited and not v.parent_idx:
         rootlist += [dfs(v)]
 
-assert rootlist = [
+assert rootlist == [
     (1, [(2, []), (3, [(4, []), (5, [])])]), 
-    (6, []), (7, []), 
+    (6, []), 
+    (7, []), 
     (8, [(9, [])]),
 ]
 
@@ -55,72 +56,24 @@ rootlist = [
     (10, []),
     (8, [(9, [])]),
     (1, [(2, []), (3, [(4, []), (5, [])])]), 
-    (6, []), (7, []), 
+    (6, []), 
+    (7, []), 
 ]
 from typing import List
 def clean_rootlist(rootlist):
-    def clean_helper(descs:List):
-        for listnode in descs:
-            ...
-            clean_helper(idx, *item)
-                
-    for listnode in rootlist:
-        if listnode[1] == []:
-            listnode = listnode[0]
-        else:
-            clean_helper(listnode[1])
-        
-    rootlist[i] = clean_helper(item[1])
+    def dfs_helper(sublist:List):
+        assert type(sublist) is list
+        for lnidx, listnode in enumerate(sublist):
+            if listnode[1] == []:
+                sublist[lnidx] = listnode[0]
+            else:
+                dfs_helper(listnode[1])
+
+    dfs_helper(rootlist)
+
 clean_rootlist(rootlist)
+assert rootlist == [10, (8, [9]), (1, [2, (3, [4,5])]), 6, 7]
 
-assert rootlist == [(1, [2, (3, [4,5])]), 6, 7, 8]
-# def construct_hierarchy(g: List[Node]) -> List[Node]:
-    # """
-    # assert (
-        # g[2].parent == 1 and g[4] == 3 and
-        # g[5] == 3
-    # )
-    # """
-    # output_nodes = {}
-    
-    
-    # try:
-        # output_nodes[2]
-    # except KeyError:
-        # pass
-    # else:
-        # raise Exception("should have bombed")
-    # return output_nodes
-
-# first output:
-	# (1, [(2)])
-	# (2, [])
-	# (3, [(4), (5)])
-	# (4, [])
-	# (5, [(6),(7)])
-	# (6, [])
-	# (7, [])
-# second output: 
-	# (1, [(2)])
-	# (2, [])
-	# (3, [(4), (5, [(6),(7)])])
-	# (4, [])
-	# (6, [])
-	# (7, [])
-	
-# assert output[n1] == [n2]
-# assertKeyError     
-# for node in nodes: 
-		# gather_nodes()
-		
-# def gather_nodes(node, res:
-		# if node.visit:
-			# return
-		# node.visit = True
-		# res += [node]
-	
-	# for each child of node: 
-		# print_node(child.key)
 
 # clas			
 #  * Output: (length=2)
