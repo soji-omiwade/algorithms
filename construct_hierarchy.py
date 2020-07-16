@@ -1,109 +1,104 @@
-# /*
-#  * Input: (length=7)
-#  *     [
-#  *       { id: '1' },
-#  *       { id: '2', parent: { id: '1' } },
-#  *       { id: '3' },
-#  *       { id: '4', parent: { id: '3' } },
-#  *       { id: '5', parent: { id: '3' } },
-#  *       { id: '6', parent: { id: '5' } },
-#  *       { id: '7', parent: { id: '5' } }
-#  *     ]
-
-class Node:
-    def __init__(self, val, parent_idx=None):
-        self.val = val
-        self.parent_idx = parent_idx
-        self.children = []
-        self.visited = False
-        
-nodes = (None, Node(1), Node(2,1), Node(3,1), Node(4,3), Node(5,3), Node(6),
-        Node(7), Node(8), Node(9, 8))
-
-def get_children(nodes):
-    for i in range(1, len(nodes)):
-        v = nodes[i]
-        if v.parent_idx:
-            nodes[v.parent_idx].children += [v]
+from nodeio import (
+    get_nodes_from_json_str, 
+    clean_rootlist, 
+    get_json_output_from_cleanlist
+    )
+  
+def set_children(nodes):
+    for v in nodes.values():
+        if v.parent:
+            nodes[v.parent.val].children += [v]
             
-get_children(nodes)
-assert nodes[1].children == [nodes[2], nodes[3]]
-assert nodes[3].children == [nodes[4], nodes[5]]
-assert not nodes[6].children and not nodes[4].children
-
-def dfs(v):
+def get_descs(v):
     v.visited = True
     v_descs = []
     for w in v.children:
-        v_descs += [dfs(w)]
-    return (v.val, v_descs)
-assert dfs(nodes[3]) == (3, [(4,[]), (5,[])])
+        v_descs.append((int(w.val), get_descs(w)))
+    return v_descs
 
-rootlist = []
-for i in range(1, len(nodes)):
-    v = nodes[i]
-    if not v.visited and not v.parent_idx:
-        rootlist += [dfs(v)]
+def construct_hierarchy(nodes):
+    set_children(nodes)
+    rootlist = []
+    for v in nodes.values():
+        if not v.visited and not v.parent:
+            rootlist.append((int(v.val), get_descs(v)))
+    return rootlist
 
-assert rootlist == [
-    (1, [(2, []), (3, [(4, []), (5, [])])]), 
-    (6, []), 
-    (7, []), 
-    (8, [(9, [])]),
+#testcase 1
+input_str = """
+[
+    { "id": "1" },
+    { "id": "2", "parent": { "id": "1" } },
+    { "id": "3" },
+    { "id": "4", "parent": { "id": "3" } },
+    { "id": "5", "parent": { "id": "3" } }
 ]
+"""
+nodes = get_nodes_from_json_str(input_str)
+assert construct_hierarchy(nodes) == [(1, [(2, [])]), (3, [(4,[]), (5,[])])]
 
-rootlist = [
-    (10, []),
-    (8, [(9, [])]),
-    (1, [(2, []), (3, [(4, []), (5, [])])]), 
-    (6, []), 
-    (7, []), 
+
+#testcase 2
+input_str = """
+[
+    { "id": "1" },
+    { "id": "2", "parent": { "id": "1" } },
+    { "id": "3" },
+    { "id": "4", "parent": { "id": "3" } },
+    { "id": "5", "parent": { "id": "3" } },
+    { "id": "6", "parent": { "id": "5" } },
+    { "id": "7", "parent": { "id": "5" } }
 ]
-from typing import List
-def clean_rootlist(rootlist):
-    def dfs_helper(sublist:List):
-        assert type(sublist) is list
-        for lnidx, listnode in enumerate(sublist):
-            if listnode[1] == []:
-                sublist[lnidx] = listnode[0]
-            else:
-                dfs_helper(listnode[1])
+"""
+nodes = get_nodes_from_json_str(input_str)
+hierarchy = construct_hierarchy(nodes)
+assert (hierarchy == [
+        (1, [
+            (2, [])]), 
+        (3, [
+                (4,[]), 
+                (5,[
+                    (6,[]),
+                    (7, [])])])])
+clean_rootlist(hierarchy)
+assert (hierarchy == [(1,[2]), (3, [4,(5,[6,7])])])
 
-    dfs_helper(rootlist)
+output = """[
+  {
+    "id": "1",
+    "children": [
+      {
+        "id": "2"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "children": [
+      {
+        "id": "4"
+      }, 
+      {
+        "id": "5",
+        "children": [
+          {
+            "id": "6"
+          },
+          {
+            "id": "7"
+          }
+        ]
+      }
+    ]
+  }
+]
+"""
+json_output = get_json_output_from_cleanlist(hierarchy)
 
-clean_rootlist(rootlist)
-assert rootlist == [10, (8, [9]), (1, [2, (3, [4,5])]), 6, 7]
-
-
-# clas			
-#  * Output: (length=2)
-#  *     [
-#  *       {
-#  *         id: '1',
-#  *         children: [
-#  *           {
-#  *             id: '2'
-#  *           }
-#  *         ]
-#  *       },
-#  *       {
-#  *         id: '3',
-#  *         children: [
-#  *           {
-#  *             id: '4'
-#  *           }, 
-#  *           {
-#  *             id: '5',
-#  *             children: [
-#  *               {
-#  *                 id: '6'
-#  *               },
-#  *               {
-#  *                 id: '7'
-#  *               }
-#  *             ]
-#  *           }
-#  *         ]
-#  *       }
-#  *     ]
-#  */
+for i, line1, line2 in zip(range(len(output.splitlines())), 
+    json_output.splitlines(), output.splitlines()):
+    print(len(line1) - len(line2))
+    try:
+        assert line1.strip() == line2.strip()
+    except AssertionError:
+        raise Exception(f"Line {i}: {line1.strip()} and {line2.strip()} unequal")
