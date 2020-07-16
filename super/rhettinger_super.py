@@ -1,4 +1,5 @@
 'Demonstrate effective use of super()'
+
 import collections
 import logging
 
@@ -7,15 +8,12 @@ logging.basicConfig(level="INFO")
 class LoggingDict(dict):
     # Simple example of extending a builtin class
     def __setitem__(self, key, value):
-        # logging.info("setting %r to %r" % (key, value))
-        print("setting %r to %r" % (key, value))
+        logging.info("setting %r to %r" % (key, value))
         super().__setitem__(key, value)
     
 class LoggingOD(LoggingDict, collections.OrderedDict):
     #Build new functionality by re-ordering the MRO
-    def __str__(self):
-        return "LOD " + super().__str__()
-
+    pass
 ld = LoggingDict([("red", 1), ("green", 2), ("blue", 3)])
 print(ld)
 ld["red"] = 10
@@ -45,5 +43,14 @@ assert (position(LoggingDict) < position(collections.OrderedDict) <
     position(dict))
     
     
-od = collections.OrderedDict()
-od["me"] = "you"
+# -------- Getting the argument signatures to match --------------
+class Shape:
+    def __init__(self, *, shapename, **kwds):
+        self.shapename = shapename
+        super().__init__(**kwds)
+
+class ColoredShape(Shape):
+    def __init__(self, *, color, **kwds):
+        self.color = color
+        super().__init__(**kwds)
+cs = ColoredShape(color='red', shapename='circle')
