@@ -54,3 +54,28 @@ class ColoredShape(Shape):
         self.color = color
         super().__init__(**kwds)
 cs = ColoredShape(color='red', shapename='circle')
+
+# -------- Making sure a root exists ----------
+class Root:
+    def draw(self):
+        #the delegation chain stops here
+        assert type(self) is ColoredShape
+        print("the delegation chain stops here")
+        assert not hasattr(super(), "draw")
+        
+class Shape(Root):
+    def __init__(self, *, shapename, **kwds):
+        self.shapename = shapename
+        super().__init__(**kwds)
+    def draw(self):
+        print("Drawing. setting shape to", self.shapename)
+        super().draw()
+
+class ColoredShape(Shape):
+    def __init__(self, *, color, **kwds):
+        self.color = color
+        super().__init__(**kwds)
+    def draw(self):
+        print("Drawing. setting color to", self.color)
+        super().draw()
+cs = ColoredShape(color="blue", shapename='square').draw()
