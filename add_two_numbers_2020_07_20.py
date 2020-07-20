@@ -36,6 +36,9 @@ class Solution:
         head = tail = ListNode(-1)
         carry = 0
         while True:
+            #exit while if done
+            if carry == 0 and not l1 and not l2:
+                break
             x = 0
             if l1:
                 x = l1.val
@@ -48,9 +51,6 @@ class Solution:
             carry = x // 10
             tail.next = ListNode(x % 10)
             tail = tail.next
-            #exit while if done
-            if carry == 0 and not l1 and not l2:
-                break
         return head.next
 sol = Solution()
 l1 = ListNode(1, ListNode(9, ListNode(3)))
