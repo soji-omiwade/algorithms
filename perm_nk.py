@@ -8,6 +8,7 @@ def perm(s, k):
         for ch in available:
             a[stamploc] = ch
             perm_helper(a, available - {ch}, stamploc + 1)
+
     if k == 0:
         return [None]
     res = []
