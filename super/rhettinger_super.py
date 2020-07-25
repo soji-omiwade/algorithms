@@ -102,4 +102,17 @@ class MoveableColoredShape(ColoredShape, MoveableAdapter):
     pass
     
 MoveableColoredShape(shapename='triangle', x=10, color='red', y=20).draw()
+
+# ------- Complete Example ---------------
+
+from collections import Counter, OrderedDict
+
+class OrderedCounter(Counter, OrderedDict):
+    'Counter that remembers the order elements are first encountered'
+    
+    def __repr__(self):
+        # return '{0:s}{1:s}'.format(self.__class__.__name__, OrderedDict(self))
+        return '%s(%r)' % (self.__class__.__name__, OrderedDict(self))
         
+oc = OrderedCounter('abracadabra')
+print(oc)
