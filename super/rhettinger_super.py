@@ -59,7 +59,6 @@ cs = ColoredShape(color='red', shapename='circle')
 class Root:
     def draw(self):
         #the delegation chain stops here
-        assert type(self) is ColoredShape
         print("the delegation chain stops here")
         assert not hasattr(super(), "draw")
         
@@ -78,4 +77,29 @@ class ColoredShape(Shape):
     def draw(self):
         print("Drawing. setting color to", self.color)
         super().draw()
-cs = ColoredShape(color="blue", shapename='square').draw()
+cs = ColoredShape(color="b.lue", shapename='square').draw()
+print('-' * 20)
+
+# ------- Show how to incorporate a non-cooperative class --------
+
+class Moveable:
+    # non-cooperative class that doesn't use super()
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def draw(self):
+        print('Drawing at position:', self.x, self.y)
+        
+class MoveableAdapter(Root):
+    def __init__(self, *, x, y, **kwds):
+        self.moveable = Moveable(x, y)
+        super().__init__(**kwds)
+    def draw(self):
+        self.moveable.draw()
+        super().draw()
+        
+class MoveableColoredShape(ColoredShape, MoveableAdapter):
+    pass
+    
+MoveableColoredShape(shapename='triangle', x=10, color='red', y=20).draw()
+        
