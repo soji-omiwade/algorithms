@@ -4,8 +4,7 @@ class Solution:
         maxprofit = 0
         minbuy = float("inf")
         for price in prices:
-            if price < minbuy:
-                minbuy = price
+            minbuy = min(minbuy, price)
             maxprofit = max(maxprofit, price - minbuy)
         return maxprofit
         
