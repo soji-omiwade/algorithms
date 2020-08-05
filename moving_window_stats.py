@@ -21,31 +21,62 @@
 
 
 #O(1)
+from math import inf
+
 def log(temperature):
-    global count
-    global maxtemp
-    if maxtemp is None:
-        maxtemp = temperature
-    maxtemp = max(temperature, maxtemp)
-    cropped_temps[count] = temperature
-    count = (count + 1) % window_len
+    global daycount
+    global daysum
+    global alltime_max
+    global alltime_count
+    global alltime_sum
+    
+    #required for alltime_sum
+    alltime_count += 1    
+    
+    #all time max needs to be calculated here for O(1) retrieval time
+    if alltime_max is None:
+        alltime_max = temperature
+    alltime_max = max(temperature, alltime_max)
+
+    #day sum and all time sum need to be calculated here for O(1) retrieval time
+    if day_temps[daycount] != -inf:
+        daysum -= day_temps[daycount]
+    daysum += temperature
+    alltime_sum += temperature
+    
+    #day_temps required for two reasons
+    # 1) for getting the day sum, whehter in O(1) or O(n) time
+    # 2) for getting day max period.
+    day_temps[daycount] = temperature
+    daycount = (daycount + 1) % daylength
+
+def get_avg_day():
+    return daysum / min(alltime_count, daylength)
+
+def get_avg_all_time():
+    return alltime_sum / alltime_count
     
 #O(1)
 def get_max_all_time():
-    return maxtemp
+    return alltime_max
 
-#O(window_len)
+#O(daylength)
 #with a heapsort priority queue can be made O(log n)
 def get_day_max():
-    if cropped_temps == []:
+    if day_temps[0] == -inf:
         return None
-    return max(cropped_temps)
+    return max(day_temps)
 
-maxtemp = None
+def get_day_max_fast():
+    raise NotImplementedError
+    
+alltime_max = None
+daysum = 0
+lsum = 0
 res = [(7,7), (7,7), (7,6), (7,5)]
-window_len = 2
-count = 0
-cropped_temps = [float('-inf') for i in range(window_len)]
+daylength = 2
+daycount = 0
+day_temps = [-inf for i in range(daylength)]
 exp_count = 4
 for i in range(7,7-exp_count,-1):
     log(i)
