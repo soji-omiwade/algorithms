@@ -51,9 +51,13 @@ def log(temperature):
     daycount = (daycount + 1) % daylength
 
 def get_avg_day():
+    if alltime_count == 0:
+        return None
     return daysum / min(alltime_count, daylength)
 
 def get_avg_all_time():
+    if alltime_count == 0:
+        return None
     return alltime_sum / alltime_count
     
 #O(1)
@@ -72,7 +76,11 @@ def get_day_max_fast():
     
 alltime_max = None
 daysum = 0
-lsum = 0
+alltime_sum = 0
+daycount = 0
+alltime_count = 0
+
+
 res = [(7,7), (7,7), (7,6), (7,5)]
 daylength = 2
 daycount = 0
