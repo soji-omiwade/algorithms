@@ -1,18 +1,11 @@
 '''
 API allow you to add prioritized items to a service
-add p-item
-summon item so I can delete it
-summon item, so I can update priority
-
-pq = PriorityQueue()
-pq.additem(item, priority)
-pq.delitem(item) -> item
-pq.update_item(item)
-pq.pop_item() -> item
+add item
+delete item
+get min-priority item
 '''
 
-
-from collections import Counter
+from itertools import count
 from heapq import heappush, heappop
 
 class PriorityQueue:
@@ -21,28 +14,26 @@ class PriorityQueue:
         self.entry_finder = {}
         
     REMOVED = "<REMOVED>"
+    counter = count()
     '''
     p-items can always be compared
     p-item: (priority, count, item)
     '''
     def additem(self, item, priority):
-        pitem = [priority, next(counter), item]
+        if item in self.entry_finder:
+            self.delitem(item)
+        pitem = [priority, next(self.counter), item]
         self.entry_finder[item] = pitem
         heappush(self.arr,  pitem)
         
     def delitem(self, item):
-        pitem = self.entry_finder.pop()
-        pitem[-1] = REMOVED
-        return pitem
-        
-    def update_item(self, item, priority):
-        self.delitem(item)
-        self.additem(item, priority)
-        
-    def popitem(self, item):
+        pitem = self.entry_finder.pop(item)
+        pitem[-1] = self.REMOVED
+               
+    def popitem(self):
         while self.arr:
-            pitem = heappop()
-            if pitem[-1] is not REMOVED:
+            pitem = heappop(self.arr)
+            if pitem[-1] is not self.REMOVED:
                 del self.entry_finder[pitem[-1]]
                 return pitem
-                
+        raise KeyError("pop from an empty queue")        
