@@ -1,0 +1,2 @@
+1. using python's heap, solve the sliding window maximum and let's see what happens
+2. redis play with it fgrom the browser

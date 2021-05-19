@@ -1,0 +1,23 @@
+today: 
+	+ make boxes and put lamp in one.
+	+ buy water
+	+ soda into fridge
+
+design email address masking system
+
+use-case
+--------
+user uses service to send email to targets
+	- service send email where target sees email but from some email x that is not user's actual email.
+	- any email target sends to x, the service will forward that email to user's actual email
+	
+actual email: act
+scrambled email: scr
+
+d = {}
+scr = md5(target_email)
+scrambled_actual[scr] = user_email
+
+when email arrives
+	actual = scrambled_actual[scr]
+	forward email to person actual

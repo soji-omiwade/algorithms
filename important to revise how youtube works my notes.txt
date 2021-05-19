@@ -1,0 +1,36 @@
+strace
+vmstat
+iostat
+curl -- for getting stuff via HTTP 
+
+why is the database swapping? it isn't using more memory than the system has? 
+
+system memory: 5G
+usage: app expected usage 4.5G
+
+
+DB Optimizations:
+- Query optimizations
+- Batch jobs when doing something real time takes too long
+- memcache to act as DB cache: a hash table listening on a TCP socket allows you to get and set data using a string based key
+
+- watch out for replicas hurting from write-hog, and thus unable to serve reads
+- also too many replicas. well now you have a single point of failure to worry about: if master needs to be replaced, all replicas need to be updated accordingly
+
+having too many replicas is a symptom of a larger issue. you're not spreading the load evenly across machhines for example.
+
+DB Cache priming: pre-fetch the pages you need!  (withh a cache thread reduce replica lag, if you have replica lag. 
+
+DB RAID Tweaking (whew. wow. let Linux see 5 volumes instead of 1 logical volume), allowing it more aggresively schedlue disk i/o
+
+
+Youtube lessons learned for me: 
+-knowledge of using a CDN didn't save them (they didn't have the money)
+-what saved them was knowledge of fundementals of CS
+	. database sharding
+	. DB caching
+	. App server caching
+	. tinkering with the RAID volume to parallelize DISK I/O
+		- thx to checking iostat
+	. Cache priming: pre-fetch the pages you need one thread braces the data for the slow single-threaded DB (this allows that to read fast)
+fun and interesting stuff!

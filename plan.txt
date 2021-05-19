@@ -1,0 +1,31 @@
+weekly goals: 
+misc:
+	misc: friday
+		- one job application related thing: email recruiter; work on resume
+		- epeas
+		- meeting schedules	
+	coding: 2.5 days
+		- leetcode: 1 day
+		- ec2 big data
+		- multi-frac
+		- LWD work
+	system design: 1 day
+		- textbook
+		- online sources
+
+get better understanding of
+	mongo-db--read resources from medium article
+	map-reduce
+	HADOOP -- excited to do the hello world
+	Pagerank
+	how full text search engines work... indexes, right soji? the sophistication in something like elasticsearch is that it is distributed
+	visit the non comp-sci guy on leetcode who got into amazon's page.
+
+projects for resume: 
+-- simple web service retain.ai cloud service you created
+-- start working on requests crawling project
+-- big data project 
+	- this means you will actually work with big data and its associated technologies:
+		- hadoop
+		- data intensive data
+

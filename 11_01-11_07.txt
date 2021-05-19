@@ -1,0 +1,50 @@
+11_01-11_07
+--------------
+misc:
+	+ synch with tandy and uchenna
+	- friday meeting with kwaku
+- coding:
+	- 3 leetcode problems
+	- terry email
+- system design
+	- finish up youtube architecture
+	- NoSQL: mongo-db's document model from w3resource
+
+daily:
+	sunday: 
+		+ some multi-frac R Horne implementation
+		+ weekly highlights:
+	monday:
+		- ec2 setup for big data projects
+		+ terry stuff get back up to speed and sync with tandy after oil convo today
+		+ sync with uchenna and tandy
+		better understanding of fulltext search
+	tuesday:
+		- ec2 setup for big data projects
+		better understanding of map-reduce
+		shortest string containing substring's characters (substr has unique chars)
+		same as above but remove uniqueness constraint
+		- review: pages 36 - 42
+		- start graph-like data models
+	wednesday:
+		+ two-sum again
+		. get back to terry
+		. do some multi-frac
+		+ add two numbers
+		+ longest substring without repeating characters
+		+ review: pages 36 - 42
+	thursday:
+		- more multi-frac
+		- get back to terry
+	friday
+		- write the resume you want yourself to be in 6 months (big data. AWS\\\\
+		untested implementation of "find median of two sorted arrays"
+		- get back to kathy on analytics stuff keith asked about!
+
+accomplishments for sunday 11/1/2020 2pm - 5pm => 6 units
+	1) this log; email recruiter								1
+	2) multi-frac 										2
+	3) look for acu prof, football; jordan klepper		2
+	4) plan for the week								1
+		no sitting on phone anymore. setout plan here!
+	5) read about youtube architecture					1

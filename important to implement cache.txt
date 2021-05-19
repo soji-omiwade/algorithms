@@ -1,0 +1,37 @@
+cache: 
+	LRU Cache
+	https://leetcode.com/explore/interview/card/amazon/81/design/478/
+
+	LFU Cache
+	https://leetcode.com/problems/lfu-cache/
+	
+now that you understand dictionaries and arrays better, how do they improve database lookups?!
+https://en.wikipedia.org/wiki/Database_index
+
+indeed asked me this during the interview. give me big-oh complexities!
+array vs linked list
+
+thinking before coding
+https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Thinking_before_coding
+
+how does the internet work?
+https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work
+
+What is the difference between webpage, website, web server, and search engine?
+https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Pages_sites_servers_and_search_engines
+
+how netflix works: https://medium.com/refraction-tech-everything/how-netflix-works-the-hugely-simplified-complex-stuff-that-happens-every-time-you-hit-play-3a40c9be254b
+
+martin fowler: definition of microservices architechture
+https://martinfowler.com/articles/microservices.html
+
+linux page cache basics:
+https://www.thomas-krenn.com/en/wiki/Linux_Page_Cache_Basics
+
+summary of how youtube works:
+https://kylecordes.com/2006/youtube-tb
+
+Video server selection in Youtube
+https://engineering.pudue.edu/~isl/ICDCS11.pdf
+
+
