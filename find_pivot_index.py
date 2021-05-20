@@ -3,26 +3,26 @@ class Solution:
 def pivotIndex(self, arr: List[int]) -> int:
     '''
     ...x...
-    sumleft = 0
-    sumright = sum arr minus arr[0]
+    left = 0
+    right = sum arr minus arr[0]
     iterate, [[0] arr] from i = 1 to n-1:
-        sumleft += arr[i - 1]
-        sumright -= arr[i]
-        if sumleft == sumright:
+        left += arr[i - 1]
+        right -= arr[i]
+        if left == right:
             return i
     return -1
     '''
     from itertools import chain
-    sumleft = 0
-    sumright = sum(val for val in arr)
-    parr = chain([0], arr)
-    prev_parr = next(parr)
+    left = 0
+    right = sum(val for val in arr)
+    arr_iter = chain([0], arr)
+    prev = next(arr_iter)
     for ridx in range(len(arr)):
-        curr_parr = next(parr)
-        sumleft += prev_parr
-        sumright -= curr_parr
-        prev_parr = curr_parr
-        if sumleft == sumright:
+        curr = next(arr_iter)
+        left += prev
+        right -= curr
+        prev = curr
+        if left == right:
             return ridx
     return -1
         
