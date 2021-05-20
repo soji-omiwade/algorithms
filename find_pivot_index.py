@@ -14,9 +14,8 @@ class Solution:
         '''
         same as method below without using iterator next method
         '''
-        from itertools import chain
         left = 0
-        right = sum(val for val in arr)
+        right = sum(arr)
         prev = 0
         for idx, curr in enumerate(arr):
             left += prev
