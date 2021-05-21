@@ -1,0 +1,18 @@
+service features:
+    upload/download
+    dont' care too much
+        delete a file
+        update a file
+    sync folder
+    history of updates
+
+problem scale: constraints and assumptions
+    10+ million 
+    100m QPS
+    these are r/w
+    assume existance of service to keep whatever file you want
+        and it has good scalability
+
+client monitors sync folder
+chunks approach
+take a hash 
