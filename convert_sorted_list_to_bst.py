@@ -17,9 +17,7 @@ class Solution:
     def sortedListToBST(self, head: ListNode) -> TreeNode:
         def midelement(lo: ListNode, hix: ListNode) -> ListNode:
             slow = fast = lo
-            while True:
-                if fast.next in (hix, None) or fast.next.next in (hix, None):
-                    break
+            while fast is not hix and fast.next is not hix:
                 fast = fast.next.next
                 slow = slow.next
             return slow
@@ -40,3 +38,8 @@ res = Solution().sortedListToBST(lis)
 assert (res.val == 2
         and res.left.val == 1
         and res.right.val == 3)
+        
+lis = ListNode(1, ListNode(2))
+res = Solution().sortedListToBST(lis)
+assert (res.val == 2
+        and res.left.val == 1)
