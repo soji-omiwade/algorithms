@@ -8,27 +8,26 @@
 class Solution:
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
         from collections import deque
-        if bool(p) ^ bool(q):
-            return False
-        plevel = deque(p)
-        qlevel = deque(q)
-        while plevel and qlevel:
-            for _ in range(len(plevel)):
-                pnode = plevel.popleft()
-                qnode = qlevel.popleft()
-                
-                if bool(pnode.left) ^ bool(qnode.left):
-                    return False
-                if pnode.left:
-                    if pnode.left.val != qnode.left.val:
-                        return False
-                    plevel.append(pnode.left)
-                    qlevel.append(qnode.left)
-                if bool(pnode.right) ^ bool(qnode.right):
-                    return False
-                if pnode.right:
-                if pnode.right and pnode.right.val != qnode.right.val:
-                    return False
-        if bool(plevel) ^ bool(qlevel):
-            return False
+        pq = deque([p])
+        qq = deque([q])
+        '''
+            2
+        1       3
+        '''
+        while pq:
+            pnode = pq.popleft()
+            qnode = qq.popleft()
+            if pnode is qnode is None:
+                continue
+            elif not pnode or not qnode:
+                return False
+            elif pnode.val != qnode.val:
+                return False
+            pq.append(pnode.left)
+            pq.append(pnode.right)
+            qq.append(qnode.left)
+            qq.append(qnode.right)
         return True
+        
+assert isSameTree(p, q)
+assert not isSameTree(p, q)
