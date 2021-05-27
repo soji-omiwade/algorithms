@@ -16,6 +16,7 @@ class Solution:
             for _ in range(len(plevel)):
                 pnode = plevel.popleft()
                 qnode = qlevel.popleft()
+                
                 if bool(pnode.left) ^ bool(qnode.left):
                     return False
                 if pnode.left:
