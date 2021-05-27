@@ -1,0 +1,14 @@
+read problem: 3 mins
+work out solution & complexity: 5 mins
+
+good.
+    understood question well.
+    didn't jump into code.
+    did a final sanity check
+not so good.    
+didn't explain the 2 < 9 part
+don't use l for variable name.
+should ask interviewer if he's following along.
+
+lesson to me: 
+    - there's actually a lot of time in 30mins!
