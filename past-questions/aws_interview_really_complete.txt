@@ -1,0 +1,243 @@
+'''
+mxn matrix
+[
+[1  2  4  5]
+[6  7  8  9]
+[10 11 12 13]
+] -8
+
+for
+    for
+        ...
+'''
+
+[1 2 4 8]
+[2 3 5 9]  # row[mid][0] <= key <= row[mid][-1] => mid...  else  
+[3 5 8 19]
+
+binrowsearch(lo, mid - 1)
+binrowsearch(mid + 1, hi)
+
+find(matrix, 8)
+find(matrix, -8)
+def find(matrix = None, key = None) -> bool:
+    def binrowsearch(lo: int, hi: int) -> int:
+        if lo == hi:
+            return lo
+        mid = (lo + hi) // 2  # 1
+        midvalue = matrix[mid][0]  # 6
+        bottom = float("inf") if mid == m - 1 else matrix[mid + 1][0]   #10
+        if midvalue <= key <= bottom:  # can do in python : 6 <= 8 <= 10
+            return mid
+        if key > matrix[mid][0]:
+            lo = mid + 1
+        elif key < matrix[mid][0]:
+            hi = mid - 1
+        return binrowsearch(lo, hi)
+        
+    def bincolsearch(row: int, lo: int, hi: int) -> bool:
+        if lo > hi: 
+            return False
+        mid = (lo + hi) // 2
+        if matrix[row][mid] == key:
+            return True
+        if key < matrix[row][mid]: 
+            return bincolsearch(lo, mid - 1)
+        return bincolsearch(mid + 1, hi)
+        
+    m = len(matrix) # 2
+    n = len(matrix[0]) # 3
+    row = binrowsearch(0, m - 1)
+    return bincolsearch(row, 0, n - 1)
+
+
+
+
+
+
+
+######################################
+Recent.max_size(50)
+Recent.view_size(10)
+
+#...
+Recent.add(app.id, app.name)
+#...
+
+Recent.get_list()
+
+class LinkedList:
+    class Node:
+        def __init__(self, key=None):
+            self.key = key
+            self.prev = self.next = self.value = None
+    
+    def __init__(self):
+        self.head = LinkedList.Node()
+        self.tail = LinkedList.Node()
+        self.head.next, self.tail.prev = self.tail, self.head
+        
+    def add_to_front(self, node) -> None:
+        node.prev, node.next = self.head, self.head.next
+        self.head.next = node.next.prev = node
+    
+    def move_to_front(self, node) -> None:
+        node.prev.next = node.next
+        node.next.prev = node.prev
+        self.add_to_front(node)
+    
+    def remove_tail(self) -> Node:
+        if self.head.next is self.tail:
+            return None
+        res = self.tail.prev
+        res.prev.next = self.tail
+        self.tail.prev = res.prev
+        return res
+
+class Recent:
+    llist = LinkedList()
+    lookup = {}
+    max_size = 0
+    
+    @classmethod 
+    def max_size(cls, max_size):
+        cls.max_size = max_size
+    
+    @classmethod
+    def view_size(cls, view_size):
+        cls.view_size = view_size
+        
+    @classmethod
+    def get_list(cls, max_size) -> None:
+        curr = cls.llist.head.next
+        count = 0
+        while count < view_size and curr is not self.llist.tail:
+            ---> (f"{curr.key, curr.app_name}", end="")
+            count += 1
+            
+    def add(self, key, value):
+        if key in self.lookup:
+            node = self.lookup[key]
+            self.llist.move_to_front(node)
+        else:
+            if len(self.lookup) == cls.max_size:
+                self.lookup.pop(self.llist.remove_tail().key)
+            node = LinkedList.Node(key)
+            self.lookup[key] = node
+            self.llist.add_to_front(node)
+        node.value = value
+'''
+[]
+background service: most recently used apps
+'''
+
+'''
+20, 40, 50, 60, 10, 30
+20, 10, 20, 10, 20, 10, 20, 10, 20, 10, 20, 10, 
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+Implement Linux find command as an API. The API will support finding files that:
+
+- Files that have a given size requirement.
+- Files with a certain naming pattern.
+
+Focus on 2 example uses cases at first:
+
+- Find all files over 5 MB somewhere under a directory.
+- Find all XML files somewhere under a directory.
+
+input: 
+    size: size (int), isequal_size = {-1, 0, 1} 
+    naming: '*XML'; '.wtsml';   -->   '\..*ml    
+        bad: booml.java; booml
+    -> escape
+    -> wildcard
+    -> any 
+    source directory
+output: 
+    void -> print out the results
+'''
+finder = Finder(10, ".", "over")
+
+Finder.go()
+'''
+finder.size(10)
+finder.bar("over") #over, under
+finder.pattern('*.xml')
+finder.clear()
+'''
+finder.go()
+
+File {
+    string name
+    long size
+    bool isDirectory
+    File[] list
+}
+
+
+class Finder:
+    bag = set()
+    def __init__(self, size=1, source=".", bar="equal"):
+        self.size = size
+        self.bar = bar
+        self.source = source
+        
+    @classmethod
+    def go(cls, size, source, bar):
+        curr_dir = FileList(source)
+        for file in curr_dir:
+            if not file.isDirectory:
+                if name[len(pattern):] == pattern and _size_matches(file):
+                    print(name)
+            else:
+                if source + '/file' in bag:
+                    return
+                cls.bag.add(source + '/file')
+                cls.go(source + '/file')
+        
+    def _size_matches(file):
+        if self.bar == "equal" and file.size == self.size:
+            return True
+        if self.bar == "under" and file.size < self.size:
+            return True
+        if self.bar == "over" and file.size > self.size:
+            return True
+        return False
+        
+    def go(self, source):
+        curr_dir = FileList(source)
+        for file in curr_dir:
+            if not file.isDirectory:
+                if name[len(pattern):] == pattern and _size_matches(file):
+                    print(name)
+            else:
+                self.go(source + '/file')
