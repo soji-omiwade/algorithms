@@ -41,32 +41,35 @@ from typing import Tuple, Set
 class Intervals:
     def __init__(self):
         self.non_overlapping = set([])
+
+    @staticmethod
+    def _intersects(from0, to0, from1, to1):
+        '''
+           ------
+                     -----------
+        '''
+        return min(to0, to1) > max(from0, from1)
         
-    def addInterval(self, from_, to):
-        def intersects(from0, to0, from1, to1):
-            '''
-               ------
-                         -----------
-            '''
-            return min(to0, to1) > max(from0, from1)
-            
-        '''
-        no = {}
-                              --
-              ----------
-                   ----
-        '''
+    def addInterval_liststyle(self, from_, to):
         non_overlapping = [list(item) for item in self.non_overlapping]
         non_overlapping.append([from_, to])
         for elem in non_overlapping: #O(n)
-            if intersects(from_, to, elem[0], elem[1]):
+            if self._intersects(from_, to, elem[0], elem[1]):
                 from_, to = elem[0], elem[1] = min(from_, elem[0]), max(to, elem[1])
         self.non_overlapping = {tuple(item) for item in non_overlapping}
+
+    def addInterval(self, from_, to):
+        self.non_overlapping.add((from_, to))
+        for from_curr, to_curr in self.non_overlapping.copy(): #O(n)
+            if self._intersects(from_, to, from_curr, to_curr):
+                from_, to = min(from_, from_curr), max(to, to_curr)
+                self.non_overlapping.remove((from_curr, to_curr))
+                self.non_overlapping.add((from_, to))
 
     def getTotalCoveredLength(self) -> int:
         reslen = 0
         for (from_, to) in self.non_overlapping:
-            reslen += (to - from_)
+            reslen += to - from_
         return reslen    
 
 intervals = Intervals()       
