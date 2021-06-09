@@ -110,8 +110,30 @@ class Intervals:
                 self.ints.remove((from_curr, to_curr))
         self.ints.add((from_, to))
 
-    def addInterval_set_lite(self, new_from, new_to):
-        raise NotImplementedError
+    def addInterval_set_lite(self, from_, to):
+        '''
+        ---
+              ----
+                           ---
+           ---------
+        type of ints as set
+        to_remove as set
+        for each int_ in ints:
+            if from_, to intersect with int_
+                to_remove.add(int_)
+                from_, to = union_of(int_, from_, to)
+        remove all items in to_remove from ints
+        add from_, to to ints
+        input_ = ((8, 9), (1, 6), (4, 5), (1, 9))
+        res = (1, 6, 6, 8)
+        '''
+        ints_to_remove = set()
+        for int_ in self.ints:
+            if self._intersects((from_, to), int_):
+                ints_to_remove.add(int_)
+                from_, to = min(from_, int_[0]), max(to, int_[1])
+        self.ints = self.ints.difference(ints_to_remove)
+        self.ints.add((from_, to))
         
     def addInterval_heap(self, new_from, new_to):
         raise NotImplementedError
@@ -132,19 +154,29 @@ intervals_list = Intervals.init_as_list()
 
 input_ = ((8, 9), (1, 6), (4, 5), (1, 9))
 res = (1, 6, 6, 8)
-test(input_, res, intervals_set)   
-test(input_, res, intervals_list)   
+import timeit
+print(min(timeit.repeat('intervals_set.clear()\ntest(input_, res, intervals_set)', 'from __main__ import test, input_, res, intervals_set')))
+print(min(timeit.repeat('intervals_list.clear()\ntest(input_, res, intervals_list)', 'from __main__ import test, input_, res, intervals_list')))
+# test(input_, res, intervals_set)   
+# test(input_, res, intervals_list)   
+
 
 intervals_list.clear()
 intervals_set.clear()
 input_ = ((1, 3), (9, 11), (2, 10))
 res = (2, 4, 10)
-test(input_, res, intervals_set)   
-test(input_, res, intervals_list)   
+import timeit
+print(min(timeit.repeat('intervals_set.clear()\ntest(input_, res, intervals_set)', 'from __main__ import test, input_, res, intervals_set')))
+print(min(timeit.repeat('intervals_list.clear()\ntest(input_, res, intervals_list)', 'from __main__ import test, input_, res, intervals_list')))
+# test(input_, res, intervals_set)   
+# test(input_, res, intervals_list)   
 
 intervals_list.clear()
 intervals_set.clear()
 input_ = ((1, 2), (50, 57), (10, 11), (1, 11))
 res = (1, 8, 9, 17)
-test(input_, res, intervals_set)   
-test(input_, res, intervals_list) 
+import timeit
+print(min(timeit.repeat('intervals_set.clear()\ntest(input_, res, intervals_set)', 'from __main__ import test, input_, res, intervals_set')))
+print(min(timeit.repeat('intervals_list.clear()\ntest(input_, res, intervals_list)', 'from __main__ import test, input_, res, intervals_list')))
+# test(input_, res, intervals_set)   
+# test(input_, res, intervals_list) 
