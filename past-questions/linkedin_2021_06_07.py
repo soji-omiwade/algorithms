@@ -68,6 +68,19 @@ class Intervals:
                 self.ints[i] = from_, to
         self.ints = [int_ for int_ in self.ints if int_]           
 
+    #this is wrong: the code above shows how to do it right.
+    #failing case.
+    '''
+    order of incoming intervals: (1, 3), (9, 11), (2, 10)
+    (1, 3)
+    (9, 11) 
+    (2, 10)--> 
+            --> from_,to is now (1, 10) after iterating on (1,3)
+            --> now iterate on (9, 11). at ln 86, f, t =  join (1, 10)  and (9, 11) --> (1, 11). But already we added  (1, 10) to the set!
+            --> so like above, from_, to, should not forget the last item that was added and check that it isn't a subset of it. 
+            --> suffices to check intersect. but what we really need to do here (and in addInterval_list) is check subset!
+    code below will have (1, 11) and (2
+    '''
     def addInterval_set(self, from_, to):
         self.ints.add((from_, to))
         for from_curr, to_curr in self.ints.copy(): #O(n)
