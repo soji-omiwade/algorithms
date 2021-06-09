@@ -58,36 +58,57 @@ class Intervals:
     def _intersects(top, bot):
         return min(top[1], bot[1]) > max(top[0], bot[0])
         
+    def clear(self):
+        self.ints.clear()
+        
+    def addInterval(self, *args):
+        if type(self.ints) is list:
+            self.addInterval_list(*args)
+        elif type(self.ints) is set:
+            self.addInterval_set(*args)
+        else:
+            raise NotImplementedError()
+        
     def addInterval_list(self, from_, to):
-        self.ints.append((from_, to))
+        '''
+        what is going on?! now realizing this won't work if there's stuff in
+        between that is not part of i. in which case the ff problems arise:
+        - u dont get to nullify the correct location
+        - u nullified a location you shouldn't 
+        code breaking example:
+        (1, 2), (50, 67), (10, 11), (1, 11)
+        
+        [(1,11), (50,67), (10, 11), (1,11)]
+        expected: 10 + 7 = 17
+        would get: ... just fixed the code, and now it's much simpler
+        '''
         for i, (from_curr, to_curr) in enumerate(self.ints): #O(n)
             if self._intersects((from_, to), (from_curr, to_curr)):
                 from_, to = min(from_, from_curr), max(to, to_curr)
-                if i > 0 and self._intersects(self.ints[i - 1], (from_, to)):
-                    self.ints[i - 1] = None
-                self.ints[i] = from_, to
+                self.ints[i] = None
+        self.ints.append((from_, to))
         self.ints = [int_ for int_ in self.ints if int_]           
 
-    #this is wrong: the code above shows how to do it right.
-    #failing case.
-    '''
-    order of incoming intervals: (1, 3), (9, 11), (2, 10)
-    (1, 3)
-    (9, 11) 
-    (2, 10)--> 
-            --> from_,to is now (1, 10) after iterating on (1,3)
-            --> now iterate on (9, 11). at ln 86, f, t =  join (1, 10)  and (9, 11) --> (1, 11). But already we added  (1, 10) to the set!
-            --> so like above, from_, to, should not forget the last item that was added and check that it isn't a subset of it. 
-            --> suffices to check intersect. but what we really need to do here (and in addInterval_list) is check subset!
-    code below will have (1, 11) and (2
-    '''
     def addInterval_set(self, from_, to):
-        self.ints.add((from_, to))
+        '''
+        this is wrong: the code above shows how to do it right.
+        failing case.
+        order of incoming intervals: (1, 3), (9, 11), (2, 10)
+        expected: 11
+        (1, 3)
+        (9, 11) 
+        (2, 10)--> 
+                --> from_,to is now (1, 10) after iterating on (1,3)
+                --> now iterate on (9, 11). at ln 86, f, t =  join (1, 10)  and (9, 11) --> (1, 11). But already we added  (1, 10) to the set!
+                --> so like above, from_, to, should not forget the last item that was added and check that it isn't a subset of it. 
+                --> suffices to check intersect. but what we really need to do here (and in addInterval_list) is check subset!
+        code below will have (1, 11) and (2
+        '''
         for from_curr, to_curr in self.ints.copy(): #O(n)
             if self._intersects((from_, to), (from_curr, to_curr)):
                 from_, to = min(from_, from_curr), max(to, to_curr)
                 self.ints.remove((from_curr, to_curr))
-                self.ints.add((from_, to))
+        self.ints.add((from_, to))
 
     def addInterval_set_lite(self, new_from, new_to):
         raise NotImplementedError
@@ -101,38 +122,32 @@ class Intervals:
             reslen += to - from_
         return reslen    
 
-intervals = Intervals.init_as_set()       
-intervals.addInterval_set(8, 9)
-assert intervals.getTotalCoveredLength() == 1
-intervals.addInterval_set(1, 6)
-assert intervals.getTotalCoveredLength() == 6
-intervals.addInterval_set(4, 5)
-assert intervals.getTotalCoveredLength() == 6
-intervals.addInterval_set(1, 9)
-assert intervals.getTotalCoveredLength() == 8
+def test(input_, res, intervals):
+    for (from_, to), res in zip(input_, res):
+        intervals.addInterval(from_, to)
+        assert intervals.getTotalCoveredLength() == res
 
-intervals = Intervals.init_as_list()       
-intervals.addInterval_list(8, 9)
-assert intervals.getTotalCoveredLength() == 1
-intervals.addInterval_list(1, 6)
-assert intervals.getTotalCoveredLength() == 6
-intervals.addInterval_list(4, 5)
-print(intervals.getTotalCoveredLength())
-print(intervals.ints)
-assert intervals.getTotalCoveredLength() == 6
-intervals.addInterval_list(1, 9)
-assert intervals.getTotalCoveredLength() == 8
+intervals_set = Intervals.init_as_set()
+intervals_list = Intervals.init_as_list()
 
-# intervals = Intervals()       
-# intervals.addInterval_heap(8, 9)
-# assert intervals.getTotalCoveredLength() == 1
-# intervals.addInterval_heap(1, 6)
-# assert intervals.getTotalCoveredLength() == 6
-# intervals.addInterval_heap(4, 5)
-# assert intervals.getTotalCoveredLength() == 6
-# intervals.addInterval_heap(1, 9)
-# assert intervals.getTotalCoveredLength() == 8
+input_ = ((8, 9), (1, 6), (4, 5), (1, 9))
+res = (1, 6, 6, 8)
+test(input_, res, intervals_set)   
+test(input_, res, intervals_list)   
 
+intervals_list.clear()
+intervals_set.clear()
+input_ = ((1, 3), (9, 11), (2, 10))
+res = (2, 4, 10)
+test(input_, res, intervals_set)   
+test(input_, res, intervals_list)   
+
+intervals_list.clear()
+intervals_set.clear()
+input_ = ((1, 2), (50, 57), (10, 11), (1, 11))
+res = (1, 8, 9, 17)
+test(input_, res, intervals_set)   
+test(input_, res, intervals_list) 
 
     
 '''
