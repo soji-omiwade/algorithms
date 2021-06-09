@@ -75,7 +75,13 @@ class Intervals:
                 from_, to = min(from_, from_curr), max(to, to_curr)
                 self.ints.remove((from_curr, to_curr))
                 self.ints.add((from_, to))
-    # def addInterval_heap(self, e
+
+    def addInterval_set_lite(self, new_from, new_to):
+        raise NotImplementedError
+        
+    def addInterval_heap(self, new_from, new_to):
+        raise NotImplementedError
+        
     def getTotalCoveredLength(self) -> int:
         reslen = 0
         for (from_, to) in self.ints:
