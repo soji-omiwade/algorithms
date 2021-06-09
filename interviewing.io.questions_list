@@ -1,0 +1,47 @@
+/* 
+Your previous Plain Text content is preserved below:
+
+Welcome to your interviewing.io interview.
+
+Once you and your partner have joined, a voice call will start automatically.
+
+Use the language dropdown near the top right to select the language you would like to use.
+
+You can run code by hitting the 'Run' button near the top left.
+
+Enjoy your interview!
+
+
+Sort an array in ascending order using only the function reverse.
+function void pancake_sort(int[] arr)
+{
+    not allowed:
+      arr[i] = val
+      arr[i] = arr[j]
+      
+    allowed:
+      reverse(arr, k) for k in [0, len(arr)]
+}
+
+this reverses the first k elements in the arr, arr
+function void reverse(int[] arr, int k)
+{
+    allowed: 
+      arr[i] = arr[j] for i, j in [0, len(arr))
+}
+
+a drone must go from start location (route[0]) to end location route[route.len -1]
+problem: 
+    - how much minimum energy?
+/*
+input:  route = [  x    y   z
+                  [0,   2, 10],
+                  [3,   5,  0],
+                  [9,  20,  6],
+                  [10, 12, 15],
+                  [10, 10,  8] ]
+                 
+Given an array arr of unique nonnegative integers, implement a function, getDifferentNumber that finds the smallest nonnegative integer that is NOT in the array.
+input:  arr = [0, 1, 2, 3]
+
+output: 4 
