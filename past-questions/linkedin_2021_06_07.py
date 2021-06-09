@@ -39,55 +39,80 @@ public interface Intervals {
 '''
 from typing import Tuple, Set
 class Intervals:
-    '''
-    
-    harder one:
-             -----
-           ---------
-    '''
     def __init__(self):
-        self.non_overlapping = set([])
+         self.ints = None
 
-    @staticmethod
-    def _intersects(from0, to0, from1, to1):
-        '''
-           ------
-                     -----------
-        '''
-        return min(to0, to1) > max(from0, from1)
+    @classmethod
+    def init_as_set(cls):
+        intervals = cls()
+        intervals.ints = set([])
+        return intervals
         
-    def addInterval_liststyle(self, from_, to):
-        non_overlapping = [list(item) for item in self.non_overlapping]
-        non_overlapping.append([from_, to])
-        for exelem in non_overlapping: #O(n)
-            if self._intersects(from_, to, exelem[0], exelem[1]):
-                from_, to = exelem[0], exelem[1] = min(from_, exelem[0]), max(to, exelem[1])
-        self.non_overlapping = {tuple(item) for item in non_overlapping}
-
-    def addInterval(self, from_, to):
-        self.non_overlapping.add((from_, to))
-        for from_curr, to_curr in self.non_overlapping.copy(): #O(n)
-            if self._intersects(from_, to, from_curr, to_curr):
+    @classmethod
+    def init_as_list(cls):
+        intervals = cls()
+        intervals.ints = []
+        return intervals
+        
+    @staticmethod
+    def _intersects(top, bot):
+        return min(top[1], bot[1]) > max(top[0], bot[0])
+        
+    def addInterval_list(self, from_, to):
+        self.ints.append((from_, to))
+        for i, (from_curr, to_curr) in enumerate(self.ints): #O(n)
+            if self._intersects((from_, to), (from_curr, to_curr)):
                 from_, to = min(from_, from_curr), max(to, to_curr)
-                self.non_overlapping.remove((from_curr, to_curr))
-                self.non_overlapping.add((from_, to))
+                if i > 0 and self._intersects(self.ints[i - 1], (from_, to)):
+                    self.ints[i - 1] = None
+                self.ints[i] = from_, to
+        self.ints = [int_ for int_ in self.ints if int_]           
 
-    # def addInterval(self, e
+    def addInterval_set(self, from_, to):
+        self.ints.add((from_, to))
+        for from_curr, to_curr in self.ints.copy(): #O(n)
+            if self._intersects((from_, to), (from_curr, to_curr)):
+                from_, to = min(from_, from_curr), max(to, to_curr)
+                self.ints.remove((from_curr, to_curr))
+                self.ints.add((from_, to))
+    # def addInterval_heap(self, e
     def getTotalCoveredLength(self) -> int:
         reslen = 0
-        for (from_, to) in self.non_overlapping:
+        for (from_, to) in self.ints:
             reslen += to - from_
         return reslen    
 
-intervals = Intervals()       
-intervals.addInterval(8, 9)
+intervals = Intervals.init_as_set()       
+intervals.addInterval_set(8, 9)
 assert intervals.getTotalCoveredLength() == 1
-intervals.addInterval(1, 6)
+intervals.addInterval_set(1, 6)
 assert intervals.getTotalCoveredLength() == 6
-intervals.addInterval(4, 5)
+intervals.addInterval_set(4, 5)
 assert intervals.getTotalCoveredLength() == 6
-intervals.addInterval(1, 9)
+intervals.addInterval_set(1, 9)
 assert intervals.getTotalCoveredLength() == 8
+
+intervals = Intervals.init_as_list()       
+intervals.addInterval_list(8, 9)
+assert intervals.getTotalCoveredLength() == 1
+intervals.addInterval_list(1, 6)
+assert intervals.getTotalCoveredLength() == 6
+intervals.addInterval_list(4, 5)
+print(intervals.getTotalCoveredLength())
+print(intervals.ints)
+assert intervals.getTotalCoveredLength() == 6
+intervals.addInterval_list(1, 9)
+assert intervals.getTotalCoveredLength() == 8
+
+# intervals = Intervals()       
+# intervals.addInterval_heap(8, 9)
+# assert intervals.getTotalCoveredLength() == 1
+# intervals.addInterval_heap(1, 6)
+# assert intervals.getTotalCoveredLength() == 6
+# intervals.addInterval_heap(4, 5)
+# assert intervals.getTotalCoveredLength() == 6
+# intervals.addInterval_heap(1, 9)
+# assert intervals.getTotalCoveredLength() == 8
 
 
     
