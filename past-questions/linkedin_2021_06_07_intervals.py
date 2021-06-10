@@ -42,14 +42,26 @@ class Intervals:
     class DLL:
         class Node:
             def __init__(self, from_, to):
-                node.val = (from_, to)
-                node.prev = node.next_ = None
+                self.val = (from_, to)
+                self.prev = self.next_ = None
                 
         def __init__(self):
             self.prehead = Intervals.DLL.Node(float("-inf"), float("-inf"))
             self.posttail= Intervals.DLL.Node(float("inf"), float("inf"))
             self.prehead.next_ = self.posttail
-            self.posttail.prev = self.prehead          
+            self.posttail.prev = self.prehead
+                  
+        def __repr__(self):
+            res = []
+            curr = self.prehead.next_
+            while curr is not self.posttail:
+                res.append(curr.val)
+                curr = curr.next_
+            return str(res)
+            
+        def clear(self):
+            self.prehead.next_ = self.posttail
+            self.posttail.prev = self.prehead           
             
     def __init__(self):
          self.ints = None
@@ -66,6 +78,12 @@ class Intervals:
         intervals.ints = []
         return intervals
         
+    @classmethod
+    def init_as_dll(cls):
+        intervals = cls()
+        intervals.ints = Intervals.DLL()
+        return intervals
+        
     @staticmethod
     def _intersects(top, bot):
         return min(top[1], bot[1]) > max(top[0], bot[0])
@@ -78,6 +96,8 @@ class Intervals:
             self.addInterval_list(*args)
         elif type(self.ints) is set:
             self.addInterval_set(*args)
+        elif type(self.ints) is self.DLL:
+            self.addInterval_DLL(*args)
         else:
             raise NotImplementedError()
         
@@ -157,14 +177,20 @@ class Intervals:
         for future case:
             get prev of curr
             and fit new in between
-        '''
-        curr = Intervals.DLL.prehead.next_
-        while curr is not Intervals.DLL.posttail:
-            if self._intersects(curr.int_, nitem.int_):
-                curr.val.from_, curr.val.to = min(curr.val.from_, from_), max(curr.val.to, to)
-                break
-            if (from_, to) < curr.int_:
-                nitem = Intervals.DLL.Node(from_, to)
+        '''           
+        curr = self.ints.prehead.next_
+        while True:
+            if self._intersects(curr.val, (from_, to)):
+                #include curr in new item
+                from_, to = min(curr.val[0], from_), max(curr.val[1], to)
+                #delete curr
+                pcurr = curr.prev
+                ncurr = curr.next_
+                pcurr.next_ = ncurr
+                ncurr.prev = pcurr
+            elif (from_, to) < curr.val:
+                #insert new node, nitem between curr and its prev
+                nitem = self.ints.Node(from_, to)
                 prev = curr.prev
                 curr.prev = prev.next_ = nitem
                 nitem.prev = prev
@@ -173,10 +199,10 @@ class Intervals:
             curr = curr.next_
         
     def getTotalCoveredLengthDLL(self) -> int:
-        curr = Intervals.DLL.head.next_
+        curr = self.ints.prehead.next_
         sum_ = 0
-        while curr is not Intervals.DLL.tail:
-            sum_ += curr.val.to - curr.val.from_
+        while curr is not self.ints.posttail:
+            sum_ += curr.val[1] - curr.val[0]
             curr = curr.next_
         return sum_
         
@@ -184,6 +210,8 @@ class Intervals:
         raise NotImplementedError
 
     def getTotalCoveredLength(self) -> int:
+        if type(self.ints) is Intervals.DLL:
+            return self.getTotalCoveredLengthDLL()
         reslen = 0
         for (from_, to) in self.ints:
             reslen += to - from_
@@ -193,35 +221,35 @@ def test(input_, res, intervals):
     for (from_, to), res in zip(input_, res):
         intervals.addInterval(from_, to)
         assert intervals.getTotalCoveredLength() == res
-
+    
+    
 intervals_set = Intervals.init_as_set()
 intervals_list = Intervals.init_as_list()
-
-input_ = ((8, 9), (1, 6), (4, 5), (1, 9))
-res = (1, 6, 6, 8)
-import timeit
-print(min(timeit.repeat('intervals_set.clear()\ntest(input_, res, intervals_set)', 'from __main__ import test, input_, res, intervals_set')))
-print(min(timeit.repeat('intervals_list.clear()\ntest(input_, res, intervals_list)', 'from __main__ import test, input_, res, intervals_list')))
-# test(input_, res, intervals_set)   
-# test(input_, res, intervals_list)   
-
+intervals_dll = Intervals.init_as_dll()
 
 intervals_list.clear()
 intervals_set.clear()
+intervals_dll.clear()
+input_ = ((8, 9), (1, 6), (4, 5), (1, 9))
+res = (1, 6, 6, 8)
+test(input_, res, intervals_set)   
+test(input_, res, intervals_list)   
+test(input_, res, intervals_dll)   
+
+import sys
+sys.exit()
+
+intervals_list.clear()
+intervals_set.clear()
+intervals_dll.clear()
 input_ = ((1, 3), (9, 11), (2, 10))
 res = (2, 4, 10)
-import timeit
-print(min(timeit.repeat('intervals_set.clear()\ntest(input_, res, intervals_set)', 'from __main__ import test, input_, res, intervals_set')))
-print(min(timeit.repeat('intervals_list.clear()\ntest(input_, res, intervals_list)', 'from __main__ import test, input_, res, intervals_list')))
-# test(input_, res, intervals_set)   
-# test(input_, res, intervals_list)   
+test(input_, res, intervals_set)   
+test(input_, res, intervals_list)   
 
 intervals_list.clear()
 intervals_set.clear()
 input_ = ((1, 2), (50, 57), (10, 11), (1, 11))
 res = (1, 8, 9, 17)
-import timeit
-print(min(timeit.repeat('intervals_set.clear()\ntest(input_, res, intervals_set)', 'from __main__ import test, input_, res, intervals_set')))
-print(min(timeit.repeat('intervals_list.clear()\ntest(input_, res, intervals_list)', 'from __main__ import test, input_, res, intervals_list')))
-# test(input_, res, intervals_set)   
-# test(input_, res, intervals_list) 
+test(input_, res, intervals_set)   
+test(input_, res, intervals_list) 
