@@ -135,9 +135,33 @@ class Intervals:
         self.ints = self.ints.difference(ints_to_remove)
         self.ints.add((from_, to))
         
-    def addInterval_heap(self, new_from, new_to):
-        raise NotImplementedError
+    def addInterval_linked_list(self, from_, to):
+        '''
+        -infph 1 5 9 24 42 inf-pt
+        '''
+        curr = Intervals.DLL.prehead
+        nitem = Intervals.DLL.Node(from_, to)
+        while curr.val > nitem.val:
+            curr = curr.next_
+        prev = curr.prev
+        curr.prev = prev.next_ = nitem
+        nitem.prev = prev
+        nitem.next_ = curr
+
+    def getTotalCoveredLengthLinkedList(self) -> int:
+        curr = Intervals.DLL.head.next
+        sum_ = 0
+        while curr is not Intervals.DLL.tail:
+            curr = curr.next
+            
+            '''
+            if curr and prev intersect
+                mark prev
+            '''
         
+    def addInterval_bst(self, new_from, new_to):
+        raise NotImplementedError
+
     def getTotalCoveredLength(self) -> int:
         reslen = 0
         for (from_, to) in self.ints:
