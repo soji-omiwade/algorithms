@@ -39,6 +39,18 @@ public interface Intervals {
 '''
 from typing import Tuple, Set
 class Intervals:
+    class DLL:
+        class Node:
+            def __init__(self, from_, to):
+                node.val = (from_, to)
+                node.prev = node.next_ = None
+                
+        def __init__(self):
+            self.prehead = Intervals.DLL.Node(float("-inf"), float("-inf"))
+            self.posttail= Intervals.DLL.Node(float("inf"), float("inf"))
+            self.prehead.next_ = self.posttail
+            self.posttail.prev = self.prehead          
+            
     def __init__(self):
          self.ints = None
 
@@ -135,29 +147,38 @@ class Intervals:
         self.ints = self.ints.difference(ints_to_remove)
         self.ints.add((from_, to))
         
-    def addInterval_linked_list(self, from_, to):
+    def addInterval_DLL(self, from_, to):
         '''
+           i        
         -infph 1 5 9 24 42 inf-pt
+        keep moving until intersection or curr is future (if so stop)
+        for intersection case:
+            modify curr to be extension of new and curr
+        for future case:
+            get prev of curr
+            and fit new in between
         '''
-        curr = Intervals.DLL.prehead
-        nitem = Intervals.DLL.Node(from_, to)
-        while curr.val > nitem.val:
+        curr = Intervals.DLL.prehead.next_
+        while curr is not Intervals.DLL.posttail:
+            if self._intersects(curr.int_, nitem.int_):
+                curr.val.from_, curr.val.to = min(curr.val.from_, from_), max(curr.val.to, to)
+                break
+            if (from_, to) < curr.int_:
+                nitem = Intervals.DLL.Node(from_, to)
+                prev = curr.prev
+                curr.prev = prev.next_ = nitem
+                nitem.prev = prev
+                nitem.next_ = curr
+                break
             curr = curr.next_
-        prev = curr.prev
-        curr.prev = prev.next_ = nitem
-        nitem.prev = prev
-        nitem.next_ = curr
-
-    def getTotalCoveredLengthLinkedList(self) -> int:
-        curr = Intervals.DLL.head.next
+        
+    def getTotalCoveredLengthDLL(self) -> int:
+        curr = Intervals.DLL.head.next_
         sum_ = 0
         while curr is not Intervals.DLL.tail:
-            curr = curr.next
-            
-            '''
-            if curr and prev intersect
-                mark prev
-            '''
+            sum_ += curr.val.to - curr.val.from_
+            curr = curr.next_
+        return sum_
         
     def addInterval_bst(self, new_from, new_to):
         raise NotImplementedError
