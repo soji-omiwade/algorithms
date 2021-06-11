@@ -267,9 +267,6 @@ class Intervals:
             curr = curr.next_
         return sum_
         
-    def addInterval_bst(self, new_from, new_to):
-        raise NotImplementedError
-
     def getTotalCoveredLength(self) -> int:
         if type(self.ints) is Intervals.DLL:
             return self.getTotalCoveredLengthDLL()
