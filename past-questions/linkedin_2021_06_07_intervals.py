@@ -39,6 +39,39 @@ public interface Intervals {
 '''
 from typing import Tuple, Set
 class Intervals:
+    class BST:
+        def __init__(self):
+            self.root = None
+            
+        def __iter__(self):
+            self.gen = self.inorder(self.root)
+            return self
+            
+        def __next__(self):
+            return next(self.gen)
+            
+        def inorder(self, curr):
+            '''
+            ints_it = iter(ints)
+            print(next(ints_it)) --> lowest elem
+            '''
+            print(f"inorder: {curr.val}")
+            if curr:
+                if curr.left:
+                    yield next(self.inorder(curr.left))
+                print(f"yielding currval {curr.val}, {curr.left}, {curr.right}")
+                yield curr.val
+                print(f"coming back for right of currval {curr.val}, {curr.left}, {curr.right}")
+                if curr.right:
+                    yield next(self.inorder(curr.right))
+
+                
+        class Node:
+            def __init__(self, val):
+                self.val = val
+                self.left = self.right = None
+                
+                
     class DLL:
         class Node:
             def __init__(self, from_, to):
@@ -83,6 +116,12 @@ class Intervals:
         intervals = cls()
         intervals.ints = Intervals.DLL()
         return intervals
+
+    @classmethod
+    def init_as_bst(cls):
+        intervals = cls()
+        intervals.ints = Intervals.BST()
+        return intervals
         
     @staticmethod
     def _intersects(top, bot):
@@ -98,6 +137,8 @@ class Intervals:
             self.addInterval_set(*args)
         elif type(self.ints) is self.DLL:
             self.addInterval_DLL(*args)
+        elif type(self.ints) is self.BST:
+            self.addInterval_BST(*args)
         else:
             raise NotImplementedError()
         
@@ -197,6 +238,56 @@ class Intervals:
                 nitem.next_ = curr
                 break
             curr = curr.next_
+    
+    def addInterval_BST(self, from_, to):
+        def get_parent(from_, to):
+            curr = self.ints.root
+            parent = None
+            while curr:
+                parent = curr
+                if (from_, to) < curr.val:
+                    curr = curr.left
+                else:
+                    curr = curr.right
+            return parent
+         
+        print(f"adding {from_, to}...")
+        if not self.ints.root:
+            self.ints.root = Intervals.BST.Node((from_, to))
+            print("root created")
+        else:
+            parent = get_parent(from_, to)
+            if (from_, to) < parent.val:
+                parent.left = Intervals.BST.Node((from_, to))
+                print("less")
+            else:
+                parent.right = Intervals.BST.Node((from_, to))            
+                print("more")
+            parent.leftval = parent.left.val if parent.left else None
+            parent.rightval = parent.right.val if parent.right else None
+            print(f"regular node {(from_, to)} created from parent {parent.val, (parent.leftval, parent.rightval)} -- ")           
+
+    def getTotalCoveredLengthOverlapping(self):
+        '''
+        assumption about ints: 
+        example: (1,3), (1, 10), (2, 3)
+        never:   (5, 10), (4, 99)
+        iterate through items, item
+            if what is added last intersects with item:
+                item_last = union(item_last, item)
+            else:
+                append to res item
+        return res
+        '''
+        print("\nprint all elements:")
+        nolints = [(float("-inf"), float("-inf"))]
+        for i, item in enumerate(self.ints):
+            print(item)
+            # if i > 0 and self._intersects(nolints[i - 1], int_):
+                # nolints[i - 1] = min(nolints[i - 1][0], int_[0]), max(nolints[i - 1][1], int_[1])
+            # else:
+                # nolints.append(int_)
+        # return res     
         
     def getTotalCoveredLengthDLL(self) -> int:
         curr = self.ints.prehead.next_
@@ -220,9 +311,16 @@ class Intervals:
 def test(input_, res, intervals):
     for (from_, to), res in zip(input_, res):
         intervals.addInterval(from_, to)
-        assert intervals.getTotalCoveredLength() == res
-    
-    
+        # assert intervals.getTotalCoveredLength() == res
+        intervals.getTotalCoveredLengthOverlapping()
+        
+intervals_bst = Intervals.init_as_bst()    
+input_ = ((8, 9), (1, 6), (0, 4),(4, 5), (1, 9))
+res = (1, 6, 42, 6, 8)
+test(input_, res, intervals_bst)   
+import sys
+sys.exit()
+
 intervals_set = Intervals.init_as_set()
 intervals_list = Intervals.init_as_list()
 intervals_dll = Intervals.init_as_dll()
