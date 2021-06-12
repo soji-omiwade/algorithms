@@ -247,8 +247,6 @@ class Intervals:
                 parent.left = Intervals.BST.Node((from_, to))
             else:
                 parent.right = Intervals.BST.Node((from_, to))            
-            parent.leftval = parent.left.val if parent.left else None
-            parent.rightval = parent.right.val if parent.right else None
 
     def getTotalCoveredLengthOverlapping_via_yield(self):
         nolints = []
