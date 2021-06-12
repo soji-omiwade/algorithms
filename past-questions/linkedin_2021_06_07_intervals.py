@@ -60,15 +60,15 @@ class Intervals:
                 self.val = val
                 self.left = self.right = None
 
-    class DLL:
+    class OrderedDLL:
         class Node:
             def __init__(self, from_, to):
                 self.val = (from_, to)
                 self.prev = self.next_ = None
                 
         def __init__(self):
-            self.prehead = Intervals.DLL.Node(float("-inf"), float("-inf"))
-            self.posttail= Intervals.DLL.Node(float("inf"), float("inf"))
+            self.prehead = Intervals.OrderedDLL.Node(float("-inf"), float("-inf"))
+            self.posttail= Intervals.OrderedDLL.Node(float("inf"), float("inf"))
             self.prehead.next_ = self.posttail
             self.posttail.prev = self.prehead
                   
@@ -86,6 +86,7 @@ class Intervals:
             
     def __init__(self):
          self.ints = None
+         self.overlap_count = 0
 
     @classmethod
     def init_as_set(cls):
@@ -100,9 +101,9 @@ class Intervals:
         return intervals
         
     @classmethod
-    def init_as_dll(cls):
+    def init_as_OrderedDLL(cls):
         intervals = cls()
-        intervals.ints = Intervals.DLL()
+        intervals.ints = Intervals.OrderedDLL()
         return intervals
 
     @classmethod
@@ -123,8 +124,8 @@ class Intervals:
             self.addInterval_list(*args)
         elif type(self.ints) is set:
             self.addInterval_set(*args)
-        elif type(self.ints) is self.DLL:
-            self.addInterval_DLL(*args)
+        elif type(self.ints) is self.OrderedDLL:
+            self.addInterval_OrderedDLL(*args)
         elif type(self.ints) is self.BST:
             self.addInterval_BST(*args)
         else:
@@ -147,6 +148,7 @@ class Intervals:
             if self._intersects((from_, to), (from_curr, to_curr)):
                 from_, to = min(from_, from_curr), max(to, to_curr)
                 self.ints[i] = None
+                self.overlap_count += 1
         self.ints.append((from_, to))
         self.ints = [int_ for int_ in self.ints if int_]           
 
@@ -169,6 +171,7 @@ class Intervals:
             if self._intersects((from_, to), (from_curr, to_curr)):
                 from_, to = min(from_, from_curr), max(to, to_curr)
                 self.ints.remove((from_curr, to_curr))
+                self.overlap_count += 1
         self.ints.add((from_, to))
 
     def addInterval_set_lite(self, from_, to):
@@ -196,7 +199,7 @@ class Intervals:
         self.ints = self.ints.difference(ints_to_remove)
         self.ints.add((from_, to))
         
-    def addInterval_DLL(self, from_, to):
+    def addInterval_OrderedDLL(self, from_, to):
         '''
            i        
         -infph 1 5 9 24 42 inf-pt
@@ -217,6 +220,7 @@ class Intervals:
                 ncurr = curr.next_
                 pcurr.next_ = ncurr
                 ncurr.prev = pcurr
+                self.overlap_count += 1
             elif (from_, to) < curr.val:
                 #insert new node, nitem between curr and its prev
                 nitem = self.ints.Node(from_, to)
@@ -267,14 +271,15 @@ class Intervals:
         def action(int_):
             if nolints and self._intersects(nolints[-1], int_):
                 nolints[-1] = min(nolints[-1][0], int_[0]), max(nolints[-1][1], int_[1])
+                self.overlap_count += 1
             else:
                 nolints.append(int_)
-
+        self.overlap_count = 0
         nolints = []
         helper(self.ints.root)
         return sum(to - from_ for (from_, to) in nolints)
 
-    def getTotalCoveredLengthDLL(self) -> int:
+    def getTotalCoveredLengthOrderedDLL(self) -> int:
         curr = self.ints.prehead.next_
         sum_ = 0
         while curr is not self.ints.posttail:
@@ -283,8 +288,8 @@ class Intervals:
         return sum_
         
     def getTotalCoveredLength(self) -> int:
-        if type(self.ints) is Intervals.DLL:
-            return self.getTotalCoveredLengthDLL()
+        if type(self.ints) is Intervals.OrderedDLL:
+            return self.getTotalCoveredLengthOrderedDLL()
         if type(self.ints) is Intervals.BST:
             return self.getTotalCoveredLengthOverlapping()
         reslen = 0
