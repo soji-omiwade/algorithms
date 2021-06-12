@@ -250,7 +250,7 @@ class Intervals:
             parent.leftval = parent.left.val if parent.left else None
             parent.rightval = parent.right.val if parent.right else None
 
-    def getTotalCoveredLengthOverlapping(self):
+    def getTotalCoveredLengthOverlapping_via_yield(self):
         nolints = []
         for i, int_ in enumerate(self.ints):
             if nolints and self._intersects(nolints[-1], int_):
@@ -259,6 +259,23 @@ class Intervals:
                 nolints.append(int_)
         return sum(to - from_ for (from_, to) in nolints)
         
+    def getTotalCoveredLengthOverlapping(self):
+        def helper(curr):
+            if curr:
+                helper(curr.left)
+                action(curr.val)
+                helper(curr.right)
+
+        def action(int_):
+            if nolints and self._intersects(nolints[-1], int_):
+                nolints[-1] = min(nolints[-1][0], int_[0]), max(nolints[-1][1], int_[1])
+            else:
+                nolints.append(int_)
+
+        nolints = []
+        helper(self.ints.root)
+        return sum(to - from_ for (from_, to) in nolints)
+
     def getTotalCoveredLengthDLL(self) -> int:
         curr = self.ints.prehead.next_
         sum_ = 0

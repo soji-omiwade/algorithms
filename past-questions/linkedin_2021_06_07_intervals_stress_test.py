@@ -11,15 +11,17 @@ for a count times
     start = rand between 0 and count - 1
     end = rand between start + 1 and count
 '''
-def test_compare_all_interval_types(intervals_types):
+def test_compare_all_interval_types():
     prevres = None
     for interval in intervals_types:
         for (start, end) in input_intervals:
             interval.addInterval(start, end)
-            res = interval.getTotalCoveredLength()
-            if prevres:
-                assert prevres == res
-
+            # interval.getTotalCoveredLength()
+        res = interval.getTotalCoveredLength()
+        if prevres:
+            assert prevres == res
+        prevres = res
+        
 def time_compare_add_intervals(interval_type):
     res = []
     for (start, end) in input_intervals:
@@ -39,14 +41,17 @@ for _ in range(count):
 
 intervals_types = (Intervals.init_as_bst(), Intervals.init_as_dll(),
                     Intervals.init_as_list(), Intervals.init_as_set())
+                    
+# def test_performance_all_types():
 reskeys = ["bst", "dll", "list", "set"]
 res_vals = []
-number = 100
+number = 1000
 for interval_type in intervals_types:
     addtime = timeit.timeit('time_compare_add_intervals(interval_type)',number=number, globals=globals())
     lentime = timeit.timeit('time_compare_add_intervals(interval_type)',number=number, globals=globals())
     res_vals.append((addtime, lentime))
-
 pprint(dict(zip(reskeys, res_vals)))
+
 # test_compare_all_interval_types()
+# test_performance_all_types()
 

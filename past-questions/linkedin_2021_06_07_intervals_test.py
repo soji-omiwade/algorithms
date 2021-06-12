@@ -1,13 +1,13 @@
 from linkedin_2021_06_07_intervals import Intervals
 
-
-intervals_bst = Intervals.init_as_bst()
-input_ = ((8, 9), (1, 6), (4, 5), (1, 9), (0, 4), (20,40))
-for (from_, to) in input_:
-    intervals_bst.addInterval(from_, to)
-for int_ in intervals_bst.ints:
-    print(f"{int_}", end=", ")
-print()
+def test_iterate_bst():
+    intervals_bst = Intervals.init_as_bst()
+    input_ = ((8, 9), (1, 6), (4, 5), (1, 9), (0, 4), (20,40))
+    for (from_, to) in input_:
+        intervals_bst.addInterval(from_, to)
+    for int_ in intervals_bst.ints:
+        print(f"{int_}", end=", ")
+    print()
 
 def test(input_, res, intervals):
     for (from_, to), res in zip(input_, res):
