@@ -38,16 +38,20 @@ To solve this, let's walk through
        3
       / \
      9   20
-    - interval of children [2, ...] and [..., 4]
+    - interval of children of 20: [2, ...] and [..., 4]
     - dots are 3 - 1 and 3  + 1, 3 is idx of 20
-    
-    - advance in preorder to [15] with its range [2,2]
+     so we have [2, 2] and [4, 4]
+
+    - for the range [2,2] we advance in preorder to get 15  
     - cannot make children with [2, 1], and [3, 2]
     - we are done. 
     
-    - now advance preorder to 7 AND then find it in preorder
-    - ranges it submits for its children : [7, 6] and [8, 7]
-    - advance preorder. wait we are done.
+    - for the range [4, 4] 
+    - we now advance preorder to pull out the last element 7 
+    - find it to be located at 4
+    - ranges 7 submits for its children : [4, 3] and [5, 4]  
+    - advance preorder. wait we are done. 
+        -we are also done because there is no other recursive range to call!
 
     so we see a pattern of some things from which we glean pseudocode
     
