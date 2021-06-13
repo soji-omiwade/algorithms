@@ -6,22 +6,21 @@
 #         self.right = right
 class Solution:
     def constructFromPrePost(self, pre: List[int], post: List[int]) -> TreeNode:
-        preidx = 1
-        postidx = len(post) - 1 - 1
+        def traverse(curr, val):
+            if not curr.left:
+                curr.left = TreeNode(val)
+            elif postorderidx[val] < postorderidx[curr.left.val]:
+                traverse(curr.left, val)
+            elif not curr.right:
+                curr.right = TreeNode(val)
+            else:
+                traverse(curr.right, val)
+            
         root = TreeNode(pre[0])
-        lastpre = lastpost = root
-        added = set([root.val])
-        preturn = True
-        while len(added) != len(pre):
-            if preturn:
-                val = pre[preidx]
-                preidx += 1
-            else: 
-                val = post[postidx]
-                postidx -= 1
-            preturn = not preturn
-            if not preturn and val not in added:
-                lastpost.right = TreeNode(val)
-            elif preturn and val not in added:
-                lastpre.left = 
-            added.add(val)
+        postorderidx = [None] * (1 + len(post))
+        for idx, val in enumerate(post):
+            postorderidx[val] = idx
+        for preidx in range(1, len(pre)):
+            val = pre[preidx]
+            traverse(root, val)
+        return root
