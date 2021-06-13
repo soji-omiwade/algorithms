@@ -17,18 +17,15 @@ public interface Intervals {
      * addInterval(3, 6)
      * addInterval(8, 9)
      * addInterval(1, 5)
-     
-        addInterval(4, 5)
      *
      * getTotalCoveredLength() -> 6
      *
      * i.e. [1,5) and [3,6) intersect and give a total covered interval [1,6) with a length of 5.
      *      [1,6) and [8,9) don't intersect, so the total covered length is a sum of both intervals, that is 5+1=6.
      *          *f     *t       
-     *          |__|__|__|                  
+     *          |__|__|__|
      *                         |__|         (8,9) 
-     *    |__|__|__|__|                     (1,6) 
-                                            (4,5)
+     *    |__|__|__|__|                     (1,5) 
      *
      * 0  1  2  3  4  5  6  7  8  9  10
      *
@@ -45,6 +42,8 @@ class Intervals:
             
         def __iter__(self):
             return self.inorder(self.root)
+        
+        def depths(self):
             
         def clear(self):
             self.root = None
