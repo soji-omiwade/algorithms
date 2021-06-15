@@ -16,3 +16,8 @@ class Solution:
         
 print(list(
     Solution().groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])))
+    
+strs = ["ddg", "dg"]
+sol = Solution().groupAnagrams(strs)
+print(list(sol))
+assert list(sol) == [["ddg"], ["dg"]]
