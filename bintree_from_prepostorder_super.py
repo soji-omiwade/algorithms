@@ -30,11 +30,11 @@ construct(pre, post)
 class Solution:
     preidx = postidx = 0 
     def constructFromPrePost(self, pre: List[int], post: List[int]) -> TreeNode:
-            root = TreeNode(pre[preidx])
-            preidx += 1
-            if post[postidx] != root.val:
+            root = TreeNode(pre[self.preidx])
+            self.preidx += 1
+            if post[self.postidx] != root.val:
                 root.left = self.constructFromPrePost(pre, post)
-            if post[postidx] != root.val:
+            if post[self.postidx] != root.val:
                 root.right = self.constructFromPrePost(pre, post)
-            postidx += 1
+            self.postidx += 1
             return root
