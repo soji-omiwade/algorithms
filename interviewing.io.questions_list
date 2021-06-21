@@ -1,17 +1,4 @@
-/* 
-Your previous Plain Text content is preserved below:
-
-Welcome to your interviewing.io interview.
-
-Once you and your partner have joined, a voice call will start automatically.
-
-Use the language dropdown near the top right to select the language you would like to use.
-
-You can run code by hitting the 'Run' button near the top left.
-
-Enjoy your interview!
-
-
+pancake_sort
 Sort an array in ascending order using only the function reverse.
 function void pancake_sort(int[] arr)
 {
@@ -30,6 +17,7 @@ function void reverse(int[] arr, int k)
       arr[i] = arr[j] for i, j in [0, len(arr))
 }
 
+
 a drone must go from start location (route[0]) to end location route[route.len -1]
 problem: 
     - how much minimum energy?
@@ -43,5 +31,47 @@ input:  route = [  x    y   z
                  
 Given an array arr of unique nonnegative integers, implement a function, getDifferentNumber that finds the smallest nonnegative integer that is NOT in the array.
 input:  arr = [0, 1, 2, 3]
-
 output: 4 
+
+
+There are n buildings in a line. You are given an integer array heights of size n that represents the heights of the buildings in the line.
+
+The ocean is to the right of the buildings. A building has an ocean view if the building can see the ocean without obstructions. Formally, a building has an ocean view if all the buildings to its right have a smaller height.
+
+Return a list of indices (0-indexed) of buildings that have an ocean view, sorted in increasing order.
+
+Given the root of a binary search tree and a target value, return the value in the BST that is closest to the target.
+
+An ugly number is a positive integer whose prime factors are limited to 2, 3, and 5.
+Given an integer n, return true if n is an ugly number.
+
+
+public interface Intervals {
+ 
+     * Adds an interval [from, to) into an internal structure.
+     
+    void addInterval(int from, int to);
+ 
+    /**
+     * Returns a total length covered by the added intervals.
+     * If several intervals intersect, the intersection should be counted only once.
+     * Example:
+     *
+     * addInterval(3, 6)
+     * addInterval(8, 9)
+     * addInterval(1, 5)
+     *
+     * getTotalCoveredLength() -> 6
+     *
+     * i.e. [1,5) and [3,6) intersect and give a total covered interval [1,6) with a length of 5.
+     *      [1,6) and [8,9) don't intersect, so the total covered length is a sum of both intervals, that is 5+1=6.
+     *          *f     *t       
+     *          |__|__|__|                  (3,6)
+     *                         |__|         (8,9) 
+     *    |__|__|__|__|                     (1,5) 
+     *
+     * 0  1  2  3  4  5  6  7  8  9  10
+     *
+
+    int getTotalCoveredLength();
+}
