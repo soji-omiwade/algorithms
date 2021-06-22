@@ -1,0 +1,30 @@
+massive scale distributed systems 
+scalability 
+performance
+
+work close to storage
+this is not a core storage
+
+cloud data mgmt. 
+b2b, not b2c. 
+large enterprises that have a lot of data. 
+data not safe. cloud can be expensive. 
+
+we basically protect. 
+SQL server workload. 
+Saas work load. 
+basically, we protect all of that.  multiple teams a lot. 
+
+replication. archival. building  a data platform all
+
+onsite. 
+algorithms and data 
+2 rounds of systems design and coding. 
+
+
+ask clarifying questions. 
+2nd thing: your collaboration skills and ability to take feedback. 
+
+do u get lost in ur thought process
+
+
