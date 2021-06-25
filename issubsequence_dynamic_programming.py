@@ -36,17 +36,20 @@ s[:j+1]
 control
 s[:j+1] is sub of t[:i+1] <--> dp[i][j]
 
-
+     i
+"! a x c"
+"! a h b g d c"
+   j
 '''
 from itertools import product
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
         s, t = "!" + s, "!" + t
         m, n = len(s), len(t)
-        dp = [[True if j == 0 else False for j in range(m)] for i in range(n)]
-        for (i, j) in product(range(1, n), range(1, m)):
-            if t[i] == s[j]:
-                dp[i][j] = dp[i-1][j-1]
+        dp = [[True if i == 0 else False for j in range(n)] for i in range(m)]
+        for (i, j) in product(range(1, m), range(1, n)):
+            if t[j] == s[i]:
+                dp[i][j] = dp[i - 1][j - 1]
             else:
-                dp[i][j] = dp[i-1][j]
+                dp[i][j] = dp[i][j - 1]
         return dp[-1][-1]
