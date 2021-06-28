@@ -1,5 +1,10 @@
 '''
-if num...if k - num is in lookup
+    5
+   / \
+  3   6
+target = 9
+    1
+target = 2
 '''
 # Definition for a binary tree node.
 # class TreeNode:
@@ -8,14 +13,13 @@ if num...if k - num is in lookup
 #         self.left = left
 #         self.right = right
 class Solution:
+    vals = set()
     def findTarget(self, root: TreeNode, k: int) -> bool:
-        def helper(curr: TreeNode) -> bool:
-            if not curr:
-                return False
-            left = helper(curr.left)
-            me = k - curr.val in vals
-            vals.add(curr.val)
-            right = helper(curr.right)
-            return left or me or right
-        vals = set()
-        return helper(root)
+        if not self.vals:
+            self.vals = set()
+        if not root:
+            return False
+        me = k - root.val in self.vals
+        self.vals.add(root.val)
+        return self.findTarget(root.left, k) or me or self.findTarget(root.right, k)
+
