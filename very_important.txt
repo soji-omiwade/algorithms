@@ -1,0 +1,4 @@
+two rules
+-----
+1) stop coding if you are not ready to do a unit test before you say I'm done.
+2) don't move code around to optimize! because when you do, you usually forget about line dependencies
