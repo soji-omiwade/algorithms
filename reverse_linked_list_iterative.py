@@ -27,13 +27,9 @@ S: O(1)
 #         self.next = next
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
-        if not head:
-            return head   
-        fromnode, tonode = ListNode(None, head), head
-        while tonode:
-            save = tonode.next
-            tonode.next = fromnode
-            fromnode = tonode
-            tonode = save
-        head.next = None
+        fromnode = None
+        while head:
+            save = head.next
+            head.next = fromnode
+            fromnode, head = head, save
         return fromnode
