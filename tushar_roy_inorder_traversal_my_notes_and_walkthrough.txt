@@ -1,0 +1,22 @@
+tushar roy in order traversal
+
+if root not null 
+
+stack []
+root * 
+result[5 0 6 10 -10 11]
+
+if not root
+    return []
+res = []
+st = [root]
+while True
+    if root
+        push root           #push for later what to process
+        root = root.left    #advance left (to possibly push for later)
+    else
+        if st empty
+            break
+        root = st.pop       #pop the last element pushed for later
+        process root
+        root = root.right   #advance right (to possibly push for later)
