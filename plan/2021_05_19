@@ -1,0 +1,8 @@
+2 problems(6 hours)
+. design and implement a priority queue [2 hours]
+. binary search -- find first el satisfying arr[el] == el
+. python design: check if file exists: use try
+. python design: check if a list (or other containter) is empty
+
+system design (4) hours
+    - dropbox: narendra

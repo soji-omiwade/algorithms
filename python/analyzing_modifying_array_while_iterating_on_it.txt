@@ -1,0 +1,345 @@
+Python 3.9.1 (tags/v3.9.1:1e5d33e, Dec  7 2020, 17:08:21) [MSC v.1927 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> def foo():
+...     if False:
+...             yield 2
+...
+>>> type(foo())
+<class 'generator'>
+>>> for val in foo:
+...     print(val)
+...
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'function' object is not iterable
+>>> for val in foo():
+...     print(val)
+...
+>>> gen = foo()
+>>> next(gen)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+>>> class a: pass
+...
+>>> mro
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'mro' is not defined
+>>> a.__mro__
+(<class '__main__.a'>, <class 'object'>)
+>>> type(a)
+<class 'type'>
+>>> type(list)
+<class 'type'>
+>>> list.__mro__
+(<class 'list'>, <class 'object'>)
+>>> b = []
+>>> mro(b)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'mro' is not defined
+>>> b.__mro__
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'list' object has no attribute '__mro__'
+>>> type(list.append)
+<class 'method_descriptor'>
+>>> class a:
+...     def foo(): pass
+...
+>>> type(a.foo)
+<class 'function'>
+>>> type(a().foo)
+<class 'method'>
+>>> type(b.append)
+<class 'builtin_function_or_method'>
+>>> class a:
+...     def foo(): pass
+...     coo
+...
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 3, in a
+NameError: name 'coo' is not defined
+>>> class a:
+...     def foo(): pass
+...     coo = None
+...
+>>> a().coo
+>>> a().foo
+<bound method a.foo of <__main__.a object at 0x000002CA4B24D760>>
+>>> ao = a()
+>>> ao.foo
+<bound method a.foo of <__main__.a object at 0x000002CA4B26FC40>>
+>>> ao.foo.me = 42
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'method' object has no attribute 'me'
+>>> dir(ao.foo)
+['__call__', '__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__func__', '__ge__', '__get__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__self__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__']
+>>> ao.foo.__doc__
+>>> ao.foo.__doc__ = "me"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: attribute '__doc__' of 'method' objects is not writable
+>>> ao.foo.__docc__ = "me"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'method' object has no attribute '__docc__'
+>>> ao.foo.__new__
+<built-in method __new__ of type object at 0x00007FFC62A366D0>
+>>> ao
+<__main__.a object at 0x000002CA4B26FC40>
+>>> a
+<class '__main__.a'>
+>>> type(a)
+<class 'type'>
+>>> addr
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'addr' is not defined
+>>> for i in range(n):
+...     print(i)
+...
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'n' is not defined
+>>> n = 5
+>>> for i in range(n):
+...     print(i)
+...
+0
+1
+2
+3
+4
+>>> robj = range(n)
+>>> it = iter(robj)
+>>> while True: next(it)
+...
+0
+1
+2
+3
+4
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+>>> robj
+range(0, 5)
+>>> dir(robj)
+['__bool__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'count', 'index', 'start', 'step', 'stop']
+>>> a = []
+>>> a = [1]
+>>> for x in a:
+...     if x % 2 == 1:
+...             a.append(42)
+...     print(x)
+...
+1
+42
+>>> it = iter(a)
+>>> a
+[1, 42]
+>>> next(it)
+1
+>>> next(42)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'int' object is not an iterator
+>>> next(it)
+42
+>>> a.append(3)
+>>> next(it)
+3
+>>> a.append(3)
+>>> next(it)
+3
+>>> next(it)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+>>> it = iter(a)
+>>> a
+[1, 42, 3, 3]
+>>> a.pop(0)
+1
+>>> next(it)
+42
+>>> a.remove
+<built-in method remove of list object at 0x000002CA4B288A40>
+>>> help(a.remove)
+Help on built-in function remove:
+
+remove(value, /) method of builtins.list instance
+    Remove first occurrence of value.
+
+    Raises ValueError if the value is not present.
+
+>>> a.remove
+<built-in method remove of list object at 0x000002CA4B288A40>
+>>> a
+[42, 3, 3]
+>>> for x in a:
+...     a.remove(x)
+... a = [i for i in range(20)]
+  File "<stdin>", line 3
+    a = [i for i in range(20)]
+    ^
+SyntaxError: invalid syntax
+>>> a = [i for i in range(20)]
+>>> a
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+>>> for x in a:
+...     if x % 2 == 1:
+...             a.remove(x)
+...
+>>> a
+[0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+>>> numbers = range(1, 50)
+>>>
+>>> for i in numbers:
+...     if i < 20:
+...         numbers.remove(i)
+...
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+AttributeError: 'range' object has no attribute 'remove'
+>>> numbers = xrange(1, 50)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'xrange' is not defined
+>>> numbers = list(range(1, 50))
+>>> numbers = list(range(1, 50))
+>>> for i in numbers:
+...     if i < 20:
+...         numbers.remove(i)
+... print(numbers)
+  File "<stdin>", line 4
+    print(numbers)
+    ^
+SyntaxError: invalid syntax
+>>> for i in numbers:
+...     if i < 20:
+...         numbers.remove(i)
+...
+>>> print(numbers)
+[2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+>>> it = iter(numbers)
+>>> next(it)
+2
+>>> numbers = [1:20]
+  File "<stdin>", line 1
+    numbers = [1:20]
+                ^
+SyntaxError: invalid syntax
+>>> numbers = list(range(1,50))
+>>> numbers
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+>>> it = iter(numbers)
+>>> next(it)
+1
+>>> it = iter(numbers)
+>>> val = next(it)
+>>> val
+1
+>>> numbers.pop(0)
+1
+>>> next(it)
+3
+>>> it[0]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'list_iterator' object is not subscriptable
+>>> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+>>> >>> for x in a:
+  File "<stdin>", line 1
+    >>> for x in a:
+    ^
+SyntaxError: invalid syntax
+>>> ...     if x % 2 == 1:
+  File "<stdin>", line 1
+    ...     if x % 2 == 1:
+                         ^
+SyntaxError: invalid syntax
+>>> ...             a.remove(x)
+  File "<stdin>", line 1
+    ...             a.remove(x)
+                    ^
+SyntaxError: invalid syntax
+>>> a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+>>> for x in a:
+...
+KeyboardInterrupt
+>>>
+>>> a = [str(i) + str(i) for i in range(10)]
+>>> "".join([str(i) + str(i) for i in range(10)])
+'00112233445566778899'
+>>> a = list("".join([str(i) + str(i) for i in range(10)]))
+>>> a
+['0', '0', '1', '1', '2', '2', '3', '3', '4', '4', '5', '5', '6', '6', '7', '7', '8', '8', '9', '9']
+>>> for x in a:
+... ...     if int(x) % 2 == 1:
+  File "<stdin>", line 2
+    ...     if int(x) % 2 == 1:
+    ^
+IndentationError: expected an indented block
+>>> for x in a:
+...   if int(x) % 2 == 1:
+...     a.remove(x)
+...
+>>> a
+['0', '0', '1', '2', '2', '3', '4', '4', '5', '6', '6', '7', '8', '8', '9']
+>>>
+
+
+then moved to another term
+Python 3.9.1 (tags/v3.9.1:1e5d33e, Dec  7 2020, 17:08:21) [MSC v.1927 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> >>> a
+  File "<stdin>", line 1
+    >>> a
+    ^
+SyntaxError: invalid syntax
+>>> [1, 42, 3, 3]
+[1, 42, 3, 3]
+>>> >>> a.pop(0)
+  File "<stdin>", line 1
+    >>> a.pop(0)
+    ^
+SyntaxError: invalid syntax
+>>> 1
+1
+>>> >>> next(it)
+  File "<stdin>", line 1
+    >>> next(it)
+    ^
+SyntaxError: invalid syntax
+>>> a = [1, 2, 3]
+>>> it = iter(a)
+>>> a
+[1, 2, 3]
+>>> a.remove(1)
+>>> a = [1, 42, 3, 3]
+>>> a.remove
+<built-in method remove of list object at 0x000001A707AC88C0>
+>>> it = iter(a)
+>>> x = next(it)
+>>> x
+1
+>>> a
+[1, 42, 3, 3]
+>>> a = {"me": 2, "you": 3}
+>>> it = iter(a)
+>>> x = next(it)
+>>> x
+'me'
+>>> a.pop(x)
+2
+>>> next(it)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+RuntimeError: dictionary changed size during iteration
+>>>

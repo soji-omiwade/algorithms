@@ -1,0 +1,8 @@
+coding
+    . find pivot index (elegant ways)
+    . pramp shifted array search (interviewer)
+        - 12:28 - 12:45: learned new way don't have to find pivot element first
+    . pramp: find smallest number NOT in the array (interviewee)
+    
+design
+    pramp: pramp couldn't connect

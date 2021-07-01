@@ -1,0 +1,9 @@
+plan (tomorrow)
+of course, implementation of in-order traversal with stack
+then of course, implementation of in-order traversal with stack reverse
+then call them simultaneously to get the two values you need.
+then two-sum
+
+THEN, other interesting things: 
+in memory tree
+talk through (not full code) RandomizedSet, and RandomizedSetWithDuplicates
