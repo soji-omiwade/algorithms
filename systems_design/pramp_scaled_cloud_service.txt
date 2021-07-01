@@ -1,0 +1,86 @@
+user: service
+service 100m users
+
+scope
+------
+generally needed features for a web-service
+
+out-of-scope
+-------------
+specific app features
+
+
+
+
+high-level design
+------------------
+start with a small number of user
+and then scale
+
+DNS - 
+  - LOAD BALANCE web servers -- 
+  -
+web-servers
+  1 - 3 nginx or apache on compute nodes
+
+app-servers
+  - requirement - compute node- autoscale
+  - 12 - 25x compute nodes for the business logic  ---compute
+  
+ auto scaling metirc
+ -HADOOP analytics at end of day from web server logs
+ -traffic monitoring determine your autoscaling
+ 
+ monitoring
+ 
+ compute-nodes and webserver nodes
+  deploy code changes - managed service across all node instances
+  
+  globally spread nodes
+  
+  databases
+    -SQL
+      -PostGreSQL
+        - Master to Master config
+          - Streaming Replication - 
+        - Master to slaves .. bottlenecked
+        - horiz. scale: 
+            scale 
+              *consistent* hashing
+          
+ not mention
+  - notification service
+  - message queing
+  - https://github.com/donnemartin/system-design-primer
+  
+  code
+    version-controlled
+    Git - on/offline is good
+
+    hosting of the code itself ...
+
+    deployment apps
+    -----------
+    jenkins, circleci, 
+  
+
+
+
+
+- Materalized Feed
+- Chat Applications
+
+'said something about websocket'
+
+This editor is synced in real time with your peer.
+
+Use it to share thoughts and resources, such as:
+- Features scope
+- API design
+- Pseudo code for specific components
+- Data model/schema
+- Back-of-the-envelope calculations
+- Reference links
+- Link to whiteboard or diagram such as https://sketchboard.me/new
+
+Good luck!
