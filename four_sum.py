@@ -31,37 +31,41 @@ function 2sum(target, cidx, didx)
 def find_array_quadruplet(arr, s):
     # [1,2,3,4]; target = 10
     def four_sum(target):
-        #DON'T NEED because it's not like we say bidx > cidx  if len(arr) is less than four, return empty array
-        #need a + b + c + d = target
-        #solve 3sum against target - d
-        for didx,d in enumerate(arr):
-            a,b,c =  three_sum(target - d, didx)
-            if a is not None:
-                return a, b, c, d
-        return []
-      
-
-    def three_sum(target, didx):
-        #find a + b + c = target  
-        for cidx, c in enumerate(arr):
-            if cidx != didx:
-                a, b = two_sum(target - c, cidx, didx)
-                if a is not None:
-                    return a, b, c
-        return None, None, None
+        def three_sum(target) -> None:
+            def two_sum(target) -> None:
+                aidxlookup = {}
+                for bidx, firstnum in enumerate(arr):
+                    if bidx > cidx:
+                        if (target - firstnum in aidxlookup and aidxlookup[target - firstnum] not in (cidx, didx)):
+                            res.append(sorted((target - firstnum, firstnum, c, d)))
+                        aidxlookup[firstnum] = bidx
             
-    def two_sum(target, cidx, didx):
-        aidxlookup = {}
-        for aidx, firstnum in enumerate(arr):
-            if aidx not in (cidx, didx):
-                if (target - firstnum in aidxlookup
-                and aidxlookup[target - firstnum] not in (cidx, didx)):
-                    return (firstnum, target - firstnum)
-                aidxlookup[firstnum] = aidx
-        return None, None
+            for cidx, c in enumerate(arr):
+                if cidx > didx:
+                    two_sum(target - c)
+        
+        res = []
+        for didx, d in enumerate(arr):
+            three_sum(target - d)
+        if not res:
+            return []
+        # print(res)
+        res.sort()
+        return res[0]
 
-    return sorted(four_sum(s))
+    return four_sum(s)
 
-arr = [1,9,0,2,6,3,4]
-s = 10
-print(find_array_quadruplet(arr, s))
+# arr = [1,2,3,4]
+# s = 10
+# print(find_array_quadruplet(arr, s))
+
+# arr = [1,9,0,2,6,3,4]
+# s = 10
+# print(find_array_quadruplet(arr, s))
+
+arr = [2, 7, 4, 0, 9, 5, 1, 3]
+s = 20
+res = [0,4,7,9]
+myres = find_array_quadruplet(arr, s)
+print(myres)
+assert res == myres
