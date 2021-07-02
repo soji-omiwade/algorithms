@@ -1,0 +1,73 @@
+dropbox
+10s of millions of users
+100s of millions of file syncs
+
+challenges: 
+- write a small client that is smart with resource usage
+- bandwidth for end users (some are constrained)
+- mobile app in a more constrained environment
+
+challenges per kevin
+1. write volume: 1:1. lots of writes
+2. ACID requirements: a must: have to be correct, except isolation
+
+very hard consistency requirements. note this is not undifferentiated heavy lifting. this is core to the service
+
+assumption
+. everyone's computer has their entire dropbox -> they cache everything likewise
+
+
+Examples!
+1. High-level architecture [2007]
+	first, one server: app server, web server, mysql, all data
+	ran out of disk space lol
+	split to web-server, mysql db, and s3 (managed)
+	but web-server gets tired, esp. with so much coming from s3
+	ok. great. 
+	also polling (from client) not cool. 
+	
+	add not service to get rid of polling
+	also have a separate web-server to hit s3
+	no other web-server is resp. for metadata from DB
+	
+	blockserver makes rpc calls to metaserver. why? not sure.
+	
+	let's improve.
+	for db: we could add: sharding; Partition: master-master; master-slave; but a networked cache might just be easy
+	
+	
+	next thing: scale horizontally.
+	this not easy. if one memcache server down, go to another. 
+	well if it wasn't really down, then they could be out of sync and this is not good.
+	so availabiltiy good. but we care more about consistency
+	
+	python helped. global interpreter lock. helped scale the load balancer. 
+	for each server, we want one request at a time.
+	ah! add robustness, but the gil won't let your twin handle a request if you are handling one???
+	
+	10s of millions of requests to the not servers. added hieararchy of not servers to alleviate this crazy workload
+	
+	sharding of shared folders: how? as per which user.
+	
+	divide a file into 4MB chunks. each chunk is your block in terms of deduplication.
+	take the hash of the chunk. if two chunks have same hash they get mapped to same object in s3
+	
+	a million connections per not server open.
+	
+	this is not a web only app. so there is no perception of slowness to where a global distributed CDN is necessary
+	
+2. Diving a bit deeper into the DB tier: storing metadata
+	your client reports changes to metaserver which adds logs to meta file journal file.
+	dropbox: server_file_journal
+	varchar(255) stored more efficiently than bigger. 
+	so use that for storage performance.
+	writes are harder to scale than read. so choose write optimzation if there's a tradeoff between the two.
+
+3. Wrap up	
+	testing testbed? nah. test in prod.
+	make changes in mysql you know will work: 
+		limiting the size of a field to one byte
+		choosing a primary key based on the fields you insert with respect to
+	stuff like this can be done with nosql, but then you need to ask if the time investment is worth it? esp. if the solution will be marginal
+	have to watch out for a dmca takedown notices. i.e., ensure you keep a check somehow on what is coming into your system
+	
