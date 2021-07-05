@@ -21,6 +21,12 @@ nums = [1,0,2], target = 3
            h
            l,m
 approach
+width = 0 to n - 1
+while width > 0 elements
+    if left side is sorted, 0 to mid => a[lo] <= a[mid] equal *only* because we could have lo == mid. without the equals, we would be wrong here
+        binsearch for target there, if found return idx, else lo = mid + 1
+    else#right side is sorted: mid + 1 to hi
+        binsearch for target there. if found return idx, else hi = mid 
 '''
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
