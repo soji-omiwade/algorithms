@@ -11,7 +11,15 @@ nums = [4,5,6,7,0,1,2], target = 0
                 l m h
         
 nums = [1,0,2], target = 3
-
+        0 1
+        3,1
+        l h
+        m
+        
+        0  1  2
+        5, 1, 3
+           h
+           l,m
 approach
 '''
 class Solution:
@@ -28,17 +36,6 @@ class Solution:
                     hi = mid - 1
             return -1
         
-        '''
-        0 1
-        3,1
-        l h
-        m
-        
-        0  1  2
-        5, 1, 3
-           h
-           l,m
-        '''
         lo, hi = 0, len(nums) - 1
         while lo <= hi:
             mid = lo + (hi - lo) // 2
