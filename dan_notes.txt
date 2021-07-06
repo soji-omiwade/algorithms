@@ -1,0 +1,21 @@
+shouldn't be 45 mins
+10 mins architect. bullet proof solution. 
+10 mins write down
+10 min discuss
+
+healthy battle. 
+discipline
+
+
+BUD principle
+brute-force
+
+based on the brute force, can come up with improvements: hash table, 
+don't jump into optimizations
+going into optimal solution makes like u mem
+
+spend time making observations and seeing patterns
+
+
+
+

@@ -1,0 +1,12 @@
+count = 1
+return knights_helper(iinit, jinit)
+
+knights_helper(i=iinit, j=jinit)
+    if count == m * n:
+        return true
+    for all possible moves:
+        if inboard(i,j) and empty(i,j)
+            visit(i,j)
+            if knights_helper(i,j)
+                return True
+    return false
