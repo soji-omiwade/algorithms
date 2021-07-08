@@ -1,0 +1,81 @@
+1. understand
+    can i have an input please
+2. Diagram
+    hmm...that shit don't make sense to me.
+    so im gonna diagram the tree.
+3. pseudocode
+4. code
+
+
+input diagram
+
+
+output: 
+[a, g, m, ]
+
+
+contraints
+-edge of the tree
+-perfect binary tree. this is a tree that bla bla...
+-characters of lower case
+
+   a
+  / \
+ d   b
+now come up with your input, and then come up with the output yourself
+
+totally ok to ask the definitions
+
+failing fast and failing often
+don't code shit that ain't gonna work. 
+think it out
+
+3 pieces of the board
+input/output
+diagram (biggest)
+coding
+
+write all the shit in the IDE
+
+
+----
+BFS
+DFS
+recurse
+
+left
+add the value to the result | action
+go to the next node | traverse
+
+children
+add the value to the result | action
+go to the next node | traverse
+
+right
+go to the next node | traverse
+add the value to the result | action
+
+function left(cur, res)
+//base
+if (!cur.left) {
+ return res
+ }
+ 
+ res.push(cur.value)
+ return left(cur.left, res)
+
+}
+
+function children(cur, res)
+{
+if (!cur.left) {
+    res.push(cur)
+    return
+}
+}
+
+function right(cur, res) {
+//base case
+if 
+right(cur.right, res)
+
