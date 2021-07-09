@@ -1,0 +1,29 @@
+//leetcode 127: word ladder
+class HelloWorld
+{
+  //i am unable to see you :( or hear you.. oh no. yours too. hmm
+  //this stuff happens a lot with pramp. OK!
+  // lets chat here 
+  // you said you are going to use Dijktr's 
+
+  /*
+  n = len(words)
+  time: 
+  for all nodes: build the graph: O(n^2)
+  O(n + e). O(n^2)
+  
+  time: O(n^2)
+  space: O(n^2)
+  */
+  
+    static void Main()
+    {
+      // source = "bit", target = "dog"
+      // words = ["but", "put", "big", "pot", "pog", "dog", "lot", ... ]
+      
+      // bit --> but --> put --1-> pot -> 1 pog --3--> aaa
+      //     --> big                -> 1 lot 3
+      //                            -> 1 got 3
+        System.Console.WriteLine("Practice makes Perfect!");
+    }
+}
