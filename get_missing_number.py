@@ -16,3 +16,17 @@ class Solution:
             if i != nums[i]:
                 return i
         return len(nums)
+        
+'''
+0 1 2 3 
+
+3 0 1 
+'''
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        xorall = len(nums)
+        for i in range(len(nums)):
+            xorall ^= i
+            xorall ^= nums[i]
+        return xorall
+                
