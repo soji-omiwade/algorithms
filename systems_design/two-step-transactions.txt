@@ -1,0 +1,6 @@
+two-step transactions to help with denormalized federated shards
+    1. open transaction on shard1: then write commands
+    2. open transaction on shard2; then write commands
+    3. commit on shard1
+    4. if first commit ok, commit on shard2 (can still cause inconsistency if box2 goes down after the commit)
+    
