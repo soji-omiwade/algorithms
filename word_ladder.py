@@ -8,22 +8,22 @@ with ksi, but no preprocessing: m*n*ksi = 10 * 5k * 26 = 1.3m
 from collections import deque, defaultdict
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        unprocessed_words = deque([beginWord])
-        words = set(wordList)
-        words.add(beginWord)
-        words.remove(beginWord) #gone: hit, hot        
+        todo = deque([beginWord])
+        unvisited = set(wordList)
+        unvisited.add(beginWord)
+        unvisited.remove(beginWord) #gone: hit, hot        
         ans = {beginWord: 1}
-        while unprocessed_words:
-            word = unprocessed_words.popleft() #hit
+        while todo:
+            word = todo.popleft() #hit
             if word == endWord:
                 return ans[word]            
             for i in range(len(word)):
                 for j in range(ord('a'), ord('z') + 1):
                     ch = chr(j)
                     childword = word[:i] + ch + word[i+1:]
-                    if childword in words:
+                    if childword in unvisited:
                         ans[childword] = ans[word] + 1
-                        unprocessed_words.append(childword)
-                        words.remove(childword) #gone: hit, hot
-                        # print('processed: ', word, childword, words, unprocessed_words)
+                        todo.append(childword)
+                        unvisited.remove(childword) #gone: hit, hot
+                        # print('processed: ', word, childword, unvisited, todo)
         return 0
