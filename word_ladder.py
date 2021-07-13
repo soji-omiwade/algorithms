@@ -7,7 +7,7 @@ with ksi, but no preprocessing: m*n*ksi = 10 * 5k * 26 = 1.3m
 '''
 from collections import deque, defaultdict
 class Solution:
-    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:        
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         unprocessed_words = deque([beginWord])
         words = set(wordList)
         words.add(beginWord)
@@ -15,14 +15,14 @@ class Solution:
         ans = {beginWord: 1}
         while unprocessed_words:
             word = unprocessed_words.popleft() #hit
+            if word == endWord:
+                return ans[word]            
             for i in range(len(word)):
                 for j in range(ord('a'), ord('z') + 1):
                     ch = chr(j)
                     childword = word[:i] + ch + word[i+1:]
                     if childword in words:
                         ans[childword] = ans[word] + 1
-                        if childword == endWord:
-                            return ans[childword]
                         unprocessed_words.append(childword)
                         words.remove(childword) #gone: hit, hot
                         # print('processed: ', word, childword, words, unprocessed_words)
