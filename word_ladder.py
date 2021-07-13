@@ -1,36 +1,29 @@
+'''BFS time complexity
+conventional: n^2 * m = 25m * 10 =  250m
+plus preprocessing with alphabet of size ksi, all n : m*n*ksi + n^2 = 10*26*5k + 25m = 26m; 
+    note: is big-omega of n*ksi
+with ksi, but no preprocessing: m*n*ksi = 10 * 5k * 26 = 1.3m 
+    note: doesn't have the big-omega component!
+'''
 from collections import deque, defaultdict
 class Solution:
-    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        def onestep(word, otherword):
-            step = 0
-            for let, otherlet in zip(word, otherword):
-                if let != otherlet:
-                    step += 1
-                    if step > 1:
-                        return False
-            return step == 1
-        
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:        
         unprocessed_words = deque([beginWord])
-        distance = defaultdict(int)
-        wordList_set = set(wordList)
-        wordList_set.add(beginWord)
-        #complexity =                                               n^2 * m = 25m * 10 =  250m
-        #could be made =                                            n*ksi + n^2 = ???   this one is big-omega of n * ksi
-        #another way is quite interesting: no preprocessing         n*ksi +            this one doesn't have the big-omega component!
+        words = set(wordList)
+        words.add(beginWord)
+        words.remove(beginWord) #gone: hit, hot        
+        ans = {beginWord: 1}
         while unprocessed_words:
-            word = unprocessed_words.popleft()
-            wordList_set.remove(word)
-            for otherword in wordList_set:
-                if distance[otherword] == 0 and onestep(word, otherword):
-                    if otherword == endWord:
-                        return distance[word] + 2
-                    distance[otherword] = 1 + distance[word]
-                    unprocessed_words.append(otherword)
-        if distance[endWord] != 0:
-            return distance[endWord] + 1
+            word = unprocessed_words.popleft() #hit
+            for i in range(len(word)):
+                for j in range(ord('a'), ord('z') + 1):
+                    ch = chr(j)
+                    childword = word[:i] + ch + word[i+1:]
+                    if childword in words:
+                        ans[childword] = ans[word] + 1
+                        if childword == endWord:
+                            return ans[childword]
+                        unprocessed_words.append(childword)
+                        words.remove(childword) #gone: hit, hot
+                        # print('processed: ', word, childword, words, unprocessed_words)
         return 0
-
-    
-    # if word == endWord:
-            #     return distance[word]
-            
