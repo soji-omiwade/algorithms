@@ -1,0 +1,16 @@
+8 - 9:45: callbacks, jpmorgan python software eng, job appl, 
+10 - 12: DFS for word ladder; bucket sort problem on pramp
+12 - 4: multi-frac
+    . cum+rate (need normalization for this)
+        - error function: error should now be normalized: so we can take averages of the normal
+            first: normalize cum and make sure u get what u should
+            then repeat for rate
+            then you can do the combo
+    - add input on function: ms, rms, abs
+
+other tasks
+-----------
++ 1. Toun
++ 2. Get back to Rahat
+3. Reach out to Wayfair (next week)
+

@@ -1,0 +1,13 @@
+uber, microsoft, wayfair 7 - 9
+    read uber stuff and get back to him
+    cancel dan meeting (we'll meet next week on PST)
+coding skills 10 - 11:30
+    +word ladder two ends: can be tricky. the question is how to manage the three below
+        todoleft
+        todoright 
+        unvisited
+    word ladder BFS without array structure
+work 12:30 - 4:30
+interviewing.io 5 - 6
+systems design ...
+    data schema: parking lot: tables needed for parking lot (
