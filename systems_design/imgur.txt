@@ -1,0 +1,15 @@
+i think imgur has one of the best descriptions of their systems!
+
+image optimization in the app servers
+- strip metadata
+- resize
+- crop
+
+redis (vs. their memcache service): for things you don't want to lose
+
+
+load balancer vs reverse proxy
+    haproxy worked well for LB
+    nginx did not; but they used it anyway kinda as a web server (static content, and cache?)
+    haproxy acted as the reverse proxy (and i presume did this well with TCP connections)
+        and also LB,

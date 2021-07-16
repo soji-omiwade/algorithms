@@ -1,0 +1,80 @@
+find the bottle necks b4 users do.
+
+no noticable slow down in s3
+
+took site down for a day to move to ec2
+
+ec2 made things easier, but its not a panacea.
+
+
+webserver or proxy? ???
+
+nginx still stayed. 
+
+happroxy sent some 
+
+eventdriven and nonblocking is how they went
+    great for long connections
+        like long polling
+        
+lighty
+nginx -- breakdown with the way it was doing the load balancing
+switch to haproxy: which could send some traffic to nginx
+
+haproxy is really a proxy
+nginx is a web-server. hmm...
+
+1000 memecache calls for one pageload
+
+dont rely on a single cloud product 
+
+u don't know what ur scaling problems will be. 
+
+postgres still a good KV
+
+
+switched to C for things u do repeatedly.
+    filters
+    markdowns: formatting 
+    switch to a c based memcache library with thin python librar around it.
+    
+    
+data
+    
+    reddit nonrelational except for money stuff.
+    reddit's db is all KV
+    
+expire your old data!
+    - makes it static
+    - users wont notice 
+    - now u can render a lot of certain pages apriori without having to reconstruct the page
+    - some of our biggest cassandra nodes are on SSDs
+    - tables: links/accounts/subreddits, comments, votes, misc
+    
+    cassandra
+        . replication factor
+        . quorum reads/writes
+        . bloom filter for fast negative lookups
+        . immutable files for fast writes
+        . incremental scalability.
+        
+        . bloom filters
+        - dropbox talked about how bloom filters didn't work for them
+        - for reddit, it did!:
+        
+    queues are ur friend
+        . votes
+        . comments
+        . thumbnail scraper
+        . precomputed queries
+        . spam processing
+
+    hashing
+    cache. interesting, you do get improved results when using consistent key hashing! they did hit a scaling wall.
+    ohh wait, with mod, you only have to move a majority. i thought it was all. 
+    
+    take frequent snapshots of ebs disks.
+    
+    have APIs!
+    
+    
