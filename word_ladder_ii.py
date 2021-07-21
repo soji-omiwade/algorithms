@@ -13,52 +13,61 @@
 class Solution:
     def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
         def bfs():
-            length = 0
+            todo = set(wordList)
+            todo.add(beginWord)            
+            allwords = set(wordList)
+            count = 0
             level = deque([beginWord])
+            todo.remove(beginWord)
+            length = None
             while level:
-                length += 1
+                count += 1
                 for _ in range(len(level)):
                     word = level.popleft()
                     if word == endWord:
-                        return length                
+                        length = count                
                     for letidx in range(len(word)):
                         for alphidx in range(ord('a'), ord('z') + 1):
                             ch = chr(alphidx)
                             otherword = word[:letidx] + ch + word[letidx + 1:]
-                            if otherword in wordList:
+                            if otherword in allwords - set([word]):
+                                nblookup[word].add(otherword)
+                                nblookup[otherword].add(word)                                
+                            if otherword in todo:
                                 level.append(otherword)
-                                nblookup[word].append(otherword)
-                                nblookup[otherword].append(word)            
-            return None
+                                todo.remove(otherword)
+            return length
         '''
         length = 0
         word = bw -> ow (not ew)
         ow = not ew
         '''
-        def dfs(word, path): #word = hat
-            nonlocal length
-            todo.remove(word) #todo = [hot, hat]
-            path.append(word) #path = [hit]
-            length -= 1       #lenght = 1
-            
-            if word == endWord: #endword = hot
-                result.append(path[:])
-            elif length != 0:
-                for otherword in nblookup[word]:
-                    if otherword in todo:
-                        dfs(otherword, path)
+        def dfs(word, path):     # word = hat
+            nonlocal length      # 2 1 0 
+            todo.remove(word)    # [hut hot]
+            path.append(word)    # [hit hat] 
+            length -= 1          
+            if length != -1: 
+                if word == endWord: #endword = hot
+                    result.append(path[:])
+                else:
+                    for otherword in nblookup[word]:
+                        if otherword in todo:
+                            dfs(otherword, path)
             length += 1
             path.pop()
             todo.add(word)
-                            
+            
+        from pprint import pprint                                  
         result = []
-        nblookup = defaultdict(list)
+        nblookup = defaultdict(set)
         length = bfs()
-        print(length)
-        if not length:
+        # pprint(nblookup)
+        # print(length)
+        if length is None:
             return []
+        
         todo = set(wordList)
         todo.add(beginWord)
-        dfs(beginWord, [])
-        
+        dfs(beginWord, [])        
         return result
