@@ -19,47 +19,46 @@ class Solution:
                 length += 1
                 for _ in range(len(level)):
                     word = level.popleft()
+                    if word == endWord:
+                        return length                
                     for letidx in range(len(word)):
                         for alphidx in range(ord('a'), ord('z') + 1):
                             ch = chr(alphidx)
                             otherword = word[:letidx] + ch + word[letidx + 1:]
                             if otherword in wordList:
                                 level.append(otherword)
-                                nbs[word].append(otherword)
-                                nbs[otherword].append(word)            
-                                if otherword == endWord:
-                                    return length
+                                nblookup[word].append(otherword)
+                                nblookup[otherword].append(word)            
             return None
         '''
         length = 0
         word = bw -> ow (not ew)
         ow = not ew
         '''
-        def dfs(word, path):
+        def dfs(word, path): #word = hat
             nonlocal length
-            if length == 0:
-                return
+            todo.remove(word) #todo = [hot, hat]
+            path.append(word) #path = [hit]
+            length -= 1       #lenght = 1
             
-            if word == endWord:
+            if word == endWord: #endword = hot
                 result.append(path[:])
-            else:
+            elif length != 0:
                 for otherword in nblookup[word]:
                     if otherword in todo:
-                        todo.remove(otherword)
-                        path.append(otherword)
-                        length -= 1
-                        dfs(otherword)
-                        length += 1
-                        path.pop()
-                        todo.add(otherword)
-                    
-        
+                        dfs(otherword, path)
+            length += 1
+            path.pop()
+            todo.add(word)
+                            
         result = []
         nblookup = defaultdict(list)
         length = bfs()
+        print(length)
         if not length:
             return []
         todo = set(wordList)
-        dfs(beginWord, [beginWord])
+        todo.add(beginWord)
+        dfs(beginWord, [])
         
         return result
