@@ -1,0 +1,14 @@
+plan
+    ML
+    11:30 - noon: lunch
+    noon - 1: kwaku and keith
+    1:30 - 4: coding problem
+    10:30 - noon: ML
+    noon - 1
+        ASC: cloud infratructure test
+        JPMorgan
+        lunch
+    1 - 2:30
+        lunch, home errands, phtyhon scopes and namespaces
+    2:30pm - 5pm: 
+        ASC: Frac-ing
