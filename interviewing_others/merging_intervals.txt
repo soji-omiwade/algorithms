@@ -1,0 +1,57 @@
+About me: 
+
+
+BIO 
+how it came to be: that details one great thing you did; and another that you would have done differently, and now in the future you do do differently.
+big thing: the functional issue @ openlink --> wrote a fix quickly utilizing the DB as a queue
+done differently: collaborate more: talk with the business analysts: demo the issue and let them know. don't wait till it hits prod
+have now done differently: the search algorithm was linear: again worked with the business, and this time showed the results of the improvement and the risk-free patch
+
+I worked six years in Fin-tech doing backend business logic  activities
+    - relational DBs
+    - consistenty important 
+    - impact of icebox goes here. 
+
+now work on  sub-surface modeling
+    latency sensitive applications in. In both
+cases, scalability is critical (data in fin-tech, and especially compute currently).
+
+Now about you!
+
+Question today 
+I advise, if you don't already, take time to think about how to tackle the problem, 
+
+interface Intervals: Write two functions below:
+   
+    (i) void addInterval(int from, int to)
+        Adds an interval [from, to) into an internal structure.
+    (ii) int getTotalCoveredLength()
+        Returns a total length covered by the added intervals.
+        
+    If several intervals intersect, the intersection should be counted only once.
+    Example:
+        addInterval(3, 6)
+        addInterval(8, 9)
+        addInterval(1, 5)
+        getTotalCoveredLength() -> 6
+    [1, 5) and [3, 6) intersect and give a total covered interval [1,6) with a length of 5.
+    [1, 6) and [8, 9) don't intersect, so the total covered length is a sum of both intervals, that is 5+1=6.
+
+     0  1  2  3  4  5  6  7  8  9  10                   
+              |__|__|__|                  [3, 6)
+                             |__|         [8, 9) 
+        |__|__|__|__|                     [1, 5) 
+     |__|__|__|__|__|__|__|__|__|__|      [0, 10)
+
+
+later example:
+
+-- -- -- -- --
+----------- --
+didn't consider 
+now considering the overlap must consider both sides
+
+check the logic
+should have modularized out the intersection: truns out to not be so trivial
+
+use examples
