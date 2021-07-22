@@ -1,0 +1,9 @@
+plan
+    10 - 11: microsoft
+    11 - 12: sulk 
+    12 - 1:30: 
+        work hardware investigation
+        work aims
+        ML feature scaling, mean normalization, and their potential applications to MF
+    2 - 3: fix code
+    3 - 4: multi-frac
