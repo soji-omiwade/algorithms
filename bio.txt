@@ -1,0 +1,9 @@
+how it came to be: that details one great thing you did; and another that you would have done differently, and now in the future you do do differently.
+big thing: the functional issue @ openlink --> wrote a fix quickly utilizing the DB as a queue
+done differently: collaborate more: talk with the business analysts: demo the issue and let them know. don't wait till it hits prod
+have now done differently: the search algorithm was linear: again worked with the business, and this time showed the results of the improvement and the risk-free patch
+
+I worked six years in Fin-tech doing backend business logic  activities
+    - relational DBs
+    - consistenty important 
+    - impact of icebox goes here. 
