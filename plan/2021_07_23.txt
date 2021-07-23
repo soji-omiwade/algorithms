@@ -1,0 +1,4 @@
+plan
+    1/3: machine learning
+    1/3: spreetail + algorithms coding
+    1/3: multi-frac

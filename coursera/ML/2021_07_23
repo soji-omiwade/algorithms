@@ -1,0 +1,54 @@
+ml
+xlabel('foo')
+ylabel('fooy')
+title('ho')
+cd 'dkkdkd'; print -dpng 'myplot.png'
+help plot %other file formats
+close %fig goes away
+figure(1); plot(t, y1)
+figure(2); plot(t, y2)
+subplot(1,2,1); % 1 x 2 grid; access first (1) element
+plot(t, y1)
+subplot(1,2,2);
+plot(t, y2);
+axis([0.5 1 -1 1])
+help axis % to remember
+clf; %clear figure
+A = magic(5)
+imagesc(A)
+imagesc(A), colorbar, colormap gray
+a = 1, b =2, c = 3
+
+
+or indices=1:10
+for i=1:10,
+    disp(i);
+end
+
+while i <= 5,
+    v(i) = 100;
+    i = i + 1;
+end;
+
+while true,
+    v(i) = 999;
+    i = i + 1;
+    if i == 6,
+        break;
+    end;
+end;
+
+if v(1)==1,
+    disp('foo');
+elseif v(1) == 2,
+    disp('coo');
+else
+    disp('goo');
+end;
+
+%functions--
+
+
+
+%vectorization
+h_theta(x) = theta' * x
