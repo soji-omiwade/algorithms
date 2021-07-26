@@ -21,11 +21,11 @@ class Solution:
             todo.remove(beginWord)
             length = None
             while level:
-                count += 1
                 for _ in range(len(level)):
                     word = level.popleft()
+                    distance[word] = count
                     if word == endWord:
-                        length = count                
+                        length = count + 1            
                     for letidx in range(len(word)):
                         for alphidx in range(ord('a'), ord('z') + 1):
                             ch = chr(alphidx)
@@ -36,24 +36,21 @@ class Solution:
                             if otherword in todo:
                                 level.append(otherword)
                                 todo.remove(otherword)
+                count += 1
             return length
-        '''
-        length = 0
-        word = bw -> ow (not ew)
-        ow = not ew
-        '''
-        def dfs(word, path):     # word = hat
-            nonlocal length      # 2 1 0 
-            todo.remove(word)    # [hut hot]
-            path.append(word)    # [hit hat] 
+        
+        def dfs(word, path):
+            nonlocal length
+            if length == 1:
+                if word == endWord:
+                    result.append(path + [endWord])
+                return               
+            todo.remove(word)    
+            path.append(word)    
             length -= 1          
-            if length != -1: 
-                if word == endWord: #endword = hot
-                    result.append(path[:])
-                else:
-                    for otherword in nblookup[word]:
-                        if otherword in todo:
-                            dfs(otherword, path)
+            for otherword in nblookup[word]:
+                if otherword in todo and distance[otherword] == distance[word] + 1:
+                    dfs(otherword, path)
             length += 1
             path.pop()
             todo.add(word)
@@ -61,13 +58,12 @@ class Solution:
         from pprint import pprint                                  
         result = []
         nblookup = defaultdict(set)
+        distance = {}
         length = bfs()
-        # pprint(nblookup)
-        # print(length)
         if length is None:
             return []
         
         todo = set(wordList)
         todo.add(beginWord)
-        dfs(beginWord, [])        
+        dfs(beginWord, [])
         return result
