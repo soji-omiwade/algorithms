@@ -1,0 +1,42 @@
+engineering:
+    sometimes we build great software
+    othertimes we don't
+        - fragile: little edits break them
+        - immobile: reuse is difficult
+        - viscous: hard to do extend/do the right thing/platform from
+
+planning is integral to good software and process
+    understand the problem
+    plan a solution
+    carry out the plan
+    examine your results for accuracy
+        
+building is fun, yeah, but we have work to do! the fun will come. don't worry
+
+engineering beliefs
+    put users first
+    add value
+    act as a leader
+    assume positive intent
+    iron sharpens iron 
+
+when you start a project
+    think, holistacally
+    input, from 
+    Keep It Simple, Stupid
+    understand the impact to the business
+    
+do this all the time:
+    consistency
+    function before fashion
+    You aint gonna need it
+    dont repeat yourself
+    leave it better than when you found it
+    write readable code
+    
+ship early, ship often
+    -be proud of your code. don't ship stuff if you think it's crap
+    -how will this  break? not will it
+    -it will fail one day. will it bring everything else down
+    -continuous deployment
+    -have 

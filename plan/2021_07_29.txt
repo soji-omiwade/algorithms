@@ -1,0 +1,14 @@
+July 29: 6 - 1:30
+    mark out of office on calendar.
+microsoft job application
+apply to sap
+apply to dropbox
+
+microsoft coding problem
+keith unconventionals
+
+enumerate all problems (you'd like) to tackle by aug 25 and start tackling them!
+move karat out to august 9/10
+correct the multi-frac implementation in resume from java to c#
+    the focus is on not making dumb mistakes
+tad bit of machine learning
