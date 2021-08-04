@@ -1,0 +1,7 @@
+jaeger -- bigger picture
+    distributed tracing
+    dynamic tracing
+    
+    kubernetes
+        mesh network
+        

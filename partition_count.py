@@ -11,7 +11,32 @@ def acount(start, end):
     
 def solution(s) -> Tuple[int, List[str]]:
     '''
+    n = 5
+    0 1 234
+    b|a|baa
     '''
+    def generate_acount():
+        '''
+        aabcde
+        '''
+        acount = [[0 for j in range(n)] for i in range(n)]
+        for i in range(n):
+            acount[i][i] = 1 if s[i] == a else 0
+        for i in range(n):
+            for j in 
+    n = len(s)
+    acount = generate_acount()
+    count = 0
+    for midx in range(1, n - 1):
+        for ridx in range(2, n):
+            leftcount = acount[0][midx - 1]
+            midcount = acount[midx][ridx - 1]
+            rightcount = acount[ridx][n - 1]
+            if leftcount == midcount == rightcount:
+                count += 1
+    return count
+    '''
+    
 def solution(s) -> Tuple[int, List[str]]:
     '''
     i = 1
