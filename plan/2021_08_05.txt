@@ -1,0 +1,17 @@
+today-
+    + twitter recruiter call
+    - capital one recruiter call
+    . number of ways to split a string
+    apply to apple promoted role. 
+    sorted matrix problem
+    
+tomorrow
+    employee appraisal
+    multi-frac (majority)
+    merge sorted arrays 
+        with merge sort
+        with linked list
+        
+bible
+    . relax!
+    . 
