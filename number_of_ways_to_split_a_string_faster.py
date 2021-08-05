@@ -2,9 +2,9 @@
 relax
 
 io
-0 1 2 3 4 5 6 7
-1 0 1 1 0  0  0 1 0 0 0 1 1 0 0 0 1 0 1 1
-        l1   r1             l2  r2
+0 1 2 3 4 5 6 7 8 9              
+1 0 1 1 0 0 0 1 0 0 0 1 1 0 0 0 0 0 1 0 1 1
+     r1       l2        r2          l3  
 (leftcount + 1) * (rightcount + 1)
 0 1 2 3 4 5 6 7
 0 0|0 0|0 0 0 0
@@ -27,19 +27,19 @@ class Solution:
             if s[idx] == "1":
                 count += 1
             idx += 1
-        l1 = idx        #4
-        r1 = s.find("1", idx) - 1 #3
+        r1 = idx - 1
 
+        l2 = s.find("1", r1 + 1)
         count = 0
-        idx = r1 + 1 #4
+        idx = l2
         while count < onecount // 3:
             if s[idx] == "1":
                 count += 1
             idx += 1
-        l2 = idx  #8
-        r2 = s.find("1", l2) - 1 #7
+        r2 = idx - 1 
+        l3 = s.find("1", r2 + 1)  
         
-        return l1, r1, l2, r2
+        return r1, l2, r2, l3
     
         
         
@@ -52,9 +52,8 @@ class Solution:
         m = int(1e9 + 7)
         if onecount == 0:
             return ((n-1) * (n-2) // 2) % m
-        l1, r1, l2, r2 = self.getborders(s, onecount)
-        # print((r1 - l1 + 2), (r2 - l2 + 2), ((r1 - l1 + 2) * (r2 - l2 + 2)) % m)
-        return ((r1 - l1 + 2) * (r2 - l2 + 2)) % m
+        r1, l2, r2, l3 = self.getborders(s, onecount)
+        return ((l2 - r1) * (l3 - r2)) % m
         
         
 s = "00000"
