@@ -1,0 +1,30 @@
+well-being
+    relax
+        try not to underestimate even the simplest of things
+    cracking the coding interview
+    what to study
+coding
+    merge sorted arrays (1.5)
+    binary search   (1.5)
+        - find k
+nap-time
+    trading firm lady.
+    back to lauryn
+        relatively longer shot on-sites coming up, so hopefully JP's comp will make sense.
+    capital one apply 
+        but update resume as needed first
+        resume: update degrees on linkedin: PhD, MS --> PhD \n MS
+    
+tomorrow:
+    1 problem if possible, and if so, do it well: in memory file system
+    multi-frac (majority)
+    plan threading stuff to do for interview - rubrik
+    make time for social graph interview: it's not that long or hard
+        requirements
+        capacity planning
+        endpoints
+        data model
+        1 or 2 core features
+        scalability
+    employee appraisal
+    
