@@ -16,11 +16,12 @@ tonight:
         resume: update degrees on linkedin: PhD, MS --> PhD \n MS
 
 nap-time
-    + trading firm lady (will call monday)
+    + trading firm lady (she will call monday)
     back to lauryn: relatively longer shot on-sites coming up, so hopefully JP's comp will make sense.    
     return library books
     
 tomorrow:
+    plan to write jurgen klinsmann (with resume) for working at Apple
     1 problem if possible, and if so, do it well: in memory file system
     multi-frac (majority)
     plan threading stuff to do for interview - rubrik
