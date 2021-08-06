@@ -3,17 +3,22 @@ well-being
         try not to underestimate even the simplest of things
     cracking the coding interview
     what to study
+
 coding
-    merge sorted arrays (1.5)
+    + merge sorted arrays (1.5)
     binary search   (1.5)
-        - find k
-nap-time
-    trading firm lady.
-    back to lauryn
-        relatively longer shot on-sites coming up, so hopefully JP's comp will make sense.
-    capital one apply 
+        - find k-th smallest in linear list
+        - find k-th smallest in sorted matrix (got similar problem @ amazon onsite)
+        
+tonight:
+    capital one apply (long shot)
         but update resume as needed first
         resume: update degrees on linkedin: PhD, MS --> PhD \n MS
+
+nap-time
+    + trading firm lady (will call monday)
+    back to lauryn: relatively longer shot on-sites coming up, so hopefully JP's comp will make sense.    
+    return library books
     
 tomorrow:
     1 problem if possible, and if so, do it well: in memory file system
