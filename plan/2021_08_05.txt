@@ -1,13 +1,22 @@
 today-
     + twitter recruiter call
     + capital one recruiter call
-    . number of ways to split a string
-    apply to apple promoted role. 
-    sorted matrix problem
+    + number of ways to split a string
+    + apply to apple promoted role. 
+    . sorted matrix problem
+        + via heap
+        via merge-sort
+
+unplanned
+    gusto application
+    apple application
     
 tomorrow
-    employee appraisal
+    update degrees on linkedin: PhD, MS --> PhD \n MS
+    capital one apply (but update resume as needed first)
     multi-frac (majority)
+    plan threading stuff to do for interview - rubrik
+    employee appraisal
     merge sorted arrays 
         with merge sort
         with linked list
