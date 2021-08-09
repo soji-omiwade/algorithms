@@ -50,18 +50,22 @@ def findcoord(grid, word):
     coord = []
     def search(row, col, word):
         if word == "":
-            return False
+            return True
         if row >= len(grid) or col >= len(grid[0]) or grid[row][col] != word[0]:
             return False
+        # print(row, col, grid[row][col], word)
         coord.append((row, col))
-        search1 = search(row + 1, col, word[1:])
         search2 = search(row, col + 1, word[1:])
-        if search1 or search2:
+        if search2:
+            return True
+        search1 = search(row + 1, col, word[1:])
+        if search1:
             return True
         coord.pop()
     
     for row in range(len(grid)):
         for col in range(len(grid[0])):
+            # print()
             if search(row, col, word):
                 return coord
     raise Exception("word exists")
@@ -86,11 +90,19 @@ word7 = "aaa"
 word8 = "ooo"
 
 print(findcoord(grid1, word1))
+print(findcoord(grid1, word2))
+print(findcoord(grid1, word3))
+print(findcoord(grid1, word4))
+print(findcoord(grid1, word5))
+print(findcoord(grid1, word6))
+print(findcoord(grid1, word7))
+print(findcoord(grid1, word8))
 
 
 grid2 = [['a']]
 word9 = "a"
 
+print(findcoord(grid2, word9))
 
 
 
