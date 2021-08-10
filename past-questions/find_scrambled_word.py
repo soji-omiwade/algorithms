@@ -32,17 +32,45 @@ bsear
 - sort every single string!
 - string to arrays (of indexes). example: 
     string
-- 
-'''            
-# def binsearch_find_scrambled(words: List[str], string:str) -> Optional[str]:
-    # last = 0
-    # for letter in word:
-        # for idx in range(last, len(string)):
-            # if string[idx] == word[idx]:
-                # break
-            # for sletter in 
-    # else:
-        # return word
+
+T: O(L lg L + L + k*(W lg W + W lgL))
+S: O(L+ L lg L + W lg W)
+'''
+from bisect import bisect_left
+from collections import defaultdict
+def binsearch_find_scrambled(words: List[str], string:str) -> Optional[str]:
+    '''
+    cat
+    tt**********ac
+    act
+    a****c***a**tt
+    a -> [0, 7]
+    c -> [5]
+    t -> [10, 11]
+    ni -> 0--6
+    
+    baby ->      abby
+    baykkjl ->   abjkkly
+    '''
+    sortedstring = sorted(string)
+    letterlookup = defaultdict(list)
+    for loc, letter in enumerate(sortedstring):
+        letterlookup[letter].append(loc)
+    for word in words:
+        next_sidx = 0 # forgot to put this in the loop
+        sortedword = sorted(word)
+        # print(f"word = {word}")
+        for letter in sortedword:   # dammit! instead of using sortedword here, I used word. ARGH!!
+            loc = bisect_left(letterlookup[letter], next_sidx)
+            # print("letter, lookup, nextidx, loc  --> ", letter, letterlookup[letter], next_sidx, loc)
+            if loc == len(letterlookup[letter]):
+                break
+            next_sidx = letterlookup[letter][loc] + 1  #wow i really gotta watch names. next time stick to no underscore! i put nextidx here and it took a while to find that bug
+        else:
+            return word
+    else:
+        return None
+       
 
 '''
 T: W*L
@@ -125,9 +153,11 @@ strings = ["tcabnihjs"
     , ""
     ]
 results = ["cat", "cat", None, "baby", None, "bird", "ax", None]
-find_scrambled_methods = (hashmap_find_scrambled
+find_scrambled_methods = (
+    hashmap_find_scrambled
     , subseq_find_scrambled
     , forsubseq_find_scrambled
+    , binsearch_find_scrambled
     )
 for string, result in zip(strings, results):
     for find_scrambled in find_scrambled_methods:
