@@ -50,6 +50,9 @@ S: LW but could be L + W
 
 fis
 f***i*****s*****
+
+T: L + k*W + k*W = L + k * W
+S: kW + L but could be W + L
 '''
 def hashmap_find_scrambled(words: List[str], string:str) -> Optional[str]:
     stringcounter = Counter(string) #L
@@ -68,6 +71,12 @@ def hashmap_find_scrambled(words: List[str], string:str) -> Optional[str]:
 '''
 fis
 f***i*****s*****
+W: length of each word
+L: string length
+k: number of words
+
+T: L lg L + k*(W lg W + (W + L) )
+S: L lg L + W lg W
 '''
 def subseq_find_scrambled(words: List[str], string:str) -> Optional[str]:
     string = sorted(string) #tcabnihjs -> abchijnst
@@ -86,6 +95,8 @@ def subseq_find_scrambled(words: List[str], string:str) -> Optional[str]:
 '''
 fis
 f***i*****s*****
+
+complexity same as above
 '''
 def forsubseq_find_scrambled(words: List[str], string:str) -> Optional[str]:
     liststring = sorted(string) #tcabnihjs -> abchijnst
