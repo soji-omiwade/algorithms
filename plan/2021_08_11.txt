@@ -1,0 +1,18 @@
+• Relax:
+• Coding: 2 – 3 problems
+    ◦ K-th largest in sorted matrix problem
+    ◦ In-memory file system (should be on LC)
+    ◦ Hmm. Something else if possible
+• Systems design
+    ◦ Think (numbers-wise) about why you go from .5 million -> 100 million, and you only quadruple your machines
+        ▪ well if your machine wasn’t really bogged down before then a BOE would probably agree
+        ▪ also if you add other things that didn’t exist like CDN, dedicated cache, then horizontal instance scaling shouldn’t be stretched to infinity
+        ▪ finally, the DB itself can use a Master/Slave (if it wasn’t already), or better yet, sharding/federating tables
+        ▪ denormalization/NO-SQL can be explored (fast key-value lookup), but now you likely have consistency problems: multiple copies of the same field in
+            • the normalized form
+            • at least one copy in the de-normalized form (where the originally foreign key id would have been)
+• tonight: architeching systems for scale
+ 
+Friday:
+    • KPI for Theo
+    
