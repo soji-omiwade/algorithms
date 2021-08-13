@@ -1,0 +1,39 @@
+allotment: 10:15 - 4:45 = 6.5
+
+ML (1)
+buffer(1)
+coding (3)
+    mem file system
+    serialize BFS (2)
+        * same tree 
+        * construct tree from in and pre
+        + construct_in
+        + construct_pre
+    linked list cycle II (40 minutes)
+
+off to airport at 4pm
+interviewing.io at airport at 6pm
+
+relax: you may not make it all; but make it realistic, and challenging
+
+ML (2)
+    * ML-rate coursera exercise
+    * ML course video
+    * change ML learning plan (tone it down to three days)  
+    
+fam(1)
+    
+break(1)
+
+buffer(0)
+
+
+friday:
+    • KPI for Theo
+    
+mon and tues-coding
+    * beauty matrix problem
+    * WDL problem
+    
+next wednesday
+    * capital one

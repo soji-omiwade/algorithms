@@ -39,23 +39,20 @@ class Codec:
             if not node:
                 return
             construct_in(node.left, res)
-            lookup[node] = len(res)
+            inlistloc_lookup[node] = len(res)
             res.append(node.val)
             construct_in(node.right, res)
             
         def construct_pre(node, res):
-            """
-            lookup[TreeNode] -> inlistloc
-            """
             if not node:
                 return
-            res.append((node.val, lookup[node]))
+            res.append((node.val, inlistloc_lookup[node]))
             construct_pre(node.left, res)
             construct_pre(node.right, res)
         
         intree_aslist = []
         pretree_aslist = []
-        lookup = {}
+        inlistloc_lookup = {}
         construct_in(root, intree_aslist)
         construct_pre(root, pretree_aslist)
         return str(intree_aslist) + "*" + str(pretree_aslist)
@@ -72,17 +69,30 @@ class Codec:
         def populate_lookup():
             ...
             
-        # def construct_tree_from_in_and_pre() -> TreeNode:
-            # for treeval in prelist:
-                # inloc_lookup[tr
-            
-        # inlist, prelist = data.split('*')
-        # tree = construct_tree_from_in_and_pre()
+        '''
+        pre [(5,2),(3,0),(5,1),(6,4),(5,3),(11,5)]
+        in  [3 5 5 5 6 11] 
+        '''
+        def construct_tree_from_in_and_pre(lo: int, hi: int) -> TreeNode:
+            nonlocal preidx
+            if lo > hi:
+                return None
+            rootval, rootloc  = prelist[preidx]
+            preidx += 1
+            root = TreeNode(rootval)
+            root.left = construct_tree_from_in_and_pre(lo, rootloc - 1)
+            root.right = construct_tree_from_in_and_pre(rootloc + 1, hi)
+            return root
+        splitdata = data.split('*')
+        inlist, prelist = eval(splitdata[0]), eval(splitdata[1])
+        preidx = 0
+        tree = construct_tree_from_in_and_pre(0, len(prelist) - 1)
+        return tree
 
 # Your Codec object will be instantiated and called as such:
 # Your Codec object will be instantiated and called as such:
 ser = Codec()
-# deser = Codec()
+deser = Codec()
 root = TreeNode(5)
 three =  TreeNode(3)
 six = TreeNode(6)
@@ -103,7 +113,25 @@ what i will do:
  3       6
    5   5    11
 '''
-tree = ser.serialize(root)
-print(tree) #in [3 5 5 5 6 11] * [(5,2),(3,0),(5,1),(6,4),(5,3),(11,5)]
-# ans = deser.deserialize(tree)
-# return ans
+tree_string = ser.serialize(root)
+print(tree_string) #in [3 5 5 5 6 11] * [(5,2),(3,0),(5,1),(6,4),(5,3),(11,5)]
+ans = deser.deserialize(tree_string)
+
+print(ans.val)
+print(ans.left.right.val)
+
+def same_tree(t1, t2):
+    #both null!
+    if t1 is t2 is None:
+        return True
+        
+    #one null!!
+    if (not t1 and t2) or (t1 and not t2):
+        return False
+        
+    #none null!!!
+    if t1.val != t2.val:
+        return False
+    return same_tree(t1.left, t2.left) and same_tree(t1.right, t2.right)
+
+assert same_tree(ans, root)

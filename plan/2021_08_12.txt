@@ -1,0 +1,34 @@
+allotment: 9 - 3 = 6 hours
+off to airport at 4pm
+interviewing.io at airport at 6pm
+
+relax: you may not make it all; but make it realistic, and challenging
+
+ML (2)
+    . ML-rate coursera exercise
+    - ML course video
+    - change ML learning plan (tone it down to three days)
+
+coding (2)
+   - linked list cycle II (40 minutes)
+   - serialize BST (40 minutes)
+   - buffer (40)
+    
++ recruiting/workday (2)
+    
++ fam(1)
+    
++ break(1)
+
+buffer(0)
+
+
+friday:
+    • KPI for Theo
+    
+mon and tues-coding
+    * beauty matrix problem
+    * WDL problem
+    
+next wednesday
+    * capital one

@@ -1,7 +1,7 @@
 • Relax:
-• Coding: 2 – 3 problems
++ Coding: 2 – 3 problems
     + K-th largest in sorted matrix problem (4)
-    . In-memory file system (2?)
+    + In-memory file system (2?)
 + Systems design
     ◦ Think (numbers-wise) about why you go from .5 million -> 100 million, and you only add 3 machines. wow.
         ▪ well if your machine wasn’t really bogged down before then a BOE would probably agree
@@ -11,8 +11,8 @@
             • the normalized form
             • at least one copy in the de-normalized form (where the originally foreign key id would have been)
 tonight: 
-    . architeching systems for scale
-    * Something later tonight (randomized set)
+    + architeching systems for scale
+    + Something later tonight (randomized set) : not randomized set: just kinda why create-heap is O(n)
 
 Friday:
     • KPI for Theo
