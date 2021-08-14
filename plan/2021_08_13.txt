@@ -1,34 +1,36 @@
 allotment: 10:15 - 4:45 = 6.5
 
 ML (1)
-buffer(1)
-coding (3)
-    mem file system
-    serialize BFS (2)
-        * same tree 
-        * construct tree from in and pre
+
+coding (4)
+    + mem file system: implement mkdir -p
+    + serialize BFS (2)
+        + same tree 
+        + construct tree from in and pre
         + construct_in
         + construct_pre
-    linked list cycle II (40 minutes)
-
-off to airport at 4pm
-interviewing.io at airport at 6pm
-
-relax: you may not make it all; but make it realistic, and challenging
+    - linked list cycle II (40 minutes)
 
 ML (2)
-    * ML-rate coursera exercise
+    + ML-prediction coursera exercise
+    . Normal Equations
     * ML course video
     * change ML learning plan (tone it down to three days)  
     
-fam(1)
-    
-break(1)
+fam & friends(2)   
+break(.5)
 
 buffer(0)
 
+this even
+- hose for tap
 
-friday:
+tonight:
+- get back to apple recruiter: say yes. let's talk. then tell her mid sep is best
+- cancel next ticket (looks like southwest)
+- plan tomorrow
+
+saturday night:
     • KPI for Theo
     
 mon and tues-coding

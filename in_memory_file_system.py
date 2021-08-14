@@ -24,7 +24,6 @@ from typing import List
 class FileSystem:
     class Node:
         def __init__(self, name, isdir):
-            self.children = []
             self.content = ""
             self.isdir = isdir
             self.lookup = {}
@@ -33,7 +32,7 @@ class FileSystem:
     def __init__(self):
         self.root = FileSystem.Node("", True)
         
-    def get_node(self, names: List[str]) -> "FileSystem.Node":
+    def get_last_node(self, names: List[str]) -> "FileSystem.Node":
         node = self.root
         for name in names:
             node = node.lookup[name]
@@ -56,12 +55,21 @@ class FileSystem:
         examples:
         root level -> names == []
         subdir level -> names = [a, b, c, d]
+        
+        path
+        for name in path
+            if name not in curr.lookup:
+                make it!
+            curr = curr.lookup[name]
         '''
         if not path:
             raise ValueError
         names = self.path_to_list(path)
-        parentnode = self.get_node(names[:len(names)-1])
-        newdir = self.newchild(parentnode, names[-1], True)       
+        curr = self.root
+        for name in names:
+            if name not in curr.lookup:
+                curr.lookup[name] = FileSystem.Node(name, True)
+            curr = curr.lookup[name]
     
     def ls(self, path):
         '''
@@ -69,32 +77,24 @@ class FileSystem:
         '''
         res = []
         names = self.path_to_list(path)
-        node = self.get_node(names)
+        node = self.get_last_node(names)
         if node.isdir:
-            for childnode in node.children:
-                res.append(childnode.name)
+            for name in node.lookup:
+                res.append(name)
         else:
             res.append(node.name)
         return path, sorted(res)
-    
-    def newchild(self, parentnode, childname, isdir):
-        file = FileSystem.Node(childname, isdir)
-        #so when get_node is called, we O(1) time get the node based on string val
-        parentnode.lookup[childname] = file
-        parentnode.children.append(file)
-        return file
-        
+           
     def addContentToFile(self, path, content):
         '''
         path = "/root/files/f1", 
         content = "; more content for f1"
         '''
         names = self.path_to_list(path) # root, files, f1
-        parentnode = self.get_node(names[:len(names)-1]) # files
+        parentnode = self.get_last_node(names[:len(names)-1]) # files
         if names[-1] not in parentnode.lookup:
-            file = self.newchild(parentnode, names[-1], False)
-        else:
-            file = parentnode.lookup[names[-1]]
+            parentnode.lookup[names[-1]] = FileSystem.Node(names[-1], False)
+        file = parentnode.lookup[names[-1]]
         file.content += content
 
     def readContentFromFile(self, path):
@@ -102,10 +102,16 @@ class FileSystem:
                 path = "/root/files/f1", 
         '''
         names = self.path_to_list(path)
-        node = self.get_node(names)        
+        node = self.get_last_node(names)        
         return node.content
         
 fs = FileSystem()
+
+fs.mkdir("a/b/c/d")
+print(fs.ls("/a"))
+print(fs.ls("a/b"))
+print(fs.ls("a/b/c"))
+print(fs.ls("a/b/c/d"))
 
 fs.mkdir("/root")
 print(fs.ls("/")) # root
