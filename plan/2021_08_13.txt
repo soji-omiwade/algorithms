@@ -4,7 +4,7 @@ ML (1)
 
 coding (4)
     + mem file system: implement mkdir -p
-    + serialize BFS (2)
+    + serialize BST (2)
         + same tree 
         + construct tree from in and pre
         + construct_in
@@ -13,7 +13,7 @@ coding (4)
 
 ML (2)
     + ML-prediction coursera exercise
-    . Normal Equations
+    + Normal Equations
     * ML course video
     * change ML learning plan (tone it down to three days)  
     
@@ -26,15 +26,21 @@ this even
 - hose for tap
 
 tonight:
-- get back to apple recruiter: say yes. let's talk. then tell her mid sep is best
++ get back to apple recruiter: say yes. let's talk. then tell her mid sep is best
 - cancel next ticket (looks like southwest)
-- plan tomorrow
+. plan tomorrow
 
-saturday night:
+
+saturday morning (1)
+    Serialize BST
+saturday night (2)
     • KPI for Theo
+    * one re-do 
     
+sunday (rest)
+
 mon and tues-coding
-    * beauty matrix problem
+    * beauty matrix problem (preferably before gusto)
     * WDL problem
     
 next wednesday
