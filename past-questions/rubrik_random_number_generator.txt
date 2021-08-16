@@ -1,0 +1,27 @@
+Write a RandomGenerator class:
+
+public class RandomGenerator {
+
+	public RandomGenerator(int n) {
+	}
+	
+	public int generate() {
+		// todo
+	}
+}
+The contructor will be passed an integer n. generate is supposed to return a random number between 0 to n, but it is not supposed to return a number that it has already returned. If possiblities are exhauted, return -1.
+
+Example:
+
+var rg = new RandomGenerator(3);
+rg.generate(); // 0
+rg.generate(); // 2
+rg.generate(); // 1
+rg.generate(); // -1
+
+
+
+specific to rubrik: 
+    when genrate has exchausted instead of -1, start over.
+    also what if u extend the rg online, can u still give the ones u haven't given and also the new stuff?
+    

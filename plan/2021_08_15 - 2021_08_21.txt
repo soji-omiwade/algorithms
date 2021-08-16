@@ -1,0 +1,11 @@
+* serialize binary tree                 (tree)
+* knight's tour                         (DFS)
+* generate random list cycles rubrik    (arrays and random)
+* find the duplicate number             (arrays)
+* search sorted array                   (bin-search)
+* Minimum Window Substring              (dict)
+* reverse linked list (a to b)          (linked list)
+* randomized set                        (arrays and dicts)
+* find word location (karat)            (DFS)
+
+    
