@@ -21,14 +21,15 @@ Wednesday
     
 Thursday
     * mfrac again
-    * generate random list cycles rubrik    (arrays and random)
     * i.io intervals
+    * atoi on leetcode
 
 Friday
     * uber beauty problem                   (array)
     * Find duplicate number                 (linked list)
     * mfrac
-    
+
+* generate random list cycles rubrik    (arrays and random)   
 * serialize binary tree                 (tree)
 * Minimum Window Substring              (dict)
 * reverse linked list (a to b)          (linked list)
