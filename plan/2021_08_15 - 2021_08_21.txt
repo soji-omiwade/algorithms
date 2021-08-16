@@ -17,10 +17,10 @@ Wednesday
     * search sorted array                   (bin-search)
         * and me ask it on i.io
     * How does the Internet work
-    * mfrac again
+    * mfrac
     
 Thursday
-    * mfrac again
+    * mfrac
     * i.io intervals
     * atoi on leetcode
 
