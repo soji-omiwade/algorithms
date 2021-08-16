@@ -12,23 +12,27 @@ Tuesday
         use code instead
     * ML (1 vid)
     * Twitter & workday
+    * HAProxy
 
 Wednesday
     * search sorted array                   (bin-search)
         * and me ask it on i.io
     * How does the Internet work
     * mfrac
+    * reddit
     
 Thursday
     * mfrac
     * i.io intervals
     * atoi on leetcode
+    * reddit
 
 Friday
     * uber beauty problem                   (array)
     * Find duplicate number                 (linked list)
     * mfrac
-
+    * reddit
+    
 * generate random list cycles rubrik    (arrays and random)   
 * serialize binary tree                 (tree)
 * Minimum Window Substring              (dict)
