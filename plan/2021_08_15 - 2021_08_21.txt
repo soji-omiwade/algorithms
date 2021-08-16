@@ -1,10 +1,13 @@
 + reverse integer                       (bits)
 + Find duplicate number                 (bin search)
+
 Monday
-    * knight's tour                         (DFS)
-    * capital one
-    * ML (2 vids)
+    + knight's tour                         (DFS)
+    * knight probability in chessboard      (DFS)
+    + capital one (10 - 11:30)
+    + ML (2 vids)
     * key values gusto
+    * appraisal process
 
 Tuesday
     * mfrac: 
@@ -33,6 +36,8 @@ Friday
     * mfrac
     * reddit
     
+* embedded string
+* embolden string - add bold tag in string
 * generate random list cycles rubrik    (arrays and random)   
 * serialize binary tree                 (tree)
 * Minimum Window Substring              (dict)

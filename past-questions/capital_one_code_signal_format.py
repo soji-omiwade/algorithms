@@ -25,11 +25,10 @@ function buffer_line(line, linewidth)
      
     
 line = []
-res = []
-rem = width
 for paragraph in paragraphs:
+    res = []
+    rem = width
     for word in paragraph:
-        #  a
         if len(word) <= rem:
             line.append(word)
             rem -= len(word) + 1
@@ -38,7 +37,7 @@ for paragraph in paragraphs:
             buffer_line()
             line = [word]
             rem = width - (len(word) + 1)
-    res.append("*" + " ".join(line) + "*")
+    res.append(line)
 return res
 
 '''
@@ -47,7 +46,7 @@ def buffered_line(line, width):
     spacecount = len(list(1 for word in line)) - 1 # 
     wordareacount = sum(len(word) for word in line)
     linewidth = wordareacount + spacecount
-    rem = width - linewidth # 16 - 
+    rem = width - linewidth 
     remleft = remright = rem // 2
     if (width - linewidth) % 2 == 1:
         remright += 1
@@ -56,10 +55,9 @@ def buffered_line(line, width):
 def centerNewspaperText(paragraphs, width):
     res = []
     res.append((width + 2) * "*")
-    line = []
-    res = []
-    rem = width
     for paragraph in paragraphs:
+        line = []
+        rem = width
         for word in paragraph:
             if len(word) <= rem:
                 line.append(word)
@@ -67,13 +65,15 @@ def centerNewspaperText(paragraphs, width):
             else:
                 res.append("*" + buffered_line(line, width) + "*")
                 line = [word]
-                rem = width - (len(word) + 1)    
+                rem = width - (len(word) + 1)
+        res.append("*" + buffered_line(line, width) + "*")
     res.append((width + 2) * "*")
     return res
     
 paragraphs = [["hello", "world"], ["How", "areYou", "doing"], ["Please look", "and align", "to center"]]
 width = 16
-print(centerNewspaperText(paragraphs, width))
+from pprint import pprint
+pprint(centerNewspaperText(paragraphs, width))
 '''
 centerNewspaperText(paragraphs, width) = ["******************",
                                           "*  hello world   *",
