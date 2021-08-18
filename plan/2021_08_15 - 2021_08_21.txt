@@ -2,40 +2,62 @@
 + Find duplicate number                 (bin search)
 
 Monday
-    + knight's tour                         (DFS)
-    * knight probability in chessboard      (DFS)
+    + knight's tour                                  (DFS)
+    + Attempt knight probability in chessboard      (DFS)
     + capital one (10 - 11:30)
     + ML (2 vids)
-    * key values gusto
-    * appraisal process
 
 Tuesday
-    * mfrac: 
-        test old well testcase
-        use code instead
-    * ML (1 vid)
-    * Twitter & workday
-    * HAProxy
+    + Twitter 
+    + Theo: clarifications
+    + workday
 
 Wednesday
-    * search sorted array                   (bin-search)
-        * and me ask it on i.io
-    * How does the Internet work
-    * mfrac
-    * reddit
+    + email to emily: thanks this made me feel good; interviewing to work for the best companies has been difficult. and this made me hopeful. thanks emily btw i enjoyed my time with munir. 
+    +  - 1 knight's move probability (leetcode)
+    *  - 1:30: knight's tour
+    * - 2pm: schedule weichang meeting for thursday as per theo request
+    * - 4pm: multi-frac
+    * - 5pm: i.io 
     
 Thursday
-    * mfrac
-    * i.io intervals
-    * atoi on leetcode
-    * reddit
-
+    * twitter 
+        * Given: logs, where a log is like ["create/leave/join", "abc/xyx", "user1", 12343]. formally, [action, spaceid, userid, timestamp]
+        * Spaces -- spaces. ah! the complexity could actually be O(n), since we can track the total sum as we go. i think
+        * Trending spaces. Give top k spaces at any given time
+        * play with reversed for testing
+    * prepare for weichang meeting
+    * have weichang meeting
+    * -2: ML
+    
 Friday
+    * contact slync.io
+    * HAProxy tab
+    * security in python
+
     * uber beauty problem                   (array)
     * Find duplicate number                 (linked list)
     * mfrac
     * reddit
-    
+
+    * ML (1 vid)
+    * evening email:
+        * HAProxy
+
+* search sorted array                   (bin-search)
+    * and me ask it on i.io
+* How does the Internet work
+* mfrac
+* reddit    
+
+* mfrac: 
+    test old well testcase
+    use code instead
+- key values gusto
+- appraisal process
+* i.io intervals
+* atoi on leetcode
+* reddit
 * embedded string
 * embolden string - add bold tag in string
 * generate random list cycles rubrik    (arrays and random)   
