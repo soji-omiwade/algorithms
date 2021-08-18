@@ -103,7 +103,7 @@ def istour(width, height):
     visit = [[False for col in range(width)] for row in range(height)]
     return path if helper() else None
 
-for width in range(10):
-    for height in range(10):
+for height in range(1, 5):
+    for width in range(1, 5):
         if width <= height:
-            print(width, height, istour(width, height))
+            print(width, height, istour(height, width))
