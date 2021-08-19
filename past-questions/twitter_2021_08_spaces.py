@@ -53,20 +53,35 @@ def setup():
     
 '''
     ["create", "abc", "1", "100"], 
+
+
+requests = [
+    ["create", "abc", "1", "100"], 
+    ["join", "abc", "2", "105"], 
+    ["create", "xyz", "1", "50"],
+    ["leave", "abc", "1", "110"], 
+    ["leave", "xyz", "1", "70"],        
+    ["join", "abc", "3", "110"], 
+    ["join", "abc", "4", "120"], 
+    ["join", "xyz", "1", "70"],    
+    ["join", "xyz", "42", "70"],    
+    ["create", "low", "1", "70"],    
+]    
 '''
 def action_happened(action, spacename, userid, timestamp, spacesheap, heapentrylookup):    
     #request should be appended to requests esp. for timestamp
     
     heapentry = heapentrylookup[spacename]
     heapentry[-1] = "REMOVED"   
-    newheapentry = heapentry[:]
+    newheapentry = [heapentry[0], spacename]
     heapentrylookup[spacename] = newheapentry
     
     if action == "leave":    
         newheapentry[0] += 1
     else: #create or join
         newheapentry[0] -= 1
-    heapq.push(spacesheap, newheapentry)
+    heapq.heappush(spacesheap, newheapentry)
+
 
 def topk(spacesheap, k):
     '''
@@ -81,13 +96,30 @@ def topk(spacesheap, k):
         heapentry = heapq.heappop(spacesheap)
         if heapentry[-1] != "REMOVED":
             tempstore.append(heapentry)
-            res.append(heapentry[-1], - heapentry[0])
+            res.append((heapentry[-1], -heapentry[0]))
             have += 1
     for heapentry in tempstore:
-        heapq.heappush(heappentry)
+        heapq.heappush(spacesheap, heapentry)
     return res
-    
-setup()
+
+requests = [
+    ["create", "abc", "1", "100"], 
+    ["join", "abc", "2", "105"], 
+    ["create", "xyz", "1", "50"],
+    ["leave", "abc", "1", "110"], 
+    ["leave", "xyz", "1", "70"],        
+    ["join", "abc", "3", "110"], 
+    ["join", "abc", "4", "120"], 
+    ["join", "xyz", "1", "70"],    
+    ["join", "xyz", "42", "70"],    
+    ["create", "low", "1", "70"],    
+]    
+
+heapentrylookup, spacesheap= setup()
 for action in requests:
-    action_happened(*action)
-print(topk)
+    action_happened(*action, spacesheap, heapentrylookup)
+print(spacesheap)
+print(heapentrylookup)
+print(topk(spacesheap, 1)) #output: [abc, 3]
+print(topk(spacesheap, 2)) #output: [(abc, 3), (xyz, 2)]
+print(topk(spacesheap, 3)) #output: [(abc, 3), (xyz, 2), (low, 1)]
