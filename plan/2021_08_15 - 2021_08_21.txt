@@ -20,7 +20,6 @@ Wednesday
     - - 4pm: multi-frac
     + - 5pm: i.io 
     + tonight: plan w/ dunni when to take twitter
-    + uber beauty problem                   (array)
     
 Thursday
     + email rahat
@@ -28,21 +27,29 @@ Thursday
     + email emily
     + email capital one
     + bring gusto interview closer
-    * better sense of DFS via 
-        * knight's probability
-        * sudoku
-    * twitter 
-        * Given: logs, where a log is like ["create/leave/join", "abc/xyx", "user1", 12343]. formally, [action, spaceid, userid, timestamp]
-        * Spaces -- spaces. ah! the complexity could actually be O(n), since we can track the total sum as we go. i think
-        * Trending spaces. Give top k spaces at any given time
+    + better sense of DFS via 
+        + knight's probability
+        + sudoku
+    + twitter 
+        + Given: logs, where a log is like ["create/leave/join", "abc/xyx", "user1", 12343]. formally, [action, spaceid, userid, timestamp]
+        + Spaces -- spaces. ah! the complexity could actually be O(n), since we can track the total sum as we go. i think
+        + Trending spaces. Give top k spaces at any given time
         * play with reversed for testing
-    * Prepare for Ethos
-    * parking lot
+    + parking lot (other one, and be thinking about things you learned in current one)
+        hash out requirements
+        envelope calculations to prepare for end-points and scale
+        endpoints
+        scale
+        data model
+        HLD        
+    + iterative {in, pre, post} order traversal
+    . construct tree from pre and post order traversal
     
 Friday
     * HAProxy tab
     * mcquarie
     * Find duplicate number                 (linked list)
+    * reverse inside a linked list
     * reddit
     * ML (1 vid)
     * evening email:
@@ -53,3 +60,6 @@ saturday
     * 2 problems
     
     
+for next week
+    * talk to weichang
+    * then take tuesday and wednesday sick 
