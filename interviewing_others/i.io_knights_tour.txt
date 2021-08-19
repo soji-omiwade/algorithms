@@ -22,8 +22,12 @@ X00 -> False
 ... 
 
 3x4 -> True
+X___
+____
+____
+____
 
-...
+
 
 
 follow-up: give me the path
