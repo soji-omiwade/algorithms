@@ -1,0 +1,38 @@
+In chess, a knight moves in an L shape (1 square in any direction, then 2 squares in an orthogonal direction).
+
+_ O _ O _
+O _ _ _ O
+_ _ X _ _
+O _ _ _ O
+_ O _ O _
+
+Given W and H of the size of a chessboard, write a function that returns true if a knight placed at the top-left corner can be moved such that it touches every square exactly once.
+
+1x1
+X -> True
+
+2x2
+X0 -> False
+00
+
+2x3
+X00 -> False
+00_
+
+... 
+
+3x4 -> True
+
+...
+
+
+follow-up: give me the path
+
+
+
+deltas = [
+(1, 2), (-1, 2), 
+(1, -2), (-1, -2), 
+(2, 1), (-2, -1),
+(-2, 1), (-2, -1)
+]

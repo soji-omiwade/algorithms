@@ -15,56 +15,41 @@ Tuesday
 Wednesday
     + email to emily: thanks this made me feel good; interviewing to work for the best companies has been difficult. and this made me hopeful. thanks emily btw i enjoyed my time with munir. 
     +  - 1 knight's move probability (leetcode)
-    *  - 1:30: knight's tour
-    * - 2pm: schedule weichang meeting for thursday as per theo request
-    * - 4pm: multi-frac
-    * - 5pm: i.io 
+    +  - 1:30: knight's tour
+    + - 2pm: schedule weichang meeting for thursday as per theo request
+    - - 4pm: multi-frac
+    + - 5pm: i.io 
+    + tonight: plan w/ dunni when to take twitter
+    + uber beauty problem                   (array)
     
 Thursday
+    + email rahat
+    + Signed NDA for Apex
+    + email emily
+    + email capital one
+    + bring gusto interview closer
+    * better sense of DFS via 
+        * knight's probability
+        * sudoku
     * twitter 
         * Given: logs, where a log is like ["create/leave/join", "abc/xyx", "user1", 12343]. formally, [action, spaceid, userid, timestamp]
         * Spaces -- spaces. ah! the complexity could actually be O(n), since we can track the total sum as we go. i think
         * Trending spaces. Give top k spaces at any given time
         * play with reversed for testing
-    * prepare for weichang meeting
-    * have weichang meeting
-    * -2: ML
+    * Prepare for Ethos
+    * parking lot
     
 Friday
-    * contact slync.io
     * HAProxy tab
-    * security in python
-
-    * uber beauty problem                   (array)
+    * mcquarie
     * Find duplicate number                 (linked list)
-    * mfrac
     * reddit
-
     * ML (1 vid)
     * evening email:
         * HAProxy
 
-* search sorted array                   (bin-search)
-    * and me ask it on i.io
-* How does the Internet work
-* mfrac
-* reddit    
 
-* mfrac: 
-    test old well testcase
-    use code instead
-- key values gusto
-- appraisal process
-* i.io intervals
-* atoi on leetcode
-* reddit
-* embedded string
-* embolden string - add bold tag in string
-* generate random list cycles rubrik    (arrays and random)   
-* serialize binary tree                 (tree)
-* Minimum Window Substring              (dict)
-* reverse linked list (a to b)          (linked list)
-* randomized set                        (arrays and dicts)
-* find word location (karat)            (DFS)
-
+saturday
+    * 2 problems
+    
     
