@@ -43,9 +43,36 @@ Thursday
         data model
         HLD        
     + iterative {in, pre, post} order traversal
+    + isValid parentheses
     . construct tree from pre and post order traversal
+
+friday
+    * i.io intervals problem
+    * one easy problem...apex
+    * twitter narendra
+    * twitter educative.io
+
+saturday - sunday
+    *start looking into full text search engine -- this is a thing one drive would like
+    *no coding; maybe do some thinking/review, say on the i.io problem
+       
+monday
+    engage weichang!
+    uber matrix problem
+    one easy leetcode
+    
+tuesday
+    gusto
+    behavioral
+    rest
+
+    
+
+
+
     
 Friday
+    uber WDL problem
     * HAProxy tab
     * mcquarie
     * Find duplicate number                 (linked list)
