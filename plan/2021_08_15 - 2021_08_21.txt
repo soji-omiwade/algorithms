@@ -72,10 +72,7 @@ monday
     * reverse inside a linked list
     i.io problem
 
-tuesday
-    gusto
-    behavioral
-    rest
+
 
 Friday
     uber WDL problem
@@ -90,9 +87,30 @@ Friday
 
 
 saturday
-    * 2 problems
-    
+    * 2 problems   
     
 for next week
     * talk to weichang
     * then take tuesday and wednesday sick 
+    
+sunday: 
+    34. Find First and Last Position of Element in Sorted Array
+    book social graph
+    evening: 
+        - highlights
+        - update availabilities
+        - email to cathy: sick? no tuesday
+        
+monday:
+    - prepare for weichang
+    - serialize a binary tree
+    - watch narendra on dropbox
+    - coding simplified dropbox; take notes; practice on board  
+    - evening: email cathy
+    
+tuesday
+    gusto: relax and have fun
+    behavorial prep (see microsoft notes in thehunt\behavioral)
+    behavioral: relax and have fun.
+    social-graph
+    rest
