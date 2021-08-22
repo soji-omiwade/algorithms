@@ -47,30 +47,36 @@ Thursday
     . construct tree from pre and post order traversal
 
 friday
-    * i.io intervals problem
-    * one easy problem...apex
-    * twitter narendra
-    * twitter educative.io
+    - i.io intervals problem
+    + one easy problem...apex: find median via linear search: failed
+    + isvalid sudoku
+    + linear time find-median
+    + twitter narendra
+    - twitter educative.io
 
 saturday - sunday
-    *start looking into full text search engine -- this is a thing one drive would like
+    + start looking into full text search engine -- this is a thing one drive would like (thanks to narendra)
     *no coding; maybe do some thinking/review, say on the i.io problem
        
+    O(1) linked list intersection
+    find duplicate number
+       
+starting monday to wednesday:
+    * bring femi board here and practice a little with it
+    * learn more about one-drive and system design
+    * even have a pramp with it
+    
 monday
     engage weichang!
-    uber matrix problem
-    one easy leetcode
-    
+    * Find duplicate number                 (linked list)
+    * reverse inside a linked list
+    i.io problem
+
 tuesday
     gusto
     behavioral
     rest
 
-    
-
-
-
-    
 Friday
     uber WDL problem
     * HAProxy tab
