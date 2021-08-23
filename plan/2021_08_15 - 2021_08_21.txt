@@ -94,13 +94,13 @@ for next week
     * then take tuesday and wednesday sick 
     
 sunday: 
-    34. Find First and Last Position of Element in Sorted Array
-    book social graph
-    evening: 
+    . Find First and Last Position of Element in Sorted Array
+    * book social graph
+    night: 
         - highlights
-        - update availabilities
+        - update availabilities with twitter- emily
         - email to cathy: sick? no tuesday
-        
+
 monday:
     - prepare for weichang
     - serialize a binary tree

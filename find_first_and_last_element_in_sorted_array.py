@@ -28,13 +28,18 @@ lo,hi
 1    2
 lo   hi
 mid
-
-1 2 2 2 2 lo = 2 3 4 5 6 7 8 8 8 
+                        found
+1 2 2 2 2 2 3        4 5 6 7 8 8 8 
 
 lo  hi
 2   3
 
-2 8
+l   h
+2 3 8
+
+
+          l h
+2 5 7 8 8 8 12
 '''
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
@@ -43,31 +48,35 @@ class Solution:
             while lo < hi:
                 mid = lo + (hi - lo) // 2
                 if nums[mid] != target:
+                    if nums[mid + 1] == target:
+                        return mid + 1
                     lo = mid + 1
-                elif nums[mid] == target:
+                else:
                     hi = mid
-            return lo
-        from math import ceil
+                return lo
+        
         def find_hi_idx(lo, hi):
+            from  math import ceil
             assert nums[lo] == target
             while lo < hi:
-                mid = int(ceil(lo + (hi - lo) // 2))
+                mid = ceil(lo + (hi - lo) // 2)
                 if nums[mid] != target:
+                    if nums[mid - 1] == target:
+                        return mid - 1
                     hi = mid - 1
-                elif nums[mid] == target:
+                else:
                     lo = mid
             return lo
         
-        
         lo, hi = 0, len(nums) - 1
         lores = hires = -1
-        while lo < hi:
+        while lo <= hi:
             mid = lo + (hi - lo) // 2
-            if nums[mid] < target:
+            if nums[mid] == target:
+                lores = find_lo_idx(lo, mid)
+                hires = find_hi_idx(mid, hi)                
+            elif nums[mid] < target:
                 lo = mid + 1
-            elif nums[mid] > target:
+            else:
                 hi = mid - 1
-        if nums[lo] == target:
-            lores = find_lo_idx(0, lo)
-            hires = find_hi_idx(lo, len(nums) - 1)                
         return [lores, hires]
