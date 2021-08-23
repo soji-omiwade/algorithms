@@ -110,7 +110,6 @@ monday:
     * make sure you understand these well.
     * let's do search rotated array in range.
     * move work area to edge...
-    * serialize a binary tree
     * watch narendra on dropbox
     * coding simplified dropbox; take notes; practice on board  
     * evening: 
@@ -126,3 +125,5 @@ tuesday
     
 post wednesday
     * trie ... no it's too late.
+
+
