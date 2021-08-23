@@ -41,25 +41,28 @@ l   h
           l h
 2 5 7 8 8 8 12
 '''
+from typing import List
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         def find_lo_idx(lo, hi):
             assert nums[hi] == target
             while lo < hi:
                 mid = lo + (hi - lo) // 2
+                # print(lo, hi, mid)                
                 if nums[mid] != target:
                     if nums[mid + 1] == target:
                         return mid + 1
                     lo = mid + 1
                 else:
                     hi = mid
-                return lo
+            return lo
         
         def find_hi_idx(lo, hi):
             from  math import ceil
             assert nums[lo] == target
             while lo < hi:
-                mid = ceil(lo + (hi - lo) // 2)
+                mid = ceil(lo + (hi - lo) / 2.0)
+                # print(lo, hi, mid)
                 if nums[mid] != target:
                     if nums[mid - 1] == target:
                         return mid - 1
@@ -74,9 +77,14 @@ class Solution:
             mid = lo + (hi - lo) // 2
             if nums[mid] == target:
                 lores = find_lo_idx(lo, mid)
-                hires = find_hi_idx(mid, hi)                
+                hires = find_hi_idx(mid, hi)
+                break
             elif nums[mid] < target:
                 lo = mid + 1
             else:
                 hi = mid - 1
         return [lores, hires]
+
+      # 0  1  2  3  4  5  6
+nums = [2, 5, 7, 8, 8, 8, 12]
+print(Solution().searchRange(nums, 8))
