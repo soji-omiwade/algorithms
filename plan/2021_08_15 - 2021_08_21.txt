@@ -94,23 +94,35 @@ for next week
     * then take tuesday and wednesday sick 
     
 sunday: 
-    . Find First and Last Position of Element in Sorted Array
-    * book social graph
+    + Find First and Last Position of Element in Sorted Array
+    + book social graph
     night: 
-        - highlights
-        - update availabilities with twitter- emily
-        - email to cathy: sick? no tuesday
+        + highlights
+        - prepare for weichang
+        + update availabilities with twitter- emily
+        * cleanly unleash the board
 
 monday:
-    - prepare for weichang
-    - serialize a binary tree
-    - watch narendra on dropbox
-    - coding simplified dropbox; take notes; practice on board  
-    - evening: email cathy
+    + learn it, but don't cram it. Find First and Last Position of Element in Sorted Array
+    + search rotated array
+    * bisect to solve search sorted array...impossible
+    * bisect to solve search range? yes possible!
+    * make sure you understand these well.
+    * let's do search rotated array in range.
+    * move work area to edge...
+    * serialize a binary tree
+    * watch narendra on dropbox
+    * coding simplified dropbox; take notes; practice on board  
+    * evening: 
+        * email cathy
+        * social graph
     
 tuesday
+    * weichang meeting; then tell cathy bad tummy
     gusto: relax and have fun
     behavorial prep (see microsoft notes in thehunt\behavioral)
     behavioral: relax and have fun.
-    social-graph
     rest
+    
+post wednesday
+    * trie ... no it's too late.
