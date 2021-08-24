@@ -124,11 +124,17 @@ tuesday
     behavioral: relax and have fun.
     rest
     
-post wednesday
-    * trie ... no it's too late.
+wednesday
+    * microsoft
+    * work
+    
+post wednesday                  -
+    * trie ... no it's too late - dfsfd
+                                - dfdf
 
 
 thursday
+* mcquarie
 * weichang meeting
 * search rotated array with duplicates why?
     . requires thinking clearly (fail fast hopefully helps)
@@ -136,9 +142,16 @@ thursday
 * threading - cracking the coding interview
 
 friday
+* theo mail -- check out AIMS
 * letter tile possibilities -- because the dfs solution is much faster than the enumeration approach when there are lots of duplicates
 * threading
+
+saturday
+* book aramco holiday for september 1 - 2
 
 sunday (in houston)
 * serialize a binary tree (breathe, pseudocode deftly and gently, eventually implement)
 * new problem from wayfair list!
+
+monday
+* cancel i.io interview scheduled for rubrik day
