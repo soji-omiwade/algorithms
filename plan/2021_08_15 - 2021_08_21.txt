@@ -105,16 +105,17 @@ sunday:
 monday:
     + learn it, but don't cram it. Find First and Last Position of Element in Sorted Array
     + search rotated array
+    + letter tile possibilities
     * bisect to solve search sorted array...impossible
     * bisect to solve search range? yes possible!
-    * make sure you understand these well.
     * let's do search rotated array in range.
     * move work area to edge...
     * watch narendra on dropbox
-    * coding simplified dropbox; take notes; practice on board  
+    + coding simplified dropbox; take notes; practice on board  
     * evening: 
         * email cathy
         * social graph
+        + get back to wayfair
     
 tuesday
     * weichang meeting; then tell cathy bad tummy
@@ -127,3 +128,17 @@ post wednesday
     * trie ... no it's too late.
 
 
+thursday
+* weichang meeting
+* search rotated array with duplicates why?
+    . requires thinking clearly (fail fast hopefully helps)
+    . uses previous things learned: zeroidx-search
+* threading - cracking the coding interview
+
+friday
+* letter tile possibilities -- because the dfs solution is much faster than the enumeration approach when there are lots of duplicates
+* threading
+
+sunday (in houston)
+* serialize a binary tree (breathe, pseudocode deftly and gently, eventually implement)
+* new problem from wayfair list!
