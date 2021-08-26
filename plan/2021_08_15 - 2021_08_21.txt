@@ -118,21 +118,31 @@ monday:
         + get back to wayfair
     
 tuesday
-    * weichang meeting; then tell cathy bad tummy
-    gusto: relax and have fun
-    behavorial prep (see microsoft notes in thehunt\behavioral)
-    behavioral: relax and have fun.
-    rest
+    + gusto: relax and have fun
+    + behavorial prep (see microsoft notes in thehunt\behavioral)
+    * behavioral pramp
+    * systems design prep
+    * systems design pramp
+    evening:
+        * apply to apple roles
+        * rest
     
 wednesday
-    * microsoft
-    * work
+    + call in sick
+    + microsoft
+    - work
+    . how the Internet works 
+    + square 2 sum
+    . CTCI a3+b3+c3+d3<1000?
+    . 4sum (look at soln)
     
 post wednesday                  -
     * trie ... no it's too late - dfsfd
                                 - dfdf
 
-
+night: 
+    weichang meeting prep
+    
 thursday
 * mcquarie
 * weichang meeting
@@ -145,6 +155,7 @@ friday
 * theo mail -- check out AIMS
 * letter tile possibilities -- because the dfs solution is much faster than the enumeration approach when there are lots of duplicates
 * threading
+* schedule vacation
 
 saturday
 * book aramco holiday for september 1 - 2
@@ -155,3 +166,30 @@ sunday (in houston)
 
 monday
 * cancel i.io interview scheduled for rubrik day
+* job search time
+    * go to linked in: connect to Shivpuriya0211@gmail.com
+    * thanks to kristine for believing in my abilities
+    * apply for some apple jobs & others
+
+
+* CTCI a3+b3+c3+d3<1000?
+* 4sum via recursive method (u can do this on your own)
+pramp week after reviewing below, then pramp up another!
+    Fri, Jul 9, 2021, 12:00 PM	Algorithms	
+    Shortest Word Edit Path
+    Drone Flight Planner
+    Request Intro	View Feedback
+    Thu, Jul 1, 2021, 10:00 AM	Algorithms	
+    Array Quadruplet
+    Island Count
+    Request Intro	View Feedback
+    Wed, Jun 30, 2021, 4:04 PM	System Design	
+    Scale on the Cloud
+    Key-Value Cache for Search Engine
+    Caio L.	View Feedback
+    Thu, Jun 24, 2021, 2:00 PM	Algorithms	
+    Word Count Engine
+    H-Tree Construction
+    Shiwei X.	View Feedback
+
+
