@@ -4,11 +4,12 @@ wordDict = ["leet","code"]
 '''
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        def clear_if_possible(sloc, word):
-            if wordaslist == arr[i:i+len(word)]:
+        def clear_if_possible(i, word):
+            if word == arr[i:i+len(word)]:
                 arr[i:i+len(word)] = [None] * len(word)
     
         def helper():
+            nonlocal arr
             for word in wordlist:
                 if tuple(word) in unavailable:
                     continue
@@ -22,7 +23,7 @@ class Solution:
                     if breakable:
                         return True
                 arr = temparr
-                unavailable.remove(word)
+                unavailable.remove(tuple(word))
             return False
                     
         arr = list(s)
