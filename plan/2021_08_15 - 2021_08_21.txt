@@ -144,21 +144,50 @@ night:
     weichang meeting prep
     
 thursday
-* mcquarie
-* weichang meeting
-* search rotated array with duplicates why?
++ mcquarie
+- weichang meeting
+- search rotated array with duplicates why?
     . requires thinking clearly (fail fast hopefully helps)
     . uses previous things learned: zeroidx-search
-* threading - cracking the coding interview
++ threading - cracking the coding interview (but it wasn't CTIC)
 
 friday
-* theo mail -- check out AIMS
-* letter tile possibilities -- because the dfs solution is much faster than the enumeration approach when there are lots of duplicates
-* threading
-* schedule vacation
++ theo mail -- check out AIMS
++ schedule vacation
++ book time on theo caleander as per theo email
++ wayfair
+. word break
+    * tabulation approach
+    + brute-force -- R0ckY LC way
+    * brute-force -- my way
+    + memoization for any one of the brute-forces above
+. threading -- realpython (learn usage in anticipation of looking @ threading module, then the queue implementation)
+- begin to work on highlights, fucker!
 
+
+
+
+does aramco get labor day off? if so need to change flight depart
+also need to change return trip to leave later for possible wayfair interview.
+python singleton
+python composition
+python twosum-bst
+    yield
+    non-iterator approach
+
+
+
+
+
+
+
+
+
+
+* letter tile possibilities -- because the dfs solution is much faster than the enumeration approach when there are lots of duplicates
 saturday
 * book aramco holiday for september 1 - 2
+* CTCI a3+b3+c3+d3<1000? and 4sum (look at soln)
 
 sunday (in houston)
 * serialize a binary tree (breathe, pseudocode deftly and gently, eventually implement)
