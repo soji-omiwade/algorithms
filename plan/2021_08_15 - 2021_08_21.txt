@@ -165,33 +165,31 @@ friday
 - begin to work on highlights, fucker!
 
 
+saturday
+- also need to change return trip to leave later for possible wayfair interview.
++ book aramco holiday for september 1 - 2
+- CTCI a3+b3+c3+d3<1000? and 4sum (look at soln)
++ word break
+    + tabulation approach
+    + brute-force -- R0ckY LC way
+    - brute-force -- my way
+    + memoization for any one of the brute-forces above
+
+sunday (in houston)
+* serialize a binary tree (breathe, pseudocode deftly and gently, eventually implement)
+* new problem from wayfair list!
+
+dunni - birthday - gift...
 
 
-does aramco get labor day off? if so need to change flight depart
-also need to change return trip to leave later for possible wayfair interview.
++ does aramco get labor day off? if so need to change flight depart
 python singleton
 python composition
 python twosum-bst
     yield
     non-iterator approach
+- letter tile possibilities -- because the dfs solution is much faster than the enumeration approach when there are lots of duplicates
 
-
-
-
-
-
-
-
-
-
-* letter tile possibilities -- because the dfs solution is much faster than the enumeration approach when there are lots of duplicates
-saturday
-* book aramco holiday for september 1 - 2
-* CTCI a3+b3+c3+d3<1000? and 4sum (look at soln)
-
-sunday (in houston)
-* serialize a binary tree (breathe, pseudocode deftly and gently, eventually implement)
-* new problem from wayfair list!
 
 monday
 * cancel i.io interview scheduled for rubrik day
