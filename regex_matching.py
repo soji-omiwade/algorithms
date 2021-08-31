@@ -53,7 +53,9 @@ class Solution:
                 return True
             if firstmatches and self.isMatch(string[1:], pattern):
                 return True
-        return firstmatches and self.isMatch(string[1:], pattern[1:])
+            return False
+        else:
+            return firstmatches and self.isMatch(string[1:], pattern[1:])
         
         
         

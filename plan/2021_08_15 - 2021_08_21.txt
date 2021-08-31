@@ -192,7 +192,9 @@ python twosum-bst
 
 
 monday
-* cancel i.io interview scheduled for rubrik day
+* start now the queue stuff and condition variables
+
++ cancel i.io interview scheduled for rubrik day
 * job search time
     * go to linked in: connect to Shivpuriya0211@gmail.com
     * thanks to kristine for believing in my abilities
