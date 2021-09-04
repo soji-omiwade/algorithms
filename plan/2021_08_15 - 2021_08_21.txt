@@ -235,8 +235,10 @@ today (4): pramp + sys d.
     1 - 1:30 bst successor
     get back to captial one
     + test maze
+
     finish dp matrix sum problem 
     letter tile -- do it dfs style.
+    sys.d
     
 saturday (2): sys d.
 sun: travel + coding
