@@ -35,12 +35,26 @@ methods:
         with notempty:
             if not block
                 if self.qsize() == 0:
-                    return None
+                    raise Exception("Empty!")
             #assumes timeout is None
-            while qsize <= 0
-                # validatio if it is < 0 goes here
-                self.notempty.wait()
-            while 
+            elif timeout is None:
+                while qsize <= 0
+                    # validation if it is < 0 goes here
+                    self.notempty.wait()
+            #now timeout is not None
+            elif timeout < 0:
+                raise ValueError()
+            else:
+                #wait timeout time at most
+                #after that, quit waiting and raise Empty!
+                #get item before end of wait? good exit while
+                endtime = time() + timeout
+                while self.qsize() == 0:
+                    start = time()
+                    notempty.wait(timeout)
+                    timeout -= (time() - start)
+            
             item = _get()
-            notfull.notify()
+            self.notfull.notify()
+            
 def join(self):
