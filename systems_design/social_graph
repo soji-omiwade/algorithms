@@ -1,0 +1,37 @@
+Design the data structures for a social network
+1. use cases & constraints & assumptions
+    guide:
+        Gather requirements & scope the problem
+        Ask questions to clarify uses cases and constraints
+        Discuss assumptions
+    Use cases
+        User searches for someone and sees a shortest path to searched person
+        Service is highly available
+    Constraints and Assumptions
+        traffic not evenly distributed
+        graph won't fit on a single machine
+            too expensive to load entire graph into 1 machine anyway
+        unweighted graph edges
+        100 million users
+        50 friends per user
+        1e9 searches per month
+    
+2. Service Usage:
+    Ask if to do calc or leave out for now
+    could just assume cant fit in memory
+    Storage
+        1 user has 50 edges -> 
+            50 * 4B = 200B = 1KB
+        1 KB * 100m users = 100B B = 100 GB
+        typical memory: 16GB
+    QPS
+        1e9 searches per month -> / 30 * 24 * 3600 = 400 searches per second
+        
+2. High level design
+
+client ---> web server ---> search api ----> user graph service-----loookup service
+                                                               \_____person server
+3. Design core components
+    jamboard
+
+4. Scale out

@@ -244,10 +244,10 @@ saturday (2): sys d.
 sun: travel + coding
 mon: sys d. + tad bit of coding
 
+
+
 tuesday - 
     system design interview + 
-    
-    
     
 
 
@@ -256,3 +256,10 @@ tuesday -
     * bio
 * cathy vacation
 * reschedule weichang meeting
+
+sat. night:
+    dfs letter tile
+    
+sunday morning:
+    + facebook prep (1 hr)
+    - twitter read (in prep for monday interview) (2hrs)
