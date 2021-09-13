@@ -8,15 +8,10 @@ while j < n
 '''
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        runningsum = nums[0]
-        maxsum = runningsum
-        i = 0
-        n = len(nums)
-        for j in range(1, n):
+        maxsum = runningsum = float("-inf")
+        for j in range(len(nums)):
             runningsum += nums[j]
             if nums[j] > runningsum:
                 runningsum = nums[j]
-                i = j
             maxsum = max(maxsum, runningsum)
         return maxsum
-        
