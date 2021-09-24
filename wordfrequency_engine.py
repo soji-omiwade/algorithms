@@ -1,5 +1,5 @@
 from typing import List, Tuple
-
+from collections import Counter
 '''
 approach: 
     clean out each word from non alphanum characters
@@ -14,30 +14,16 @@ approach:
             finalres.append([word, str(freq)])
     return finalres
 '''
-from collections import Counter
 def wordorder(sen: str) -> List[Tuple[str, str]]:
     if not sen:
         return []
-    # clean out each word from non alphanum characters
-    sen = [   "".join(letter for letter in word if letter.isalnum()) for word in sen.split(" ")]
-    # initialize a counter (note that the order from left to right is actually preserved)
-        # Ill 1, be 3, starting 1, ...
+    sen = ["".join(letter for letter in word if letter.isalnum()) for word in sen.split(" ")]
     counter = Counter(sen)
-    # create a array res, with length len(sen), with empty lists, 
-    # for each word, freq in counter
-        # res[freq].append(word)
     res = [[] for _ in range(1 + len(sen))]
     for word, freq in counter.items():
         res[freq].append(word)
-    # return res
-    # finalres = []
-    # for freq, lis in enumerate(res):
-        # for word in lis:
-            # finalres.append([word, str(freq)])
-    # return finalres
     
     finalres = []
-    # print(res)
     for freq, lis in enumerate(reversed(res)):
         tfreq = len(res) - 1 - freq
         for word in lis:
