@@ -5,14 +5,9 @@ approach:
     clean out each word from non alphanum characters
     initialize a counter (note that the order from left to right is actually preserved)
         Ill 1, be 3, starting 1, ...
-    create a array res, with length len(sen), with empty lists, 
-    for each word, freq in counter
-        res[freq].append(word)
-    finalres = []
-    for freq, lis in enumerate(res):
-        for word in lis:
-            finalres.append([word, str(freq)])
-    return finalres
+    create a array res, with length len(sen), with empty lists
+    go through each word (and its frequence) in the counter and append it to the result at res[freq]
+    final result is outputing the contents of the sublists starting from the back!
 '''
 def wordorder(sen: str) -> List[Tuple[str, str]]:
     if not sen:
