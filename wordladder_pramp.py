@@ -12,7 +12,7 @@ def shortestWordEditPath(source, target, words):
   '''
   fish ... aish ... bish ...
   '''
-  def getnext(word):
+  def neighbors(word):
     newword = list(word)
     for i in range(len(word)):
       ignorech = word[i]
@@ -20,17 +20,23 @@ def shortestWordEditPath(source, target, words):
         ch = chr(j + ord('a'))
         if ch != ignorech:
           newword[i] = ch
-          if ''.join(newword) in wordsset:
-            yield newword
+          newword_str = ''.join(newword)
+          if newword_str in wordsset and newword_str not in visit:
+            yield newword_str
       newword[i] = ignorech
 
   wordsset = set(words)
+  visit = set()
   q = deque([source])
+  visit.add(source)
   count = 0
   while q:
     for i in range(len(q)):
       word = q.popleft()
-      for nextword in getnext(word):
+      if word == target:
+        return count
+      for nextword in neighbors(word):
         q.append(nextword)
+        visit.add(nextword)
     count += 1
-  return count
+  return -1
