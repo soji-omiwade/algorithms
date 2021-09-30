@@ -1,7 +1,10 @@
 '''
-bfs
 consider one letter change at a time and advance in BFS only if changed is in words
 keep track of bfs path length
+BFS
+  mark nodes you've seen as you go to prevent cycles
+  stop entirely when you get to target
+But as a challenge, run through the code manually first ... or after the change actually!
 '''
 from collections import deque
 def shortestWordEditPath(source, target, words):
