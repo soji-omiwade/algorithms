@@ -29,13 +29,16 @@ strings = [
 
 import time
 
-def add_timer(func, *args):
-    starttime = time.time()
-    val = func(*args)
-    return time.time() - starttime, val
-
+def add_timer(func):
+    def wrapper(*args, **kwargs):
+        print(func, ', ', args)
+        starttime = time.time()
+        val = func(*args, **kwargs)
+        return time.time() - starttime, args[0], val
+    return wrapper
     
 def pal(string):
+    time.sleep(5)
     left = 0
     right = len(string) - 1
     while left < right:
@@ -45,8 +48,8 @@ def pal(string):
         right -= 1
     return True
 
-timer_pal = add_timer(pal, "noon")
-timer_pal(...)
+timer_pal = add_timer(pal)
+print(timer_pal('noon'))
 
 # for string in strings:
     # print(pal(string))
