@@ -16,24 +16,23 @@ o*g  ooog
     oog  --> F
     ooog --> T
 o*g
-
+           o + o*g
 g, ooog
 og, ooog
 oog, ooog
 ooog, ooig
 oooog, ooig
 
+o*g ooog
+o*g oog
 def matches(pattern, string)
     if not pattern and string:
         return False
         
-    if pattern[1] == "*"
-        done = False
-        buffer = ""
-        while len(buffer) <= len(string) or done:           # 1 <= 4
-            done = matches(buffer + pattern[2:], string)
-            buffer += pattern[0]
-        return done
+    if len(pattern) > 1 and pattern[1] == "*"
+        return (matches(pattern[2:], string)
+                    or (string[0] == pattern[0] and matches(pattern, string[1:]))
+               )
     return (
             string
             and pattern[0] in (string[0], '.') 
