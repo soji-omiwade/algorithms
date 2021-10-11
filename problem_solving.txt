@@ -1,0 +1,7 @@
+problem
+examples
+approach
+    brute-force; well explained
+    better: written and well tested
+tradeoff/other solutions
+
