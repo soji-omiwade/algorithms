@@ -6,8 +6,8 @@ example:
     word, comps = "abcde", [a, bc, de] -> ans = true
 approach
     a bcde; ab cde; abc de; abcd e; abcde ""
-    b cde
-    c de
+    b cde; bc de
+    c de; cd e
     d e
     e ""
     return helper(word)
@@ -21,15 +21,23 @@ approach
         return ans
 '''
 def wordbreak(word, dict_):
-    return helper(word, dict_)
+    return helper(word, set(dict_))
 
-def helper(word, dict_):
+def helper(word, dict_, memo=None):
+    if memo is None:
+        memo = {}
+    if word in memo:
+        print(f"memo[{word}]: {memo[word]}")
+        return memo[word]
     if not word:
         return True
         
     ans = False
     for i in range(len(word)):
-        ans = ans or (word[:i+1] in dict_  and  helper(word[i+1:], dict_))
+        subres = helper(word[i+1:], dict_, memo)
+        ans = ans or (word[:i+1] in dict_  and  subres)
+    memo[word] = ans
+    # print(word, memo)
     return ans
 
 word, comps = "abcde", ["bc", 'de'] #-> ans = false
