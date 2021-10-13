@@ -4,7 +4,7 @@ example:
     word, comps = "abcde", [bc, de] -> ans = false
     word, comps = "abcde", [bcde] -> ans = false
     word, comps = "abcde", [a, bc, de] -> ans = true
-approach
+approach-memo
     a bcde; ab cde; abc de; abcd e; abcde ""
     b cde; bc de
     c de; cd e
@@ -19,9 +19,22 @@ approach
         for i in range(0, len(word))
             ans = ans or (word[:i+1] in comps  and  helper(word[i+1:]))
         return ans
+    time: 
 '''
+#memoization
 def wordbreak(word, dict_):
     return helper(word, set(dict_))
+
+#tabulation...
+def wordbreak(word, dict_):
+    dict_ = set(dict_)
+    f = [False for _ in range(len(word) + 1)]
+    f[0] = True
+    for k in range(1, len(word)+1):
+        for i in range(k-1, -1, -1):
+            f[k] = f[k] or (f[i] and word[i:k] in dict_)
+    return f[-1]
+
 
 def helper(word, dict_, memo=None):
     if memo is None:
