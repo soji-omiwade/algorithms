@@ -25,6 +25,9 @@ approach
         root.left = helper(lo, rootidx - 1)
         root.right = helper(rootidx + 1, hi)
         return root
+        
+    time: O(n lg n) -- sorted
+    space: O(h) -- height of tree
     
 tradeoffs
 
@@ -40,14 +43,13 @@ class Solution:
                 lookup[val] = idx
             return lookup
         
-        def helper(lo, hi, preidx): #4, 5
-            if lo > hi:
+        def helper(inorderlo, inorderhi, preidx): #4, 5
+            if inorderlo > inorderhi:
                 return preidx - 1, None
-            # print(lo, hi, preidx)
             root = TreeNode(preorder[preidx])
-            rootidx = lookup[preorder[preidx]] #lookup[8] = 3
-            preidx, root.left = helper(lo, rootidx - 1, preidx + 1)
-            preidx, root.right = helper(rootidx + 1, hi, preidx + 1)
+            rootidx = lookup[preorder[preidx]]
+            preidx, root.left = helper(inorderlo, rootidx - 1, preidx + 1)
+            preidx, root.right = helper(rootidx + 1, inorderhi, preidx + 1)
             return preidx, root
 
         lookup = buildlookup()
