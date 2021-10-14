@@ -26,11 +26,13 @@ approach
         root.right = helper(rootidx + 1, hi)
         return root
         
-    time: O(n lg n) -- sorted
+    time: O(n lg n     + n ) -- sorted + traverse each element of preorder in tree construction in O(1)
     space: O(h) -- height of tree
     
 tradeoffs
+can also use bisect left
 
+copy
     preorder = [8,5,1,7,10,12]
     inorder = [1, 5, 7, 8, 10, 12] #sorted of preorder
 '''
@@ -47,12 +49,12 @@ class Solution:
             if inorderlo > inorderhi:
                 return preidx - 1, None
             root = TreeNode(preorder[preidx])
-            rootidx = lookup[preorder[preidx]]
+            rootidx = bisect.bisect_left(inorder, preorder[preidx])
             preidx, root.left = helper(inorderlo, rootidx - 1, preidx + 1)
             preidx, root.right = helper(rootidx + 1, inorderhi, preidx + 1)
             return preidx, root
 
-        lookup = buildlookup()
+        inorder = sorted(preorder)
         return helper(0, len(preorder) - 1, 0)[1]
 
         
