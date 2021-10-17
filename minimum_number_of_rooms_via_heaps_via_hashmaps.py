@@ -1,9 +1,19 @@
-from typing import int
+from typing import List
+from heapq import heappush, heappop
 
 class Solution:
     def solve(self, arr: List[int]) -> int:
-        ...
-
+        arr = sorted(arr)
+        harr = [arr[0][1]]
+        for start, end in arr[1:]:
+            print(harr)
+            if start < harr[0]:
+                pass
+            else:
+                heappop(harr)
+            heappush(harr, end)
+        return len(harr)
+                
 sol = Solution()
 a = [ [0, 30]       #---------------------
     , [5, 10]       #   -----
@@ -37,29 +47,4 @@ at each iteration, new element added to heap
          -------4              5, 13 -- room added
                   ----------4  15,29 -- discard (2,11), making end time = (5,13); hence, no room added
                       ----4    18,23 -- discard (5,13), making end time = (4,15); hence, no room added
-
-----
-    --
-    ---
-    -----
-       ----
-
-day
-    7 - 4:30: 8 working 1 hour driving
-    night: 
-        femi in bed by 8:30pm
-        cleanup to 9:30pm
-        in bed by 10:30pm
-        one time taking feyikemi: 1-2 hours
-        up @ 6:30am
-        out of the house @ 7am
-        
-getting a new car
-    ask charlies dad about buying online
-        - how did he get rid of old car
-    
-buying property
-    look into redfin for houston real estate
 '''
-    
-print(sol.solve(a)) # 
