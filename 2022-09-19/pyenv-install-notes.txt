@@ -1,0 +1,12 @@
+patching file setup.py
+patching file Mac/Modules/qt/setup.py
+patching file setup.py
+python-build: use tcl-tk from homebrew
+python-build: use readline from homebrew
+python-build: use zlib from xcode sdk
+
+
+Installed Python-2.7.18 to /Users/Oluwasoji.Omiwade/.pyenv/versions/2.7.18
+
+Oluwasoji.Omiwade@Oluwasojis-MacBook-Pro ~ % 
+
