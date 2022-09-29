@@ -1,4 +1,5 @@
 *.un~
+.gitignore~
 euler_project/
 trash/
 # Byte-compiled / optimized / DLL files
