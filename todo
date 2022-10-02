@@ -1,0 +1,5 @@
+array of array products: two ways:
+1. using pre and suf arrays
+2. without pre and suf arrays, and do it in one pass
+
+
