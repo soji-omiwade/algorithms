@@ -7,8 +7,13 @@ arr = \
    2 2 2
  7   14 14
 '''
-
 def array_of_array_products(arr):
+    pre, suf = [], []
+
+   
+    
+    
+def twopass_array_of_array_products(arr):
   if not arr or len(arr) == 1:
     return []
   output = []
