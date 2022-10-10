@@ -28,64 +28,44 @@ is_match(text, pattern, 0, 0) # initial call
 is_match(text, pattern, text_index, pattern_index)
 
 
-aaaab
-a*b
 
 aaaa
 a*
-
-text=aaa
-patt=b*aa
-
-
-''
-a*
-
-examples of no pattern:
-''
-''
-
-text = 'fish'
-text = ''
-
-Input:
- 
-"abaa"
-"a.*a*"
-res should be true
-
-t = abaa
-p = a.*a
-t = baa
-p = .*a
-
 '''
 
+'''
+t(n) = 2 * t(n-1)
+'''
 def is_match(text, pattern):
-  # if pattern is empty; then return true if text is also empty,
-  # otherwise (text is not empty), return False
-  if not pattern:
-    return not text
+    def is_match(text, pattern, tloc, ploc):
+        # if pattern is empty; then return true if text is also empty,
+        # otherwise (text is not empty), return False
+        if ploc == len(pattern):
+            #desire True if no more text left. otherwise false
+            return tloc == len(text)
 
-  # pattern not empty
-  # may be a regular char, or a * star
-  if len(pattern) == 1 or pattern[1] != '*':
-    return text and pattern[0] in (".", text[0]) and is_match(text[1:], pattern[1:])
-  else:
-    zero = is_match(text, pattern[2:])
-    mult = text and pattern[0] in ('.', text[0]) and is_match(text[1:], pattern)
-    return zero or mult
-
+        # pattern not empty
+        # may be a regular char, or a * star
+        if ploc == len(pattern) - 1  or pattern[1 + ploc] != '*':
+          return tloc < len(text) and pattern[ploc] in (".", text[tloc]) and \
+                  is_match(text, pattern, tloc + 1, ploc + 1)
+        else:
+          zero = is_match(text, pattern, tloc, 2 + ploc)
+          mult = tloc < len(text) and pattern[ploc] in ('.', text[tloc]) and \
+                  is_match(text, pattern, 1 + tloc, ploc)
+          return zero or mult
+    return is_match(text, pattern, 0, 0)
+  
 text = "abaa"
 pattern = "a.*a"
 print(is_match(text, pattern))
 
 text = "aa"
-pattern = "a"
+pattern = "aa"
 print(is_match(text, pattern))
 
 text = "aa"
-pattern = "aa"
+pattern = "a"
 print(is_match(text, pattern))
 
 text = "abc"
@@ -95,3 +75,4 @@ print(is_match(text, pattern))
 text = "abc"
 pattern = "a.d"
 print(is_match(text, pattern))
+
