@@ -1,9 +1,5 @@
 from typing import List
 '''
-array of array products
-  - using pre and suffix arrays
-  - one pass without pre and suffix arrays
-
 [2, 7, 3, 4]
 pre
 1 1*2 2*7 2*7*3 2*7*3*4
@@ -11,8 +7,12 @@ suff
 7*3*4*2 7*3*4 3*4 4*1 1
 '''
 def aa_prod_presuf(arr: List[int]) -> None:
+    '''
+    dont like this one; res[i] != pre[i-1] * suff[i+1]
+    instead it is, pre[i] * suff[i+1]
+    '''
     pre = [1] * (1 + len(arr)) #an extra element in front
-    suff = [1] * (1 + len(arr)) #an extra element at back?
+    suff = [1] * (1 + len(arr)) #an extra element at back
     for idx in range(1, len(pre)):
         pre[idx] = arr[idx - 1] * pre[idx - 1]
     for idx in range(len(suff) - 2, -1, -1):
@@ -48,22 +48,27 @@ def aa_prod_two_pass_no_presuf_arrays(arr: List[int]) -> List[int]:
         suf *= arr[i]
     return res
 
+def aa_prod_one_pass(arr: List[int]) -> List[int]:
+    pass    
+
 #res = [12, 8, 24, 6]
 arr = [2, 3, 1, 4]
 print(arr)
-aa_prod_presuf(arr)
-print(arr)
 
-arr = [2, 3, 1, 4]
-#aa_prod_one_pass(arr)
-print(arr)
+
+aa_prod_presuf(arr)
+print('pre/suf arrays, +1 lengths, ', arr)
 
 arr = [2, 3, 1, 4]
 aa_prod_presuf_simple(arr)
-print(arr)
+print('pre/suf arrays, simple, ', arr)
 
 arr = [2, 3, 1, 4]
-print(aa_prod_two_pass_no_presuf_arrays(arr))
+print('no pre/suf arrays', aa_prod_two_pass_no_presuf_arrays(arr))
+
+arr = [2, 3, 1, 4]
+#aa_prod_one_pass(arr)
+#print(arr)
 
 import sys
 sys.exit()
