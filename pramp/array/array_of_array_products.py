@@ -49,9 +49,27 @@ def aa_prod_two_pass_no_presuf_arrays(arr: List[int]) -> List[int]:
     return res
 
 def aa_prod_one_pass(arr: List[int]) -> List[int]:
-    pass    
+    '''
+arr
+2 3 1 4
+res
+12 8 24 6  
+pre
+24
+suf
+24
+    '''
+    pre = suf = 1
+    n = len(arr)
+    res = [1] * n
+    for i in range(n):
+        res[i] *= pre
+        pre *= arr[i]
+        res[n-1-i] *= suf
+        suf *= arr[n-1-i]
+    return res
 
-#res = [12, 8, 24, 6]
+#res should be [12, 8, 24, 6]
 arr = [2, 3, 1, 4]
 print(arr)
 
@@ -67,8 +85,7 @@ arr = [2, 3, 1, 4]
 print('no pre/suf arrays', aa_prod_two_pass_no_presuf_arrays(arr))
 
 arr = [2, 3, 1, 4]
-#aa_prod_one_pass(arr)
-#print(arr)
+print('one pass: ', aa_prod_one_pass(arr))
 
 import sys
 sys.exit()
