@@ -32,7 +32,21 @@ def aa_prod_presuf_simple(arr: List[int]) -> None:
         suf[idx] = arr[idx] * suf[idx + 1]
     for idx in range(1, len(arr) - 1):
         arr[idx] = pre[idx - 1] * suf[idx + 1]
+    arr[0] = 1 * suf[1]
+    arr[len(arr) - 1] = pre[len(arr) - 2]
     print(pre, suf)
+
+def aa_prod_two_pass_no_presuf_arrays(arr: List[int]) -> List[int]:
+    n = len(arr)
+    res = [0] * n
+    pre = suf = 1
+    for i in range(n):
+        res[i] = pre
+        pre *= arr[i]
+    for i in range(n-1,-1,-1):
+        res[i] *= suf
+        suf *= arr[i]
+    return res
 
 #res = [12, 8, 24, 6]
 arr = [2, 3, 1, 4]
@@ -41,8 +55,15 @@ aa_prod_presuf(arr)
 print(arr)
 
 arr = [2, 3, 1, 4]
+#aa_prod_one_pass(arr)
+print(arr)
+
+arr = [2, 3, 1, 4]
 aa_prod_presuf_simple(arr)
 print(arr)
+
+arr = [2, 3, 1, 4]
+print(aa_prod_two_pass_no_presuf_arrays(arr))
 
 import sys
 sys.exit()

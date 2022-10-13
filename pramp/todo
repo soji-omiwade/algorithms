@@ -1,6 +1,7 @@
 array of array products: two ways:
- - 1. using pre and suf arrays
- - 2. without pre and suf arrays, while doing it in one pass
+ +  pre/suf arrays; two pass
+ +  no pre/suf arrays; two pass
+ .  no pre/suf arrays; one pass
 
 + validate-ip-address: review pramp solution
 
