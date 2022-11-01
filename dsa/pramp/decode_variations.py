@@ -1,3 +1,35 @@
+def decodeVariations(s: str) -> int:
+    def validate(lo, hi):
+        if lo == -1:
+            return True
+        return 1 <= int(s[lo:hi+1]) <= 26
+
+    def decode(lo, hi, tracker, res):
+        if lo == n:
+            ress.append(list(res))
+            return bool(tracker)
+        
+        count = 0
+        res.append(s[lo:hi+1])
+        for nexthi in range(hi+1, n):
+            count += decode(hi+1, nexthi, tracker and validate(lo, hi), res)
+        res.pop()
+        return count
+
+    n = len(s)
+    ress = []
+    res = []
+    print(ress)
+    return decode(-1, -1, True, [])
+s = "1267"
+print(decodeVariations(s))
+'''
+1 2 6 7
+1 26 7
+12 6 7
+ans = 3
+'''
+
 '''
 1262
 
@@ -8,6 +40,7 @@
 1: 
 '''
   
+'''
 def decodeVariations(S):
   """
   @param S: str
@@ -31,15 +64,13 @@ def decodeVariations(S):
   n = len(S)
   results = []
   count = helper()
-  '''
-  for result in results: 
-    print(result)
-  print(count)    
-  '''
+  #for result in results: 
+  #  print(result)
+  #print(count)    
   return count
 S = '1262'
 print(decodeVariations(S))
-
+'''
 
 
 '''
@@ -52,6 +83,7 @@ print(decodeVariations(S))
 1: 
 '''
   
+'''
 def decodeVariations(S):
   """
       if memo[curridx][endidx] == -1:
@@ -93,6 +125,7 @@ def decodeVariations(S):
 
 S = '1262'
 print(decodeVariations(S))
+'''
 
 '''
 ('using memo ', 3, 3)
