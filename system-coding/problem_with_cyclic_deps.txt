@@ -1,0 +1,24 @@
+The problems with cyclic dependencies. Take python
+Oluwasoji.Omiwade@Oluwasojis-MacBook-Pro system-coding % python3 a.py
+starting a...
+starting b...
+starting a...
+Traceback (most recent call last):
+  File "/Users/Oluwasoji.Omiwade/cs/system-coding/a.py", line 2, in <module>
+    import b
+  File "/Users/Oluwasoji.Omiwade/cs/system-coding/b.py", line 2, in <module>
+    import a 
+  File "/Users/Oluwasoji.Omiwade/cs/system-coding/a.py", line 4, in <module>
+    print(f'a: b.bar: {b.bar}')
+AttributeError: partially initialized module 'b' has no attribute 'bar' (most likely due to a circular import)
+Oluwasoji.Omiwade@Oluwasojis-MacBook-Pro system-coding % cat a.py '---' b.py
+print('starting a...')
+import b
+arr = 420
+print(f'a: b.bar: {b.bar}')
+cat: ---: No such file or directory
+print('starting b...')
+import a 
+bar = 42
+print(f'b: a.arr: {a.arr}')
+
